@@ -379,6 +379,44 @@
         .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: var(--star-gold); letter-spacing: 4px; margin-bottom: 6px; }
         .footer-copy { font-size: 11px; color: var(--text-secondary); }
 
+        /* ===== FOUNDER CARD ===== */
+        .founder-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(45, 27, 78, 0.25));
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        .founder-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(45, 27, 78, 0.35));
+        }
+        .founder-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--star-gold), var(--star-gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        .founder-info { flex: 1; }
+        .founder-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--star-gold);
+            margin-bottom: 2px;
+        }
+        .founder-role { font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 1px; }
+        .founder-bio { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
+        .founder-link { font-size: 12px; color: var(--star-gold); font-weight: 500; }
+
         /* ===== Animations ===== */
         .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s; }
         .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
@@ -407,6 +445,22 @@
             </div>
 
             <p class="hero-countdown">限量 <span>100</span> 名 · 5月1日零点开售</p>
+        </section>
+
+        <!-- 主理人介绍 -->
+        <section class="section scroll-reveal">
+            <h2 class="section-title">项目主理人</h2>
+            <a href="about.html" style="text-decoration:none;color:inherit;">
+                <div class="founder-card">
+                    <div class="founder-avatar">👨‍🏫</div>
+                    <div class="founder-info">
+                        <div class="founder-name">AI黄校长</div>
+                        <div class="founder-role">TOPOPC宇航家 · 项目主理人</div>
+                        <div class="founder-bio">15年实体创业路，从70平米小店到AI一人公司开创者。150+场线下课，学员破万。创办设宇宙AI教育、十八般小艺AI智能体、AIP商学院、DeepCity深度城市。</div>
+                        <div class="founder-link">查看完整故事 →</div>
+                    </div>
+                </div>
+            </a>
         </section>
 
         <!-- 三位一体框架 -->
