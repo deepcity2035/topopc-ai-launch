@@ -377,7 +377,34 @@
         /* ===== FOOTER ===== */
         .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--card-border); }
         .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: var(--star-gold); letter-spacing: 4px; margin-bottom: 6px; }
-        .footer-copy { font-size: 11px; color: var(--text-secondary); }
+        .footer-copy { font-size: 11px; color: var(--text-secondary); margin-bottom: 16px; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-link:hover { color: var(--star-gold); }
+        .deepcity-banner {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(45, 27, 78, 0.2));
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 0 20px 30px;
+            text-align: center;
+        }
+        .deepcity-banner-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+        .deepcity-banner-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+        .deepcity-banner-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--card-border);
+            color: var(--star-gold);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .deepcity-banner-btn:hover { background: rgba(212, 175, 55, 0.25); }
 
         /* ===== FOUNDER CARD ===== */
         .founder-card {
@@ -778,9 +805,19 @@
         </section>
 
         <!-- Footer -->
+        <div class="deepcity-banner">
+            <div class="deepcity-banner-title">🏙️ DeepCity 深度城市</div>
+            <div class="deepcity-banner-desc">一城一智，一人成军<br>AI赋能实体，让天下没有难做的生意</div>
+            <a href="deepcity.html" class="deepcity-banner-btn">了解 DeepCity →</a>
+        </div>
+
         <footer class="footer">
             <div class="footer-brand">TOPOPC AERONAUT</div>
-            <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.1 · 品牌主理人：黄校长</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.2 · 品牌主理人：黄校长</div>
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">关于主理人</a>
+                <a href="deepcity.html" class="footer-link">DeepCity</a>
+            </div>
         </footer>
     </div>
 

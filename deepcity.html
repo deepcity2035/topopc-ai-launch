@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DeepCity深度城市 · AI赋能实体 · 一城一智</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --card-border: rgba(212, 175, 55, 0.15);
+            --warm-amber: #e8a838;
+            --red-accent: #f87171;
+            --green-accent: #4ade80;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== BACK NAV ===== */
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--star-gold);
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(232, 168, 56, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: var(--star-gold);
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--star-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-slogan {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--star-gold);
+            margin-bottom: 60px;
+            padding: 20px 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== LETTER SECTION ===== */
+        .letter-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            color: var(--star-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .letter-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 24px;
+        }
+
+        .letter-greeting {
+            font-size: 16px;
+            color: var(--star-gold);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .letter-content {
+            font-size: 15px;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+
+        .letter-content p {
+            margin-bottom: 16px;
+        }
+
+        .letter-highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline-section {
+            padding: 60px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--star-gold), var(--nebula-purple));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--star-gold);
+            border: 3px solid var(--deep-space);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .timeline-year {
+            font-size: 13px;
+            color: var(--star-gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .timeline-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .timeline-quote {
+            margin-top: 16px;
+            padding: 16px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--star-gold);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        /* ===== PAIN POINTS ===== */
+        .pain-section {
+            padding: 60px 0;
+        }
+
+        .pain-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .pain-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pain-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(248, 113, 113, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .pain-text {
+            font-size: 15px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== SOLUTION ===== */
+        .solution-section {
+            padding: 60px 0;
+        }
+
+        .solution-intro {
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .solution-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .solution-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .solution-arrow {
+            color: var(--star-gold);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .solution-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .solution-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== DELIVERABLES ===== */
+        .deliver-section {
+            padding: 60px 0;
+        }
+
+        .deliver-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .deliver-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 31, 58, 0.6));
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .deliver-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--star-gold);
+            color: var(--deep-space);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .deliver-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .deliver-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(45, 27, 78, 0.3));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .cta-checklist {
+            text-align: left;
+            max-width: 320px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .cta-check::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.2);
+            color: var(--green-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--star-gold), var(--warm-amber));
+            color: var(--deep-space);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .deepcity-footer {
+            padding: 40px 0 60px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-logo {
+            font-family: "Cinzel", serif;
+            font-size: 24px;
+            color: var(--star-gold);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--star-gold);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🏙️</span>
+                <span>DEEP CITY</span>
+            </div>
+            <h1 class="hero-title">DeepCity<br>深度城市</h1>
+            <p class="hero-subtitle">15年，从70平米小店到"AI一人公司"<br>AI黄校长走的每一步都是实体行业的进化史</p>
+            <div class="hero-slogan">一城一智，一人成军<br>让天下没有难做的生意</div>
+            <div class="scroll-hint">
+                <span>向下滚动</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LETTER -->
+    <section class="letter-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">MESSAGE</div>
+                <h2 class="section-title">一封写给实体商家的信</h2>
+            </div>
+            <div class="letter-card">
+                <div class="letter-greeting">亲爱的各位实体商家/老板们：</div>
+                <div class="letter-content">
+                    <p>大家好！我是<span class="letter-highlight">AI黄校长</span>。</p>
+                    <p>我们正站在数智时代的生产资料革命关口。一边是AI技术迭代引发的集体FOMO——全球AI市场规模预计2027年将突破<span class="letter-highlight">1.8万亿美元</span>；另一边，却是生产资料重构带来的历史机遇。</p>
+                    <p>当数据、算法、算力取代传统的土地、劳动力，成为新的核心生产要素时，<span class="letter-highlight">普通人首次拥有了"不依赖资本和规模，仅靠个人价值就能构建资产"的可能。</span></p>
+                    <p>我常被问及："数智时代，企业/个人对抗不确定性的核心能力是什么？"</p>
+                    <p>答案是——<span class="letter-highlight">"把自己产品化"</span>。以AI为工具，以个人IP为内核，将独特经验、认知沉淀为可复制、可增值的个人数据资产。</p>
+                    <p>如果你也正在经历流量贵、客户少、团队难管、利润薄、想用AI却不知如何落地——这封信是写给你的。</p>
+                    <p>我花了15年时间，从一家70平米的智能家居小店起步，经历过一年2000万营收的高光，也尝过一夜亏掉千万的至暗。最终，我找到了答案——<span class="letter-highlight">AI不是未来，而是现在。</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">JOURNEY</div>
+                <h2 class="section-title">15年创业进化史</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2010 · 启程</div>
+                    <div class="timeline-title">70平米小店，梦想开启</div>
+                    <div class="timeline-content">
+                        佛山。一间70平米的智能家居体验店，承载着一个年轻人的创业梦。没有资本、没有资源，只有一颗"用技术改变行业"的初心。
+                    </div>
+                    <div class="timeline-quote">"如果连一家小店都做不好，凭什么谈改变行业？"</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2015-2020 · 考验</div>
+                    <div class="timeline-title">九死一生，至暗时刻</div>
+                    <div class="timeline-content">
+                        接连创办米蜗科技、蓝围裙、德炫科技、建域数字化……投资优声美影、积优联合、设计联、好邻社区。一年营收2000万，也曾一夜亏掉千万。
+                    </div>
+                    <div class="timeline-quote">"真正的创业者，不是不会失败，而是失败后依然敢赌上一切。"</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2023 · 蜕变</div>
+                    <div class="timeline-title">AI觉醒，从生意人到赋能者</div>
+                    <div class="timeline-content">
+                        ChatGPT4.0的"奇点时刻"。当别人还在讨论AI会不会取代人类时，我已经开始行动。150场线下课，学员破万；研发"十八般小艺AI智能体"；创办AIP商学院。
+                    </div>
+                    <div class="timeline-quote">"AI不是玩具，而是生产力革命。"</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">2025 · 回归</div>
+                    <div class="timeline-title">实体AI一人公司，使命的终极形态</div>
+                    <div class="timeline-content">
+                        推出"DeepCity深度城市"，用"AI+IP"双核模型赋能中小企业。从"卖产品"到"卖系统"，从"做生意"到"做生态"。
+                    </div>
+                    <div class="timeline-quote">"极致追求，淡泊名利——我的下半生，只做这一件事。"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAIN POINTS -->
+    <section class="pain-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CHALLENGES</div>
+                <h2 class="section-title">你是否正在经历这些困境？</h2>
+            </div>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">📉</div>
+                    <div class="pain-text">流量越来越贵，但客户越来越少</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">👥</div>
+                    <div class="pain-text">团队越来越难管，人才流失严重</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <div class="pain-text">利润越来越薄，却找不到新增长点</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">🤖</div>
+                    <div class="pain-text">想用AI，但不知道如何落地，怕被割韭菜</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">SOLUTION</div>
+                <h2 class="section-title">AI赋能实体的破局之道</h2>
+            </div>
+            <p class="solution-intro">我们交付的不是工具，而是结果。<br>不空谈理论，只给可落地的系统。</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-title"><span class="solution-arrow">→</span>流量贵？</div>
+                    <div class="solution-desc">AI自动生成内容，低成本获客</div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-title"><span class="solution-arrow">→</span>转化难？</div>
+                    <div class="solution-desc">AI智能体客服7×24小时接待，筛选高意向客户</div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-title"><span class="solution-arrow">→</span>管理累？</div>
+                    <div class="solution-desc">AI标准化业务流程，新人3天上手</div>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-title"><span class="solution-arrow">→</span>增长慢？</div>
+                    <div class="solution-desc">小程序商城+私域变现，打造自动化赚钱系统</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section class="deliver-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">DELIVERABLES</div>
+                <h2 class="section-title">AI赋能实体五大交付</h2>
+            </div>
+            <div class="deliver-grid">
+                <div class="deliver-card">
+                    <div class="deliver-number">1</div>
+                    <div class="deliver-content">
+                        <h4>一个智能门户</h4>
+                        <p>7×24小时代表你与客户沟通</p>
+                    </div>
+                </div>
+                <div class="deliver-card">
+                    <div class="deliver-number">2</div>
+                    <div class="deliver-content">
+                        <h4>一套知识系统</h4>
+                        <p>让企业经验可传承、可进化</p>
+                    </div>
+                </div>
+                <div class="deliver-card">
+                    <div class="deliver-number">3</div>
+                    <div class="deliver-content">
+                        <h4>一支AI团队</h4>
+                        <p>分担70%的重复性工作</p>
+                    </div>
+                </div>
+                <div class="deliver-card">
+                    <div class="deliver-number">4</div>
+                    <div class="deliver-content">
+                        <h4>一个变现引擎</h4>
+                        <p>自动完成从流量到现金的转化</p>
+                    </div>
+                </div>
+                <div class="deliver-card">
+                    <div class="deliver-number">5</div>
+                    <div class="deliver-content">
+                        <h4>一套进化机制</h4>
+                        <p>系统随业务发展持续优化</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2 class="cta-title">你的英雄之旅，即将开始</h2>
+                <p class="cta-subtitle">如果你也是实体创业者/商家<br>正面临流量、管理、增长的困境</p>
+                <div class="cta-checklist">
+                    <div class="cta-check">3小时掌握AI落地方法，直接给可复制的模型</div>
+                    <div class="cta-check">适合教育、文旅、零售、制造、财税、法律等行业</div>
+                    <div class="cta-check">提供《企业自动变现系统蓝图》，规划专属AI路径</div>
+                </div>
+                <a href="index.html" class="cta-button">
+                    <span>加入TOPOPC宇航家</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="deepcity-footer">
+        <div class="container">
+            <div class="footer-logo">DeepCity</div>
+            <div class="footer-tagline">一城一智 · 一人成军</div>
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">TOPOPC宇航家</a>
+                <a href="about.html" class="footer-link">关于黄校长</a>
+            </div>
+            <div class="footer-copy">© 2025 DeepCity 深度城市 · AI黄校长</div>
+        </div>
+    </footer>
+
+    <script>
+        // Starfield animation
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
