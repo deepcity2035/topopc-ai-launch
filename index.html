@@ -801,20 +801,59 @@
             <!-- 权益清单卡片组 -->
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:720px;margin:0 auto;">
                 <!-- ① -->
-                <div style="background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(139,92,246,0.05));border:1px solid rgba(139,92,246,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(139,92,246,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(139,92,246,0.18)'">
+                <a href="opbc-full-course.html" style="display:block;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(139,92,246,0.05));border:1px solid rgba(139,92,246,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;text-decoration:none;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(139,92,246,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(139,92,246,0.18)'">
                     <span style="font-size:22px;flex-shrink:0;">🎓</span>
                     <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">OPC全案落地大课</div>
+                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">OPC全案落地大课 <span style="color:#a78bfa;font-size:11px;margin-left:4px;">→ 查看详情</span></div>
                         <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">2天1夜 · 线下集中交付 · 复训仅场地费</div>
-                        <div style="font-size:13px;color:#a78bfa;font-weight:600;margin-top:5px;">¥8,668</div>
+                        <div style="font-size:13px;color:#a78bfa;font-weight:600;margin-top:5px;">¥8,668 <span style="font-size:11px;font-weight:400;opacity:0.7;">· 点击查看完整课件</span></div>
+                    </div>
+                </a>
+
+                <!-- ①号2天1夜详情模块 -->
+                <div style="grid-column:1/-1;background:linear-gradient(135deg,rgba(139,92,246,0.06),rgba(99,102,241,0.03));border:1px solid rgba(139,92,246,0.15);border-radius:16px;padding:20px;margin:4px 0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                        <div>
+                            <div style="font-size:11px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:4px;">🎓 年卡核心权益①</div>
+                            <div style="font-size:18px;font-weight:800;color:#e8e4f0;">OPC全案落地大课 · 2天1夜</div>
+                        </div>
+                        <a href="opbc-full-course.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(99,102,241,0.15));border:1px solid rgba(139,92,246,0.3);border-radius:20px;font-size:12px;color:#a78bfa;text-decoration:none;font-weight:600;transition:all 0.2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(139,92,246,0.3),rgba(99,102,241,0.2))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(139,92,246,0.2),rgba(99,102,241,0.15))'">查看完整课件 →</a>
+                    </div>
+                    <!-- 2天时间线 -->
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;" class="opbc-timeline">
+                        <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);border-radius:12px;padding:14px;">
+                            <div style="font-size:11px;font-weight:700;color:#818cf8;margin-bottom:8px;">📅 Day 1 · 认知+工具</div>
+                            <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;">
+                                上午：OPBU核心理念 + 个人诊断<br>
+                                下午：AI写作/图片/视频工具实战<br>
+                                晚间：学员商业互推 + 资源对接
+                            </div>
+                        </div>
+                        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:12px;padding:14px;">
+                            <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:8px;">📅 Day 2 · 实战+闭环</div>
+                            <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;">
+                                上午：AI获客/转化 + 商业画布<br>
+                                下午：交付自动化 + 30天计划<br>
+                                毕业：路演 + 证书
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 产出成果 -->
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                        <span style="font-size:12px;color:var(--text-secondary);">现场产出：</span>
+                        <span style="font-size:11px;padding:4px 10px;background:rgba(139,92,246,0.1);border-radius:10px;color:#a78bfa;">OPBU商业画布</span>
+                        <span style="font-size:11px;padding:4px 10px;background:rgba(16,185,129,0.1);border-radius:10px;color:#34d399;">AI工作流</span>
+                        <span style="font-size:11px;padding:4px 10px;background:rgba(251,146,60,0.1);border-radius:10px;color:#fb923c;">30天计划</span>
+                        <span style="font-size:11px;padding:4px 10px;background:rgba(245,158,11,0.1);border-radius:10px;color:#fbbf24;">文案+图片+视频</span>
                     </div>
                 </div>
+
                 <!-- ② -->
                 <a href="opbu28.html" style="display:block;background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(52,211,153,0.05));border:1px solid rgba(16,185,129,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;text-decoration:none;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(16,185,129,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(16,185,129,0.18)'">
                     <span style="font-size:22px;flex-shrink:0;">💪</span>
                     <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">OPBU·28天陪跑</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">线上一对一陪跑群 · 每日任务驱动执行 <span style="color:#34d399;font-size:11px;margin-left:4px;">→ 查看详情</span></div>
+                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">OPBU·28天陪跑 <span style="color:#34d399;font-size:11px;margin-left:4px;">→ 查看详情</span></div>
+                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">线上一对一陪跑群 · 每日任务驱动执行</div>
                         <div style="font-size:13px;color:#34d399;font-weight:600;margin-top:5px;">¥3,688 <span style="font-size:11px;font-weight:400;opacity:0.7;">· 点击查看28天详细大纲</span></div>
                     </div>
                 </a>

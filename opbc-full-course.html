@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPC全案落地大课 · 2天1夜 - TOPOPC宇航家</title>
+    <style>
+        :root {
+            --bg-primary: #0a0f1e;
+            --bg-secondary: #12182a;
+            --text-primary: #e8e4f0;
+            --text-secondary: #9ca3af;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-gold: #d4af37;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+
+        /* Hero */
+        .hero {
+            padding: 60px 16px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(139,92,246,0.08) 0%, transparent 100%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #a78bfa;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #e8e4f0, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #a78bfa;
+        }
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Section */
+        .section {
+            padding: 32px 16px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 课程概览表格 */
+        .info-table {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .info-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label {
+            width: 100px;
+            padding: 12px 16px;
+            background: rgba(139,92,246,0.08);
+            font-size: 13px;
+            font-weight: 600;
+            color: #a78bfa;
+            flex-shrink: 0;
+        }
+        .info-value {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        /* 课程目标卡片 */
+        .goal-card {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(99,102,241,0.05));
+            border: 1px solid rgba(139,92,246,0.2);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .goal-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #a78bfa;
+        }
+        .goal-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .goal-card li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 13px;
+        }
+        .goal-card li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        /* 特色标签 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .feature-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .feature-tag-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .feature-tag-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #8b5cf6, #10b981, #f5a623);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+        }
+        .timeline-time {
+            font-size: 11px;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 6px;
+        }
+        .timeline-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .timeline-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .timeline-content li {
+            padding: 3px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .timeline-content li::before {
+            content: '•';
+            position: absolute;
+            left: 4px;
+            color: #a78bfa;
+        }
+
+        /* 模块卡片 */
+        .module-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .module-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .module-time {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: rgba(139,92,246,0.15);
+            border-radius: 10px;
+            color: #a78bfa;
+        }
+        .module-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .module-output {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #34d399;
+        }
+
+        /* 产出清单 */
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .output-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .output-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(139,92,246,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #a78bfa;
+            flex-shrink: 0;
+        }
+        .output-text {
+            font-size: 13px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-q {
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .faq-a {
+            padding: 0 16px 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-link {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 26px; }
+            .info-label { width: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">🎓 TOPOPC宇航家年卡 · 核心权益①</div>
+        <h1>OPC全案落地大课 · 2天1夜</h1>
+        <p class="hero-subtitle">从0到1跑通OPBU一人公司全流程 · 现场出成果</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">14.5h</div>
+                <div class="hero-stat-label">课程时长</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">30人</div>
+                <div class="hero-stat-label">小班制</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">8项</div>
+                <div class="hero-stat-label">现场产出</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">¥8,668</div>
+                <div class="hero-stat-label">权益价值</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 课程概览 -->
+        <section class="section">
+            <h2 class="section-title">📋 课程概览</h2>
+            <div class="info-table">
+                <div class="info-row">
+                    <div class="info-label">课程名称</div>
+                    <div class="info-value">OPC全案落地大课</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">课程定位</div>
+                    <div class="info-value">TOPOPC宇航家年卡核心权益①</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">教学形式</div>
+                    <div class="info-value">线下面授 + 实战演练</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">课程时长</div>
+                    <div class="info-value">2天1夜（约14.5小时）</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">上课人数</div>
+                    <div class="info-value">小班制（限30人）</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">上课时间</div>
+                    <div class="info-value">Day1上午9:30 - Day2下午17:00</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">餐食安排</div>
+                    <div class="info-value">餐费AA制，自由报名</div>
+                </div>
+            </div>
+
+            <!-- 课程目标 -->
+            <div class="goal-card" style="margin-top:20px;">
+                <h3>🎯 核心目标</h3>
+                <ul>
+                    <li>从0到1跑通OPBU一人公司全流程</li>
+                    <li>掌握AI赋能的核心工具和方法</li>
+                    <li>现场制定自己的30天落地计划</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <h3>📊 最低成果</h3>
+                <ul>
+                    <li>每人完成1份OPBU商业画布</li>
+                    <li>每人设计1条AI获客内容</li>
+                    <li>每人制定30天行动计划</li>
+                </ul>
+            </div>
+
+            <!-- 特色 -->
+            <div class="features">
+                <div class="feature-tag">
+                    <div class="feature-tag-icon">🏃</div>
+                    <div class="feature-tag-text">实战为主<br>不是听讲</div>
+                </div>
+                <div class="feature-tag">
+                    <div class="feature-tag-icon">🤝</div>
+                    <div class="feature-tag-text">面对面<br>即时答疑</div>
+                </div>
+                <div class="feature-tag">
+                    <div class="feature-tag-icon">📋</div>
+                    <div class="feature-tag-text">现场出成果<br>学完就能用</div>
+                </div>
+                <div class="feature-tag">
+                    <div class="feature-tag-icon">👥</div>
+                    <div class="feature-tag-text">小班教学<br>限30人</div>
+                </div>
+                <div class="feature-tag">
+                    <div class="feature-tag-icon">🌙</div>
+                    <div class="feature-tag-text">晚间互动<br>资源对接</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 整体框架 -->
+        <section class="section">
+            <h2 class="section-title">🗺️ 2天1夜全景图</h2>
+            <div style="background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(16,185,129,0.05));border:1px solid rgba(139,92,246,0.2);border-radius:14px;padding:20px;font-size:13px;line-height:2;">
+                <div style="font-weight:700;color:#a78bfa;margin-bottom:12px;">📅 Day 1 白天 · 认知篇 + 工具篇</div>
+                <div style="padding-left:16px;color:var(--text-secondary);">
+                    ├── 上午：OPBU核心理念 + 个人诊断<br>
+                    └── 下午：AI工具全景 + 工作流设计
+                </div>
+                <div style="font-weight:700;color:#34d399;margin:16px 0 12px;">🌙 Day 1 晚间 · 学员商业互动</div>
+                <div style="padding-left:16px;color:var(--text-secondary);">
+                    └── 商业互推 + 经验分享 + 资源对接
+                </div>
+                <div style="font-weight:700;color:#f5a623;margin:16px 0 12px;">📅 Day 2 白天 · 实战篇 + 闭环篇</div>
+                <div style="padding-left:16px;color:var(--text-secondary);">
+                    ├── 上午：获客实战 + 转化实战 + 商业画布<br>
+                    └── 下午：交付自动化 + 行动计划 + 毕业
+                </div>
+            </div>
+        </section>
+
+        <!-- Day1 上午 -->
+        <section class="section">
+            <h2 class="section-title">📚 Day 1 上午 · OPBU核心理念</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">时间：09:30-12:00</p>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块一】开营仪式</div>
+                    <div class="module-time">09:30-09:45 · 15分钟</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>欢迎致辞 + 课程目标说明</li>
+                        <li>今天学什么、明天做什么、2天后拿到什么成果</li>
+                        <li>学习规则宣布：手机静音、积极参与、不懂就问</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块二】OPBU核心方法论</div>
+                    <div class="module-time">09:45-10:30 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:10px;"><strong>OPBU = One Person Business Unit = 一人商业单元</strong></p>
+                    <p style="margin-bottom:10px;">一个人就是一个完整的商业单元，能够独立完成从获客到交付的全流程。</p>
+                    <p style="margin-bottom:8px;"><strong>三大特征：</strong></p>
+                    <ul>
+                        <li>最小闭环：一个人能完成全部核心业务</li>
+                        <li>自动运转：系统化、流程化，不需要时刻盯着</li>
+                        <li>无限放大：可以从小开始，逐步放大</li>
+                    </ul>
+                </div>
+                <div class="module-output">✅ 理解OPBU的底层逻辑</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块三】AI时代的机遇与挑战</div>
+                    <div class="module-time">10:30-11:15 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>AI工具全景：</strong></p>
+                    <ul>
+                        <li>写作：DeepSeek、Kimi、智谱</li>
+                        <li>图片：Midjourney、即梦</li>
+                        <li>视频：即梦、可灵、Runway</li>
+                    </ul>
+                    <p style="margin-top:10px;margin-bottom:8px;"><strong>为什么现在是入局AI的最佳时机：</strong></p>
+                    <ul>
+                        <li>工具成熟度 ✅ 基础工具已成熟，使用门槛大幅降低</li>
+                        <li>市场接受度 ✅ 用户愿意为AI服务付费</li>
+                        <li>竞争格局 ⚠️ 早期玩家已入场，但大部分人还没开始</li>
+                    </ul>
+                </div>
+                <div class="module-output">✅ 看清AI时代的机遇 ✅ 找到适合自己的AI工具</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块四】个人/企业现状诊断</div>
+                    <div class="module-time">11:15-12:00 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>业务现状梳理：画出你的业务闭环</li>
+                        <li>时间黑洞分析：找出每天最耗时间的3件事</li>
+                        <li>AI落地潜力评估：重复性、模板化、数据化、创意性评分</li>
+                    </ul>
+                </div>
+                <div class="module-output">✅ 填写《个人现状诊断表》</div>
+            </div>
+        </section>
+
+        <!-- Day1 下午 -->
+        <section class="section">
+            <h2 class="section-title">💻 Day 1 下午 · AI工具篇</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">时间：14:00-17:30</p>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块五】AI写作工具实战</div>
+                    <div class="module-time">14:00-14:45 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>提示词工程核心公式：</strong></p>
+                    <p style="background:rgba(139,92,246,0.1);padding:10px;border-radius:8px;margin-bottom:10px;font-family:monospace;font-size:12px;">
+                        好提示词 = 角色 + 任务 + 要求 + 示例
+                    </p>
+                    <p>实操：用DeepSeek/Kimi生成3条朋友圈文案</p>
+                </div>
+                <div class="module-output">✅ 3条可直接发布的AI朋友圈文案</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块六】AI图片工具实战</div>
+                    <div class="module-time">14:45-15:30 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>商业图片制作流程：</strong></p>
+                    <ul>
+                        <li>确定需求：产品图/海报图/头像图</li>
+                        <li>编写提示词：[主体] + [风格] + [细节] + [参数]</li>
+                    </ul>
+                    <p style="margin-top:10px;">实操：用即梦生成1张课程封面图</p>
+                </div>
+                <div class="module-output">✅ 1张可直接使用的课程封面图</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块七】AI视频工具实战</div>
+                    <div class="module-time">15:30-16:15 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>AI视频类型：</strong></p>
+                    <ul>
+                        <li>口播视频：真人出镜 + AI配音</li>
+                        <li>图文视频：图片轮播 + AI配音</li>
+                        <li>数字人视频：AI虚拟人出镜</li>
+                    </ul>
+                    <p style="margin-top:10px;">实操：用即梦生成1条10秒自我介绍视频</p>
+                </div>
+                <div class="module-output">✅ 1条10秒自我介绍AI视频</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块八】AI工作流设计</div>
+                    <div class="module-time">16:15-17:00 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>OPBU最小闭环：</strong></p>
+                    <p style="background:rgba(16,185,129,0.1);padding:10px;border-radius:8px;margin-bottom:10px;font-size:12px;">
+                        AI选题 → AI写稿 → AI配图 → AI发布 → AI分析
+                    </p>
+                    <p>实操：设计自己的1个AI工作流</p>
+                </div>
+                <div class="module-output">✅ 1个AI工作流设计图</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块九】Day1总结与晚间安排</div>
+                    <div class="module-time">17:00-17:30 · 30分钟</div>
+                </div>
+                <div class="module-content">
+                    <p>今日学习回顾 + 晚间活动说明 + 明日课程预告</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day1 晚间 -->
+        <section class="section">
+            <h2 class="section-title">🌙 Day 1 晚间 · 学员商业互动</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">时间：19:30-21:00</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">19:30-19:45</div>
+                    <div class="timeline-title">晚间开场</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">19:45-20:30</div>
+                    <div class="timeline-title">学员商业互推</div>
+                    <div class="timeline-content">
+                        每人1分钟自我介绍：我是谁 + 我做什么 + 我能提供什么 + 我需要什么
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">20:30-20:50</div>
+                    <div class="timeline-title">OPBU经验分享</div>
+                    <div class="timeline-content">
+                        你目前是怎么做OPBU的？遇到了什么困难？有什么成功经验？
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">20:50-21:00</div>
+                    <div class="timeline-title">晚间总结</div>
+                    <div class="timeline-content">
+                        今天学到了什么？今天链接到了谁？明天要做什么？
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day2 上午 -->
+        <section class="section">
+            <h2 class="section-title">🚀 Day 2 上午 · 获客+转化</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">时间：09:30-12:00</p>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十】AI获客实战</div>
+                    <div class="module-time">09:30-10:15 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>核心公式：</strong></p>
+                    <p style="background:rgba(251,146,60,0.1);padding:10px;border-radius:8px;margin-bottom:10px;font-size:12px;">
+                        AI批量生产 × 矩阵分发 = 流量放大
+                    </p>
+                    <p style="margin-bottom:8px;"><strong>获客渠道：</strong>朋友圈、社群、短视频、直播、公众号</p>
+                </div>
+                <div class="module-output">✅ 制定你的获客策略</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十一】AI转化实战</div>
+                    <div class="module-time">10:15-11:00 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>转化话术公式：</strong></p>
+                    <p style="font-size:12px;margin-bottom:10px;">开场白 → 需求挖掘 → 方案推荐 → 异议处理 → 促单逼单</p>
+                    <p style="margin-bottom:8px;"><strong>异议处理：</strong>"太贵了""考虑一下""不需要""没时间"</p>
+                </div>
+                <div class="module-output">✅ 完善你的转化话术库</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十二】OPBU商业画布Workshop</div>
+                    <div class="module-time">11:00-12:00 · 60分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:10px;"><strong>OPBU商业画布9要素：</strong></p>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:11px;">
+                        <div style="background:rgba(139,92,246,0.1);padding:8px;border-radius:6px;text-align:center;">1.核心产品/服务</div>
+                        <div style="background:rgba(16,185,129,0.1);padding:8px;border-radius:6px;text-align:center;">2.关键资源</div>
+                        <div style="background:rgba(251,146,60,0.1);padding:8px;border-radius:6px;text-align:center;">3.获客渠道</div>
+                        <div style="background:rgba(236,72,153,0.1);padding:8px;border-radius:6px;text-align:center;">4.核心合作</div>
+                        <div style="background:rgba(59,130,246,0.1);padding:8px;border-radius:6px;text-align:center;">5.价值主张</div>
+                        <div style="background:rgba(245,158,11,0.1);padding:8px;border-radius:6px;text-align:center;">6.客户关系</div>
+                        <div style="background:rgba(20,184,166,0.1);padding:8px;border-radius:6px;text-align:center;">7.客户群体</div>
+                        <div style="background:rgba(167,139,250,0.1);padding:8px;border-radius:6px;text-align:center;">8.成本结构</div>
+                        <div style="background:rgba(212,175,55,0.1);padding:8px;border-radius:6px;text-align:center;">9.收入来源</div>
+                    </div>
+                    <p style="margin-top:12px;">黄校长现场一对一指导每位学员的商业画布</p>
+                </div>
+                <div class="module-output">✅ 完成1份OPBU商业画布</div>
+            </div>
+        </section>
+
+        <!-- Day2 下午 -->
+        <section class="section">
+            <h2 class="section-title">🎯 Day 2 下午 · 闭环+毕业</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">时间：14:00-17:00</p>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十三】AI交付自动化</div>
+                    <div class="module-time">14:00-14:45 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>常见交付方式：</strong></p>
+                    <ul>
+                        <li>虚拟资料：付款后自动发送网盘链接</li>
+                        <li>课程服务：付款后自动拉群</li>
+                        <li>实物商品：对接ERP系统自动发货</li>
+                        <li>咨询服务：付款后自动预约日历</li>
+                    </ul>
+                </div>
+                <div class="module-output">✅ 设计你的自动化交付流程</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十四】数据复盘体系</div>
+                    <div class="module-time">14:45-15:30 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>核心数据指标：</strong></p>
+                    <ul>
+                        <li>获客数据：新增线索数、获客成本（每天）</li>
+                        <li>转化数据：转化率、成交周期（每天）</li>
+                        <li>交付数据：交付满意度、复购率（每周）</li>
+                        <li>财务数据：收入、支出、利润（每月）</li>
+                    </ul>
+                </div>
+                <div class="module-output">✅ 确定你的核心数据指标</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十五】30天行动计划制定</div>
+                    <div class="module-time">15:30-16:15 · 45分钟</div>
+                </div>
+                <div class="module-content">
+                    <p style="margin-bottom:8px;"><strong>SMART目标设定法：</strong></p>
+                    <p style="font-size:12px;margin-bottom:10px;">具体 + 可衡量 + 可达成 + 相关性 + 时限性</p>
+                    <p style="margin-bottom:8px;"><strong>任务分解示例：</strong></p>
+                    <p style="font-size:12px;">30天目标：发布100条短视频 → 每周25条 → 每日5条</p>
+                </div>
+                <div class="module-output">✅ 完成30天行动计划表</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十六】毕业路演</div>
+                    <div class="module-time">16:15-16:45 · 30分钟</div>
+                </div>
+                <div class="module-content">
+                    <p>每人3分钟路演，展示OPBU商业画布，黄校长现场点评</p>
+                    <p style="margin-top:8px;font-size:12px;color:var(--text-secondary);">评分标准：完整性25分 + 清晰度25分 + 可行性25分 + 差异化25分</p>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-title">【模块十七】毕业典礼</div>
+                    <div class="module-time">16:45-17:00 · 15分钟</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>颁发结业证书</li>
+                        <li>合影留念</li>
+                        <li>后续服务说明：28天陪跑安排、校友社群加入方式</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产出清单 -->
+        <section class="section">
+            <h2 class="section-title">📋 课程产出清单</h2>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">必须产出的8项成果</p>
+            <div class="output-grid">
+                <div class="output-item">
+                    <div class="output-num">1</div>
+                    <div class="output-text">个人现状诊断表</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">2</div>
+                    <div class="output-text">3条AI朋友圈文案</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">3</div>
+                    <div class="output-text">1张AI课程封面图</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">4</div>
+                    <div class="output-text">1条10秒自我介绍视频</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">5</div>
+                    <div class="output-text">1个AI工作流设计</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">6</div>
+                    <div class="output-text">OPBU商业画布</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">7</div>
+                    <div class="output-text">自动化交付流程</div>
+                </div>
+                <div class="output-item">
+                    <div class="output-num">8</div>
+                    <div class="output-text">30天行动计划表</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 毕业标准 -->
+        <section class="section">
+            <h2 class="section-title">🎓 毕业标准</h2>
+            <div class="info-table">
+                <div class="info-row">
+                    <div class="info-label">出勤要求</div>
+                    <div class="info-value">2天全程参与（含晚间）</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">产出要求</div>
+                    <div class="info-value">完成至少6项产出物</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">作业要求</div>
+                    <div class="info-value">提交30天行动计划表</div>
+                </div>
+            </div>
+            <p style="margin-top:12px;font-size:13px;color:#34d399;">✅ 满足以上条件即可获得结业证书</p>
+        </section>
+
+        <!-- 上课准备 -->
+        <section class="section">
+            <h2 class="section-title">📝 上课准备</h2>
+            <div class="goal-card">
+                <h3>✅ 必须准备</h3>
+                <ul>
+                    <li>电脑（Windows/Mac均可）</li>
+                    <li>手机（用于AI工具实操）</li>
+                    <li>自己的产品/服务介绍</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <h3>💡 建议准备</h3>
+                <ul>
+                    <li>产品图片/案例资料</li>
+                    <li>现有的话术/文案</li>
+                    <li>业务流程图</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <h2 class="section-title">❓ 常见问题</h2>
+            <div class="faq-item">
+                <div class="faq-q">Q1：完全没有AI基础能参加吗？</div>
+                <div class="faq-a">可以。课程从基础开始，手把手教学。但需要你有较强的执行力，现场完成产出。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q2：2天能学到什么程度？</div>
+                <div class="faq-a">2天的目标是"建立框架 + 现场出成果"。真正的深度落地在28天陪跑，大课只是起点。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q3：需要带什么来？</div>
+                <div class="faq-a">带电脑、手机，和你的产品/服务介绍。其他物料我们都会准备好。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q4：晚间活动是必须参加吗？</div>
+                <div class="faq-a">强烈建议参加。这是学员之间深度链接的好机会。很多人通过晚间互推找到了合作伙伴。</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p style="font-size:12px;color:var(--text-secondary);">OPC全案落地大课 · 2天1夜完整课件</p>
+        <p style="font-size:12px;color:var(--text-secondary);">版本：v2.0 | 更新时间：2026-04-27</p>
+        <a href="index.html" class="footer-link">← 返回主发售页</a>
+    </div>
+</body>
+</html>
