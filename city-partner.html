@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TOPOPC城市合伙人 · 一城一智OPC孵化器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --card-border: rgba(212, 175, 55, 0.15);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --green-accent: #4ade80;
+            --purple-accent: #a78bfa;
+            --blue-accent: #60a5fa;
+            --red-accent: #f87171;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .back-nav {
+            position: fixed;
+            top: 16px; left: 16px;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--star-gold);
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 0 60px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: var(--star-gold);
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+        .hero-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--star-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-slogan {
+            font-size: 20px;
+            color: var(--star-gold);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 4px;
+        }
+        .hero-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 360px;
+        }
+        .price-tag {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px 40px;
+            margin-bottom: 40px;
+        }
+        .price-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+        .price-value { font-size: 42px; font-weight: 700; color: var(--star-gold); }
+        .price-unit { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
+        .price-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            opacity: 0.7;
+        }
+        .scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== VISION ===== */
+        .section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 36px; }
+        .section-tag {
+            font-size: 11px; color: var(--star-gold);
+            letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 22px; font-weight: 600; color: var(--text-primary);
+        }
+        .vision-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(45, 27, 78, 0.2));
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .vision-brand {
+            font-family: "Cinzel", serif;
+            font-size: 28px;
+            color: var(--star-gold);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .vision-brand-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .vision-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+        .vision-value {
+            font-family: "Noto Serif SC", serif;
+            font-size: 16px;
+            color: var(--star-gold);
+            font-weight: 600;
+            padding: 16px;
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* ===== ARCHITECTURE ===== */
+        .arch-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .arch-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .arch-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .arch-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .arch-item::before {
+            content: '◆';
+            color: var(--star-gold);
+            flex-shrink: 0;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        /* ===== 3 PILLARS ===== */
+        .pillar-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+        .pillar-card:hover { transform: translateY(-2px); }
+        .pillar-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .pillar-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .pillar-en {
+            font-size: 11px;
+            color: var(--star-gold);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        .pillar-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== ECOSYSTEM ===== */
+        .eco-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .eco-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            backdrop-filter: blur(10px);
+        }
+        .eco-step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--star-gold), rgba(212, 175, 55, 0.5));
+            color: var(--deep-space);
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .eco-step-content { flex: 1; }
+        .eco-step-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .eco-step-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .eco-arrow {
+            text-align: center;
+            color: var(--star-gold);
+            font-size: 18px;
+            opacity: 0.5;
+        }
+
+        /* ===== ROADMAP ===== */
+        .roadmap { display: flex; flex-direction: column; gap: 20px; }
+        .roadmap-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .roadmap-year {
+            font-size: 11px;
+            color: var(--star-gold);
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .roadmap-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .roadmap-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .roadmap-goal {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(74, 222, 128, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            font-size: 14px;
+            color: var(--green-accent);
+        }
+        .roadmap-goal::before { content: '🎯'; }
+
+        /* ===== PARTNER ===== */
+        .partner-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+        .partner-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+        .partner-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50px;
+            padding: 4px 14px;
+            font-size: 12px;
+            color: var(--star-gold);
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .partner-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .partner-step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .partner-step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--star-gold);
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .partner-arrow {
+            color: var(--star-gold);
+            opacity: 0.4;
+            font-size: 14px;
+        }
+
+        /* ===== SUMMARY ===== */
+        .summary-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(167, 139, 250, 0.08));
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+        }
+        .summary-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .summary-item::before {
+            content: '✦';
+            color: var(--star-gold);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section { padding: 80px 0; text-align: center; }
+        .cta-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(45, 27, 78, 0.3));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 24px;
+            backdrop-filter: blur(10px);
+        }
+        .cta-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .cta-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--star-gold), #e8a838);
+            color: var(--deep-space);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .page-footer {
+            padding: 40px 0 60px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
+        .footer-logo {
+            font-family: "Cinzel", serif;
+            font-size: 20px;
+            color: var(--star-gold);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .footer-tagline { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+        .footer-copy { font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🏙️</span>
+                <span>CITY PARTNER PROGRAM</span>
+            </div>
+            <h1 class="hero-title">TOPOPC城市合伙人</h1>
+            <div class="hero-slogan">一城一智 · 一人成军</div>
+            <p class="hero-desc">全国落地"一城一智OPC孵化器"<br>成为AI时代创业生态的基础设施建设者</p>
+            <div class="price-tag">
+                <div class="price-label">城市合伙人权益</div>
+                <div class="price-value">¥98,866</div>
+                <div class="price-unit">总价值超过 ¥1,000,000</div>
+                <div class="price-note">不含一线城市 · 独家代理权</div>
+            </div>
+            <div class="scroll-hint">
+                <span>向下了解详情</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND VISION -->
+    <section class="section">
+        <div class="container">
+            <div class="vision-card">
+                <div class="vision-brand">TOPOPC</div>
+                <div class="vision-brand-sub">Talent × Opportunity × Platform</div>
+                <div class="vision-desc">
+                    我们致力于打造一个让人才获得机遇、让机遇找到平台、让平台赋能人才的良性循环生态。
+                </div>
+                <div class="vision-value">
+                    成为中国OPC孵化器生态的<br>基础设施建设者与运营者
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE: 1+3+N -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="arch-card">
+                <div class="arch-title">1个统一品牌 + 3大标准模块 + N个本地特色</div>
+                <div class="arch-subtitle">每个孵化器遵循的标准化架构</div>
+                <div class="arch-item">1个统一品牌：TOPOPC品牌标识与视觉体系，全国一致</div>
+                <div class="arch-item">城市专属品牌系统：支持合伙人建立本地化品牌形象</div>
+                <div class="arch-item">独立技术架构：独立服务器部署与数据库</div>
+                <div class="arch-item">本地化内容体系：基于本地产业特色的培训内容和案例库</div>
+                <div class="arch-item">自主运营权限：城市合伙人拥有本地市场的自主运营权</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THREE PILLARS -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE PLATFORM</div>
+                <h2 class="section-title">双平台驱动，独立赋能</h2>
+            </div>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🌐</div>
+                    <div class="pillar-name">TOPOPC社区</div>
+                    <div class="pillar-en">ECOSYSTEM PLATFORM</div>
+                    <div class="pillar-desc">全国统一的线上社区平台，提供资源对接、知识共享、项目展示、订单分发等综合服务，连接全国城市网络。</div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🤖</div>
+                    <div class="pillar-name">"我是OPC"智能体平台</div>
+                    <div class="pillar-en">AI AGENT PLATFORM</div>
+                    <div class="pillar-desc">个人AI智能体创建与管理平台，支持快速构建专属数字分身，让每个经营者都拥有"永不离职的AI合伙人"。</div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🏢</div>
+                    <div class="pillar-name">一城一智OPC孵化器</div>
+                    <div class="pillar-en">CITY INCUBATOR</div>
+                    <div class="pillar-desc">3000～5000㎡标准化空间，共享办公+AI赛道工坊+城市赋能体系实施中心+产业对接专区，四大功能区完整配置。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THREE CORE ENGINES -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE ENGINES</div>
+                <h2 class="section-title">三大核心引擎 · 独立部署</h2>
+            </div>
+            <div class="arch-card">
+                <div class="arch-title">🚀 TOP智算中心</div>
+                <div class="arch-subtitle">共享智算平台与数据调度中心</div>
+                <div class="arch-item">与主流云服务商战略合作，提供稳定、低成本的AI算力资源</div>
+                <div class="arch-item">弹性调用算力，无需前期重资产投入</div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-title">🧠 PC端AI司令部</div>
+                <div class="arch-subtitle">企业内容的中央大脑，7×24小时自动运转</div>
+                <div class="arch-item">理解企业业务逻辑、产品特点、客户画像</div>
+                <div class="arch-item">自动生成营销文案、设计素材、客服话术</div>
+                <div class="arch-item">企业永不离线的"首席内容官"</div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-title">📱 手机端IP智能体</div>
+                <div class="arch-subtitle">老板个人经验的数字分身，随时随地专业服务</div>
+                <div class="arch-item">将决策逻辑、沟通话术、服务标准"灌输"给AI</div>
+                <div class="arch-item">7×24小时以经营者风格响应客户咨询</div>
+                <div class="arch-item">一个永不离职的数字合伙人</div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-title">💬 微信生态线上门店</div>
+                <div class="arch-subtitle">全自动成交与客户管理闭环</div>
+                <div class="arch-item">AI自动回复咨询，个性化推荐，主动发起二次营销</div>
+                <div class="arch-item">真正实现"睡后收入"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECOSYSTEM FLOW -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">ECOSYSTEM</div>
+                <h2 class="section-title">全国协同 · 价值倍增网络</h2>
+            </div>
+            <div class="eco-flow">
+                <div class="eco-step">
+                    <div class="eco-step-num">1</div>
+                    <div class="eco-step-content">
+                        <div class="eco-step-title">订单网络化流通</div>
+                        <div class="eco-step-desc">A城市的动漫设计OPC承接B城市文旅项目订单，全国接单、本地服务</div>
+                    </div>
+                </div>
+                <div class="eco-step">
+                    <div class="eco-step-num">2</div>
+                    <div class="eco-step-content">
+                        <div class="eco-step-title">人才循环化流动</div>
+                        <div class="eco-step-desc">"数字游民"式人才流动，1-3个月入驻其他城市孵化器，经验交流、文化融合</div>
+                    </div>
+                </div>
+                <div class="eco-step">
+                    <div class="eco-step-num">3</div>
+                    <div class="eco-step-content">
+                        <div class="eco-step-title">数据与知识共享</div>
+                        <div class="eco-step-desc">全国统一数据中台，成功案例、失败教训、行业洞察沉淀至共享知识库</div>
+                    </div>
+                </div>
+                <div class="eco-step">
+                    <div class="eco-step-num">4</div>
+                    <div class="eco-step-content">
+                        <div class="eco-step-title">供应链协同优化</div>
+                        <div class="eco-step-desc">集中采购AI算力、云服务、软件授权，共享素材库、模型库、模板库</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3-YEAR ROADMAP -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">ROADMAP</div>
+                <h2 class="section-title">三年发展规划</h2>
+            </div>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2026 · YEAR 1</div>
+                    <div class="roadmap-title">样板打造与模式验证</div>
+                    <div class="roadmap-sub">聚焦广州、深圳、佛山，跑通全部标准化流程</div>
+                    <div class="roadmap-goal">关键指标：入驻率80%+，超级个体毕业率60%+</div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2027 · YEAR 2</div>
+                    <div class="roadmap-title">快速复制与网络构建</div>
+                    <div class="roadmap-sub">新增20-50个城市节点，形成华东/华南/华中/西南/西北五大区域联动</div>
+                    <div class="roadmap-goal">关键指标：孵化器数量50+，超级个体2万+，年产值2亿元</div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2028 · YEAR 3</div>
+                    <div class="roadmap-title">生态成型与价值释放</div>
+                    <div class="roadmap-sub">完成全国100个重点城市布局，生态实现自我造血</div>
+                    <div class="roadmap-goal">关键指标：年服务企业10万+，培育独角兽3-5家，生态产值50亿+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNER REQUIREMENTS -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">JOIN US</div>
+                <h2 class="section-title">招募城市合伙人</h2>
+            </div>
+            <div class="partner-card">
+                <div class="partner-title">合伙人画像</div>
+                <div>
+                    <span class="partner-tag">资源型伙伴</span>
+                    <span class="partner-tag">运营型伙伴</span>
+                    <span class="partner-tag">产业型伙伴</span>
+                    <span class="partner-tag">资本型伙伴</span>
+                </div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-title">合作模式</div>
+                <div class="arch-item">合资公司模式：共同出资成立运营公司</div>
+                <div class="arch-item">品牌授权模式：授权使用TOPOPC品牌和体系</div>
+                <div class="arch-item">资源合作模式：提供场地、资源等，由总部负责运营</div>
+                <div class="arch-item">战略投资模式：通过投资入股方式参与</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-title">支持体系</div>
+                <div class="arch-item">品牌授权：免费使用TOPOPC品牌及视觉体系</div>
+                <div class="arch-item">独立部署支持：完整技术架构和运营管理体系</div>
+                <div class="arch-item">培训支持：总部提供系统化运营培训</div>
+                <div class="arch-item">资源对接：接入全国资源网络，获得订单和投资机会</div>
+                <div class="arch-item">营销支持：总部统一品牌宣传和活动策划</div>
+            </div>
+            <div class="partner-card">
+                <div class="partner-title">申请流程</div>
+                <div class="partner-flow">
+                    <div class="partner-step">
+                        <div class="partner-step-num">1</div>
+                        <span>提交意向书</span>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                    <div class="partner-step">
+                        <div class="partner-step-num">2</div>
+                        <span>总部审核</span>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                    <div class="partner-step">
+                        <div class="partner-step-num">3</div>
+                        <span>考察洽谈</span>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                    <div class="partner-step">
+                        <div class="partner-step-num">4</div>
+                        <span>签订协议</span>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                    <div class="partner-step">
+                        <div class="partner-step-num">5</div>
+                        <span>培训筹备</span>
+                    </div>
+                    <span class="partner-arrow">→</span>
+                    <div class="partner-step">
+                        <div class="partner-step-num">6</div>
+                        <span>开业运营</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="summary-card">
+                <div class="summary-title">您将获得的权益总览</div>
+                <div class="summary-item">城市独家代理权（不含一线城市）</div>
+                <div class="summary-item">TOPOPC完整品牌授权与视觉体系</div>
+                <div class="summary-item">独立部署的OPC孵化器城市赋能体系</div>
+                <div class="summary-item">接入全国TOPOPC社区资源网络</div>
+                <div class="summary-item">三大核心引擎（AI司令部+IP智能体+微信门店）</div>
+                <div class="summary-item">订单分发、学员推荐、产业对接全国协同</div>
+                <div class="summary-item">总部系统化培训与持续运营支持</div>
+                <div class="summary-item">三年规划全程陪跑，共建中国OPC孵化器生态</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-title">携手共建中国OPC孵化器生态网络</div>
+                <p class="cta-subtitle">让每个城市都有智慧的火焰<br>让每个个体都能成为时代的创造者</p>
+                <a href="index.html" class="cta-button">
+                    <span>立即申请城市合伙人</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-logo">TOPOPC</div>
+            <div class="footer-tagline">一城一智 · 一人成军</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：黄校长</div>
+        </div>
+    </footer>
+
+    <script>
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
