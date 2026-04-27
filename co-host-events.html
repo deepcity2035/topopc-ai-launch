@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>协办三次活动 · 权益说明 - TOPOPC宇航家</title>
+    <style>
+        :root {
+            --bg-primary: #0a0f1e;
+            --bg-secondary: #12182a;
+            --text-primary: #e8e4f0;
+            --text-secondary: #9ca3af;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-gold: #d4af37;
+            --accent-orange: #f59e0b;
+            --accent-blue: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+
+        /* Hero */
+        .hero {
+            padding: 60px 16px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(245,158,11,0.08) 0%, transparent 100%);
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fbbf24;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            text-align: center;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            min-width: 100px;
+        }
+        .hero-stat-value {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fbbf24;
+        }
+        .hero-stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Section */
+        .section {
+            padding: 32px 16px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin: 0;
+        }
+
+        /* Info table */
+        .info-table {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .info-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label {
+            width: 100px;
+            padding: 12px 16px;
+            background: rgba(245,158,11,0.08);
+            font-size: 13px;
+            font-weight: 600;
+            color: #fbbf24;
+            flex-shrink: 0;
+        }
+        .info-value {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        /* Activity overview cards */
+        .activity-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .activity-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        .activity-card.free::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .activity-card.training::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .activity-card.master::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .activity-card .card-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .activity-card .card-type {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .activity-card .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .activity-card .card-detail {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .activity-card .card-value {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .activity-card.free .card-value { color: #34d399; }
+        .activity-card.training .card-value { color: #60a5fa; }
+        .activity-card.master .card-value { color: #a78bfa; }
+
+        /* Total value banner */
+        .total-banner {
+            background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(212,175,55,0.08));
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+        .total-banner .total-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .total-banner .total-value {
+            font-size: 36px;
+            font-weight: 900;
+            color: #fbbf24;
+        }
+        .total-banner .total-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* Detail section for each activity */
+        .detail-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .detail-block h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .detail-block .detail-purpose {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .detail-meta-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+        }
+        .detail-meta-item strong {
+            color: #fbbf24;
+        }
+
+        /* Service phases */
+        .phase-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .phase-tab {
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .phase-tab.active {
+            background: rgba(245,158,11,0.15);
+            border-color: rgba(245,158,11,0.3);
+            color: #fbbf24;
+        }
+        .phase-content {
+            display: none;
+        }
+        .phase-content.active {
+            display: block;
+        }
+
+        /* Service table */
+        .service-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .service-table th {
+            background: rgba(245,158,11,0.08);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            color: #fbbf24;
+            font-size: 12px;
+        }
+        .service-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .service-table tr:last-child td {
+            border-bottom: none;
+        }
+        .service-table .svc-name {
+            font-weight: 600;
+            width: 25%;
+        }
+        .service-table .svc-content {
+            width: 40%;
+        }
+        .service-table .svc-note {
+            color: var(--text-secondary);
+            width: 35%;
+        }
+
+        /* Rights & obligations */
+        .duty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .duty-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .duty-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .duty-list {
+            list-style: none;
+            padding: 0;
+        }
+        .duty-list li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 13px;
+        }
+        .duty-list li::before {
+            position: absolute;
+            left: 0;
+        }
+        .duty-our .duty-list li::before { content: '✅'; }
+        .duty-your .duty-list li::before { content: '📌'; }
+
+        /* Revenue table */
+        .revenue-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .revenue-table th {
+            background: rgba(245,158,11,0.08);
+            padding: 12px 14px;
+            text-align: center;
+            font-weight: 600;
+            color: #fbbf24;
+            font-size: 12px;
+        }
+        .revenue-table td {
+            padding: 12px 14px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .revenue-table tr:last-child td {
+            border-bottom: none;
+        }
+        .revenue-highlight {
+            color: #34d399;
+            font-weight: 700;
+        }
+
+        /* Rules */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .rule-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+        .rule-item .rule-icon {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .rule-item .rule-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+        .rule-item .rule-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-q {
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-q::after {
+            content: '+';
+            font-size: 18px;
+            color: var(--text-secondary);
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-q::after {
+            transform: rotate(45deg);
+        }
+        .faq-a {
+            padding: 0 16px 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: none;
+        }
+        .faq-item.open .faq-a {
+            display: block;
+        }
+
+        /* Commitment */
+        .commit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .commit-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .commit-yes {
+            border: 1px solid rgba(16,185,129,0.25);
+        }
+        .commit-no {
+            border: 1px solid rgba(239,68,68,0.25);
+        }
+        .commit-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .commit-yes h4 { color: #34d399; }
+        .commit-no h4 { color: #f87171; }
+        .commit-list {
+            list-style: none;
+            padding: 0;
+        }
+        .commit-list li {
+            padding: 5px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 13px;
+        }
+        .commit-yes .commit-list li::before { content: '✅'; position: absolute; left: 0; }
+        .commit-no .commit-list li::before { content: '❌'; position: absolute; left: 0; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-slogan {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .footer-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .footer-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0a0f1e;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .hero-stats { gap: 10px; }
+            .hero-stat { min-width: 80px; padding: 10px 12px; }
+            .hero-stat-value { font-size: 20px; }
+            .info-label { width: 80px; font-size: 12px; }
+            .info-value { font-size: 12px; }
+            .duty-grid { grid-template-columns: 1fr; }
+            .commit-grid { grid-template-columns: 1fr; }
+            .service-table { font-size: 11px; }
+            .service-table th, .service-table td { padding: 8px 10px; }
+            .phase-tabs { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">🏅 TOPOPC宇航家年卡 · 核心权益⑦</div>
+        <h1>协办三次活动</h1>
+        <p class="hero-subtitle">用活动建立IP，用IP撬动流量 🚀</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">3次</div>
+                <div class="hero-stat-label">协办活动</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">3天</div>
+                <div class="hero-stat-label">活动时长</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">50%</div>
+                <div class="hero-stat-label">学费分成</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">¥16,888</div>
+                <div class="hero-stat-label">权益总价值</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- 一、协办活动是什么 -->
+        <section class="section">
+            <h2 class="section-title">🎯 协办活动是什么</h2>
+            <div class="info-table" style="margin-bottom:20px">
+                <div class="info-row">
+                    <div class="info-label">权益定义</div>
+                    <div class="info-value">通过协助学员举办活动，快速建立个人IP，拓展人脉圈层，实现商业变现</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">活动类型</div>
+                    <div class="info-value">免费公开课 → ¥499线下训练营 → ¥8,866落地大课</div>
+                </div>
+            </div>
+
+            <div class="activity-overview">
+                <div class="activity-card free">
+                    <div class="card-icon">📢</div>
+                    <div class="card-type">活动一</div>
+                    <div class="card-name">免费公开课</div>
+                    <div class="card-detail">⏱ 1-2小时</div>
+                    <div class="card-detail">👥 30人以上</div>
+                    <div class="card-detail">📍 线上/线下</div>
+                    <div class="card-value">¥3,000</div>
+                </div>
+                <div class="activity-card training">
+                    <div class="card-icon">🎒</div>
+                    <div class="card-type">活动二</div>
+                    <div class="card-name">¥499线下训练营</div>
+                    <div class="card-detail">⏱ 1天（5小时）</div>
+                    <div class="card-detail">👥 10-30人</div>
+                    <div class="card-detail">📍 线下</div>
+                    <div class="card-value">¥5,888</div>
+                </div>
+                <div class="activity-card master">
+                    <div class="card-icon">🏆</div>
+                    <div class="card-type">活动三</div>
+                    <div class="card-name">¥8,866落地大课</div>
+                    <div class="card-detail">⏱ 2天1夜（14.5h）</div>
+                    <div class="card-detail">👥 10-30人</div>
+                    <div class="card-detail">📍 线下</div>
+                    <div class="card-value">¥8,000</div>
+                </div>
+            </div>
+
+            <div class="total-banner">
+                <div class="total-label">协办三次活动总价值</div>
+                <div class="total-value">¥16,888</div>
+                <div class="total-note">仅限TOPOPC宇航家年卡学员</div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 二、免费公开课协办详解 -->
+        <section class="section">
+            <h2 class="section-title">📢 免费公开课 · 协办详解</h2>
+            <div class="detail-block">
+                <h3>活动定位</h3>
+                <p class="detail-purpose">吸引流量，建立信任，为后续收费活动铺垫</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item"><strong>形式：</strong>线上/线下均可</div>
+                    <div class="detail-meta-item"><strong>时长：</strong>1-2小时</div>
+                    <div class="detail-meta-item"><strong>人数：</strong>建议30人以上</div>
+                </div>
+
+                <div class="phase-tabs" id="free-tabs">
+                    <button class="phase-tab active" onclick="switchPhase('free','prep')">📋 前期准备</button>
+                    <button class="phase-tab" onclick="switchPhase('free','exec')">🎤 活动执行</button>
+                    <button class="phase-tab" onclick="switchPhase('free','review')">📊 后期复盘</button>
+                </div>
+
+                <div class="phase-content active" id="free-prep">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">主题策划</td><td class="svc-content">帮你定活动主题</td><td class="svc-note">结合你的业务和市场需求</td></tr>
+                            <tr><td class="svc-name">课件设计</td><td class="svc-content">提供课件模板</td><td class="svc-note">可直接修改使用</td></tr>
+                            <tr><td class="svc-name">海报设计</td><td class="svc-content">提供海报模板</td><td class="svc-note">可直接修改使用</td></tr>
+                            <tr><td class="svc-name">招募话术</td><td class="svc-content">提供招生文案</td><td class="svc-note">朋友圈/社群/私聊</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="free-exec">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">开场致辞</td><td class="svc-content">黄校长开场致辞</td><td class="svc-note">提升活动调性</td></tr>
+                            <tr><td class="svc-name">内容讲授</td><td class="svc-content">黄校长授课（可选）</td><td class="svc-note">根据需求安排</td></tr>
+                            <tr><td class="svc-name">互动答疑</td><td class="svc-content">现场答疑</td><td class="svc-note">建立信任</td></tr>
+                            <tr><td class="svc-name">转化铺垫</td><td class="svc-content">引导报名付费课</td><td class="svc-note">自然转化</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="free-review">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">数据复盘</td><td class="svc-content">活动数据总结</td><td class="svc-note">参与人数、互动率等</td></tr>
+                            <tr><td class="svc-name">优化建议</td><td class="svc-content">活动优化建议</td><td class="svc-note">下次怎么做得更好</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 三、¥499线下训练营协办详解 -->
+        <section class="section">
+            <h2 class="section-title">🎒 ¥499线下训练营 · 协办详解</h2>
+            <div class="detail-block">
+                <h3>活动定位</h3>
+                <p class="detail-purpose">交付价值，转化升级，培养忠实学员</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item"><strong>形式：</strong>线下授课+实操演练</div>
+                    <div class="detail-meta-item"><strong>时长：</strong>1天（5小时）</div>
+                    <div class="detail-meta-item"><strong>人数：</strong>10-30人（小班制）</div>
+                </div>
+
+                <div class="phase-tabs" id="train-tabs">
+                    <button class="phase-tab active" onclick="switchPhase('train','prep')">📋 前期准备</button>
+                    <button class="phase-tab" onclick="switchPhase('train','exec')">🎤 活动执行</button>
+                    <button class="phase-tab" onclick="switchPhase('train','review')">📊 后期复盘</button>
+                </div>
+
+                <div class="phase-content active" id="train-prep">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">课程大纲</td><td class="svc-content">完整课程大纲</td><td class="svc-note">结合你的业务</td></tr>
+                            <tr><td class="svc-name">课件材料</td><td class="svc-content">PPT课件+讲义</td><td class="svc-note">可直接修改使用</td></tr>
+                            <tr><td class="svc-name">招生方案</td><td class="svc-content">完整招生方案</td><td class="svc-note">渠道+话术+策略</td></tr>
+                            <tr><td class="svc-name">海报物料</td><td class="svc-content">宣传海报+物料</td><td class="svc-note">可直接修改使用</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="train-exec">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">开场致辞</td><td class="svc-content">黄校长开场致辞</td><td class="svc-note">提升活动调性</td></tr>
+                            <tr><td class="svc-name">课程讲授</td><td class="svc-content">黄校长全程授课</td><td class="svc-note">确保交付质量</td></tr>
+                            <tr><td class="svc-name">实战指导</td><td class="svc-content">手把手指导实操</td><td class="svc-note">确保学员学会</td></tr>
+                            <tr><td class="svc-name">互动答疑</td><td class="svc-content">全程答疑</td><td class="svc-note">解答学员问题</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="train-review">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">学员反馈</td><td class="svc-content">收集学员评价</td><td class="svc-note">了解学员满意度</td></tr>
+                            <tr><td class="svc-name">转化分析</td><td class="svc-content">分析转化率</td><td class="svc-note">优化转化策略</td></tr>
+                            <tr><td class="svc-name">优化建议</td><td class="svc-content">优化建议</td><td class="svc-note">下次怎么做</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 四、¥8,866落地大课协办详解 -->
+        <section class="section">
+            <h2 class="section-title">🏆 ¥8,866落地大课 · 协办详解</h2>
+            <div class="detail-block">
+                <h3>活动定位</h3>
+                <p class="detail-purpose">高端交付，树立权威，筛选高价值客户</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item"><strong>形式：</strong>线下授课+实战+晚间互动</div>
+                    <div class="detail-meta-item"><strong>时长：</strong>2天1夜（14.5h）</div>
+                    <div class="detail-meta-item"><strong>人数：</strong>10-30人（精品小班）</div>
+                </div>
+
+                <div class="phase-tabs" id="master-tabs">
+                    <button class="phase-tab active" onclick="switchPhase('master','prep')">📋 前期准备</button>
+                    <button class="phase-tab" onclick="switchPhase('master','exec')">🎤 活动执行</button>
+                    <button class="phase-tab" onclick="switchPhase('master','review')">📊 后期复盘</button>
+                </div>
+
+                <div class="phase-content active" id="master-prep">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">完整课件</td><td class="svc-content">2天1夜完整课件</td><td class="svc-note">可直接使用</td></tr>
+                            <tr><td class="svc-name">招生方案</td><td class="svc-content">高端招生方案</td><td class="svc-note">精准获客</td></tr>
+                            <tr><td class="svc-name">物料准备</td><td class="svc-content">讲义+证书+礼品</td><td class="svc-note">提升体验</td></tr>
+                            <tr><td class="svc-name">场地建议</td><td class="svc-content">场地选择建议</td><td class="svc-note">确保效果</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="master-exec">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">主讲老师</td><td class="svc-content">黄校长全程主讲</td><td class="svc-note">确保交付质量</td></tr>
+                            <tr><td class="svc-name">助教支持</td><td class="svc-content">助教全程支持</td><td class="svc-note">确保顺利</td></tr>
+                            <tr><td class="svc-name">现场协调</td><td class="svc-content">现场协调工作</td><td class="svc-note">确保流程顺畅</td></tr>
+                            <tr><td class="svc-name">现场销售</td><td class="svc-content">协助现场销售</td><td class="svc-note">提升转化率</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="phase-content" id="master-review">
+                    <table class="service-table">
+                        <thead><tr><th>服务</th><th>内容</th><th>说明</th></tr></thead>
+                        <tbody>
+                            <tr><td class="svc-name">数据复盘</td><td class="svc-content">完整数据报告</td><td class="svc-note">了解活动效果</td></tr>
+                            <tr><td class="svc-name">优化建议</td><td class="svc-content">专业优化建议</td><td class="svc-note">持续优化</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 五、双方义务 -->
+        <section class="section">
+            <h2 class="section-title">🤝 双方义务</h2>
+            <div class="duty-grid">
+                <div class="duty-card duty-our">
+                    <h4>🏠 我们的义务</h4>
+                    <ul class="duty-list">
+                        <li>提供完整课程内容、课件、讲义</li>
+                        <li>黄校长现场授课或线上指导</li>
+                        <li>提供完整的活动流程模板</li>
+                        <li>提供转化话术、优惠方案</li>
+                        <li>提供数据复盘、优化建议</li>
+                    </ul>
+                </div>
+                <div class="duty-card duty-your">
+                    <h4>👤 您的义务</h4>
+                    <ul class="duty-list">
+                        <li>提供合适的活动场地</li>
+                        <li>准备投影仪、麦克风、白板等</li>
+                        <li>负责学员招募和通知</li>
+                        <li>现场接待、签到、茶水等</li>
+                        <li>承担场地费、设备费、餐饮费等</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 六、收益分配 -->
+        <section class="section">
+            <h2 class="section-title">💰 收益分配</h2>
+            <table class="revenue-table">
+                <thead>
+                    <tr>
+                        <th>活动类型</th>
+                        <th>学费收入</th>
+                        <th>分成比例</th>
+                        <th>您的收益</th>
+                        <th>TOPOPC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>📢 免费公开课</td>
+                        <td>¥0</td>
+                        <td>—</td>
+                        <td>¥0</td>
+                        <td>¥0</td>
+                    </tr>
+                    <tr>
+                        <td>🎒 ¥499训练营</td>
+                        <td>¥499×人数</td>
+                        <td>50:50</td>
+                        <td class="revenue-highlight">50%</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>🏆 ¥8,866落地大课</td>
+                        <td>¥8,866×人数</td>
+                        <td>50:50</td>
+                        <td class="revenue-highlight">50%</td>
+                        <td>50%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top:16px;padding:16px;background:rgba(245,158,11,0.08);border-radius:10px;font-size:13px;">
+                <strong style="color:#fbbf24">💡 说明：</strong>学费收入按50%:50%分成 · 黄校长免费支持，无讲师费 · 其他费用由您承担
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 七、使用规则 -->
+        <section class="section">
+            <h2 class="section-title">📐 使用规则</h2>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <div class="rule-icon">🔢</div>
+                    <div class="rule-value">各1次</div>
+                    <div class="rule-label">每种活动限1次</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-icon">⏰</div>
+                    <div class="rule-value">1年</div>
+                    <div class="rule-label">开通年卡后1年内</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-icon">📍</div>
+                    <div class="rule-value">中国大陆</div>
+                    <div class="rule-label">仅限大陆地区</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-icon">👥</div>
+                    <div class="rule-value">5-30人</div>
+                    <div class="rule-label">学员人数限制</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-icon">🚫</div>
+                    <div class="rule-value">禁止转让</div>
+                    <div class="rule-label">权益不可转让</div>
+                </div>
+                <div class="rule-item">
+                    <div class="rule-icon">🔄</div>
+                    <div class="rule-value">延期1次</div>
+                    <div class="rule-label">特殊情况可申请</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 八、常见问题 -->
+        <section class="section">
+            <h2 class="section-title">❓ 常见问题</h2>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">协办活动是免费的吗？</div>
+                <div class="faq-a">协办本身是免费的（年卡权益），但您需要承担场地费、设备费、餐饮费等实际活动开支。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">活动主题必须和AI相关吗？</div>
+                <div class="faq-a">建议与OPBU/AI主题相关，这样更能体现TOPOPC的专业性。如果您有自己的主题方向，可以和我们沟通评估。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">我可以重复使用同一类型活动吗？</div>
+                <div class="faq-a">不可以。每种类型活动仅限协办1次。如果需要更多协办服务，可以单独商谈。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">活动人数有限制吗？</div>
+                <div class="faq-a">最少5人起，最多30人。人太少影响氛围，人太多影响交付质量。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">协办活动的收益怎么算？</div>
+                <div class="faq-a">学费收入按50%:50%分成。免费公开课无收入；¥499训练营和¥8,866落地大课的学费收入您可获得50%。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">活动场地怎么选？</div>
+                <div class="faq-a">我们会提供建议，但最终由您决定。建议：交通便利、环境舒适、设备齐全。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">学员招募有什么技巧？</div>
+                <div class="faq-a">我们会提供完整的招生方案，包括渠道、话术和策略，手把手教你招满人。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">活动当天我需要准备什么？</div>
+                <div class="faq-a">您需要准备：场地、投影仪、麦克风、白板、茶水、签到表等现场服务用品。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">如果临时取消怎么办？</div>
+                <div class="faq-a">需至少提前7天通知。如果是您原因取消，会扣除本次权益；如果是我们的原因，保留权益重新安排。</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q">协办活动可以转让给别人吗？</div>
+                <div class="faq-a">不可以。权益仅限开通年卡的账号本人使用。</div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 九、使用承诺 -->
+        <section class="section">
+            <h2 class="section-title">📜 使用承诺</h2>
+            <div class="commit-grid">
+                <div class="commit-card commit-yes">
+                    <h4>✅ 我们的承诺</h4>
+                    <ul class="commit-list">
+                        <li>提供完整的课程内容和物料</li>
+                        <li>黄校长现场授课或线上指导</li>
+                        <li>提供活动流程模板和转化支持</li>
+                        <li>提供数据复盘、优化建议</li>
+                    </ul>
+                </div>
+                <div class="commit-card commit-no">
+                    <h4>❌ 我们不承诺</h4>
+                    <ul class="commit-list">
+                        <li>不承担场地费、设备费、餐饮费</li>
+                        <li>不保证活动一定能招满人</li>
+                        <li>不承诺活动一定能转化多少学员</li>
+                        <li>不承担活动过程中的意外损失</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-slogan">用活动建立IP，用IP撬动流量 🚀</div>
+        <p class="footer-sub">协办三次活动 · 权益说明 v1.6 | TOPOPC宇航家年卡</p>
+        <a href="./" class="footer-link">← 返回发售页</a>
+    </div>
+
+    <script>
+        function switchPhase(activity, phase) {
+            // Hide all phases for this activity
+            document.querySelectorAll(`[id^="${activity}-"]`).forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show target phase
+            document.getElementById(`${activity}-${phase}`).classList.add('active');
+
+            // Update tabs
+            document.querySelectorAll(`#${activity}-tabs .phase-tab`).forEach((tab, i) => {
+                tab.classList.remove('active');
+            });
+            const phases = ['prep', 'exec', 'review'];
+            const idx = phases.indexOf(phase);
+            document.querySelectorAll(`#${activity}-tabs .phase-tab`)[idx].classList.add('active');
+        }
+
+        function toggleFaq(item) {
+            item.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
