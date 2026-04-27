@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>OPC线下实战训练营 · TOPOPC宇航家</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --card-border: rgba(212, 175, 55, 0.15);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --green-accent: #4ade80;
+            --purple-accent: #a78bfa;
+            --blue-accent: #60a5fa;
+            --red-accent: #f87171;
+            --orange-accent: #fb923c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .starfield {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite ease-in-out; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .container { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px; }
+        .back-nav {
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border); border-radius: 50px;
+            padding: 8px 16px; text-decoration: none; color: var(--star-gold);
+            font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 100px 0 60px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(251, 146, 60, 0.1));
+            border: 1px solid var(--card-border); border-radius: 50px;
+            padding: 10px 20px; font-size: 12px; color: var(--star-gold);
+            margin-bottom: 32px; letter-spacing: 2px;
+        }
+        .hero-badge .badge-tag {
+            background: rgba(251, 146, 60, 0.15); border-radius: 50px;
+            padding: 3px 10px; color: var(--orange-accent); font-size: 11px;
+        }
+        .hero-title {
+            font-family: "Noto Serif SC", serif; font-size: 24px; font-weight: 700;
+            line-height: 1.4; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--star-gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-tagline { font-size: 15px; color: var(--text-secondary); margin-bottom: 32px; }
+        .hero-desc {
+            font-size: 15px; color: var(--text-secondary); margin-bottom: 40px;
+            line-height: 1.8; max-width: 360px;
+        }
+        .hero-schedule {
+            display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px;
+            background: rgba(251, 146, 60, 0.08); border: 1px solid rgba(251, 146, 60, 0.15);
+            border-radius: 16px; padding: 16px 24px; text-align: left; width: 100%; max-width: 360px;
+        }
+        .schedule-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+        .schedule-icon { font-size: 16px; }
+        .schedule-time { color: var(--orange-accent); font-weight: 500; }
+        .price-tag {
+            display: flex; flex-direction: column; align-items: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(251, 146, 60, 0.1));
+            border: 1px solid var(--card-border); border-radius: 20px;
+            padding: 24px 40px; margin-bottom: 32px;
+        }
+        .price-value { font-size: 42px; font-weight: 700; color: var(--star-gold); }
+        .price-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .price-note { font-size: 12px; color: var(--text-secondary); margin-top: 8px; opacity: 0.7; }
+        .hero-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 40px; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 22px; font-weight: 700; color: var(--star-gold); }
+        .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+        .hero-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+        .cta-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 50px; padding: 8px 16px; font-size: 13px; color: var(--green-accent);
+        }
+        .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 12px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 32px; }
+        .section-tag { font-size: 11px; color: var(--star-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .section-title { font-family: "Noto Serif SC", serif; font-size: 22px; font-weight: 600; color: var(--text-primary); }
+
+        /* AUDIENCE */
+        .audience-grid { display: flex; flex-direction: column; gap: 12px; }
+        .audience-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; backdrop-filter: blur(10px);
+        }
+        .audience-card.green { border-color: rgba(74, 222, 128, 0.2); background: rgba(74, 222, 128, 0.05); }
+        .audience-card.red { border-color: rgba(248, 113, 113, 0.15); background: rgba(248, 113, 113, 0.03); }
+        .audience-label { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+        .audience-label.green { color: var(--green-accent); }
+        .audience-label.red { color: var(--red-accent); }
+        .audience-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+        .audience-item::before { content: '✓'; color: var(--green-accent); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+        .audience-card.red .audience-item::before { content: '✗'; color: var(--red-accent); }
+
+        /* CURRICULUM */
+        .session-block {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 20px; padding: 24px; margin-bottom: 20px; backdrop-filter: blur(10px);
+        }
+        .session-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .session-badge {
+            width: 48px; height: 48px; border-radius: 14px;
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), rgba(212, 175, 55, 0.15));
+            border: 1px solid rgba(251, 146, 60, 0.2);
+            display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+        }
+        .session-info { flex: 1; }
+        .session-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+        .session-time { font-size: 12px; color: var(--orange-accent); margin-top: 2px; }
+        .part-block {
+            background: rgba(0,0,0,0.2); border-radius: 12px; padding: 16px;
+            margin-bottom: 12px;
+        }
+        .part-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .part-title span { font-size: 12px; color: var(--orange-accent); background: rgba(251,146,60,0.1); border-radius: 50px; padding: 2px 8px; font-weight: 400; }
+        .part-item { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; padding-left: 14px; position: relative; }
+        .part-item::before { content: '•'; position: absolute; left: 0; color: var(--orange-accent); }
+        .hands-on-tag {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 50px; padding: 3px 10px; font-size: 11px; color: var(--green-accent);
+            margin-top: 8px;
+        }
+
+        /* FEATURES */
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .feature-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 18px 14px; text-align: center;
+            backdrop-filter: blur(10px); transition: transform 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-2px); }
+        .feature-icon { font-size: 28px; margin-bottom: 10px; }
+        .feature-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+        .feature-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+        /* DELIVERY */
+        .flow-card {
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.08), rgba(212, 175, 55, 0.05));
+            border: 1px solid var(--card-border); border-radius: 16px;
+            padding: 20px 24px; text-align: center; margin-bottom: 20px; backdrop-filter: blur(10px);
+        }
+        .flow-steps { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+        .flow-step { font-size: 13px; color: var(--text-secondary); }
+        .flow-arrow { color: var(--orange-accent); font-size: 14px; }
+        .timeline { display: flex; flex-direction: column; gap: 12px; }
+        .timeline-item { display: flex; align-items: center; gap: 14px; }
+        .timeline-dot {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: rgba(251, 146, 60, 0.15); border: 1px solid rgba(251, 146, 60, 0.2);
+            color: var(--orange-accent); font-size: 11px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .timeline-content { font-size: 13px; color: var(--text-secondary); }
+        .timeline-content strong { color: var(--text-primary); }
+        .materials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .material-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 12px; padding: 14px; backdrop-filter: blur(10px);
+        }
+        .material-phase { font-size: 11px; color: var(--orange-accent); margin-bottom: 4px; }
+        .material-name { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+        .material-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+        .lunch-info {
+            background: rgba(251, 146, 60, 0.08); border: 1px solid rgba(251, 146, 60, 0.15);
+            border-radius: 12px; padding: 16px; margin-top: 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;
+        }
+        .lunch-info strong { color: var(--orange-accent); }
+
+        /* UPGRADE */
+        .upgrade-flow { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .upgrade-step {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 16px 18px; backdrop-filter: blur(10px);
+        }
+        .upgrade-num {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--star-gold), rgba(212, 175, 55, 0.5));
+            color: var(--deep-space); font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .upgrade-info { flex: 1; }
+        .upgrade-from { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+        .upgrade-bonus { font-size: 12px; color: var(--green-accent); margin-top: 4px; }
+        .upgrade-tip {
+            background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px; padding: 14px 16px; font-size: 13px;
+            color: var(--text-secondary); margin-top: 16px; line-height: 1.8;
+        }
+        .upgrade-tip strong { color: var(--star-gold); }
+
+        /* FAQ */
+        .faq-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; margin-bottom: 14px; backdrop-filter: blur(10px);
+        }
+        .faq-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+        .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+        /* CTA */
+        .cta-section { padding: 80px 0; text-align: center; }
+        .cta-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(251, 146, 60, 0.08));
+            border: 1px solid var(--card-border); border-radius: 24px;
+            padding: 40px 24px; backdrop-filter: blur(10px);
+        }
+        .cta-title { font-family: "Noto Serif SC", serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+        .cta-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8; }
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--star-gold), #e8a838);
+            color: var(--deep-space); padding: 18px 40px; border-radius: 50px;
+            font-size: 16px; font-weight: 600; text-decoration: none;
+            transition: all 0.3s; box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4); }
+        .cta-price { font-size: 14px; color: var(--text-secondary); margin-top: 16px; }
+
+        /* FOOTER */
+        .page-footer { padding: 40px 0 60px; text-align: center; border-top: 1px solid var(--card-border); }
+        .footer-logo { font-family: "Cinzel", serif; font-size: 20px; color: var(--star-gold); margin-bottom: 8px; letter-spacing: 2px; }
+        .footer-tagline { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+        .footer-copy { font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🏢</span>
+                <span>OPC线下实战训练营</span>
+                <span class="badge-tag">L2 信任产品</span>
+            </div>
+            <h1 class="hero-title">线下一整天<br>现场跑通AI落地闭环</h1>
+            <div class="hero-tagline">小班制面授 · 全程工具实操 · 当天拿到结果</div>
+            <p class="hero-desc">不是听课，是动手做。上午学，下午用，当天出成果</p>
+            <div class="hero-schedule">
+                <div class="schedule-row">
+                    <span class="schedule-icon">🌅</span>
+                    <span>上午场 &nbsp;<span class="schedule-time">09:30-12:00</span> &nbsp; 认知篇 + 工具篇（2.5小时）</span>
+                </div>
+                <div class="schedule-row">
+                    <span class="schedule-icon">🍜</span>
+                    <span>午餐交流 &nbsp;<span class="schedule-time">12:00-14:30</span> &nbsp; AA制，拓展人脉</span>
+                </div>
+                <div class="schedule-row">
+                    <span class="schedule-icon">⚡</span>
+                    <span>下午场 &nbsp;<span class="schedule-time">14:30-17:00</span> &nbsp; 实战篇 + 闭环篇（2.5小时）</span>
+                </div>
+            </div>
+            <div class="price-tag">
+                <div class="price-value">¥499</div>
+                <div class="price-label">线下面授 · 全天5小时 · 小班制限30人</div>
+                <div class="price-note">含讲义、工具包、结业证书、午餐AA</div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">1</div>
+                    <div class="stat-label">整天线下</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">5h</div>
+                    <div class="stat-label">直播时长</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">30</div>
+                    <div class="stat-label">小班限额</div>
+                </div>
+            </div>
+            <div class="hero-cta-row">
+                <div class="cta-badge">✓ 抵扣年卡¥500</div>
+                <div class="cta-badge">✓ 赠¥1,688商业咨询</div>
+            </div>
+            <div class="scroll-hint">
+                <span>向下了解详情</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">AUDIENCE</div>
+                <h2 class="section-title">你是否适合这个训练营</h2>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card green">
+                    <div class="audience-label green">✅ 强烈推荐</div>
+                    <div class="audience-item">想系统学习AI落地的创业者</div>
+                    <div class="audience-item">体验营毕业后想深入学习的学员</div>
+                    <div class="audience-item">想快速跑通最小闭环的企业负责人</div>
+                    <div class="audience-item">有基础认知、愿意动手实践的人</div>
+                </div>
+                <div class="audience-card red">
+                    <div class="audience-label red">❌ 不适合</div>
+                    <div class="audience-item">完全零基础的纯小白（建议先上体验营）</div>
+                    <div class="audience-item">只想听不想动手的人</div>
+                    <div class="audience-item">时间无法配合线下的人</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CURRICULUM</div>
+                <h2 class="section-title">全天课程结构</h2>
+            </div>
+
+            <!-- 上午场 -->
+            <div class="session-block">
+                <div class="session-header">
+                    <div class="session-badge">🌅</div>
+                    <div class="session-info">
+                        <div class="session-title">上午场：认知篇 + 工具篇</div>
+                        <div class="session-time">09:30-12:00 · 2.5小时</div>
+                    </div>
+                </div>
+
+                <div class="part-block">
+                    <div class="part-title">📚 Part 1：认知篇 <span>75分钟</span></div>
+                    <div class="part-item">AI时代的新机遇</div>
+                    <div class="part-item">2026年AI工具全景图 + 国内外主流工具对比</div>
+                    <div class="part-item">为什么现在是入局AI的最佳时机</div>
+                    <div class="part-item">OPBU核心方法论：什么是一人公司商业逻辑</div>
+                    <div class="part-item">如何用AI放大个人产能</div>
+                    <div class="part-item">自我诊断：你的AI落地现状评估</div>
+                    <div class="part-item">快速找到你的AI切入点</div>
+                </div>
+
+                <div class="part-block">
+                    <div class="part-title">💻 Part 2：工具篇 <span>75分钟</span></div>
+                    <div class="part-item">AI写作工具实战：DeepSeek / Kimi / 智谱实操</div>
+                    <div class="part-item">提示词工程核心技巧</div>
+                    <div class="part-item hands-on-tag">✍️ 现场生成3篇文章</div>
+                    <div class="part-item" style="margin-top:8px;">AI图片工具实战：Midjourney / Stable Diffusion</div>
+                    <div class="part-item">商用图片制作流程</div>
+                    <div class="part-item hands-on-tag">🖼️ 现场生成3张图片</div>
+                    <div class="part-item" style="margin-top:8px;">AI视频工具实战：即梦 / 可灵 / Runway</div>
+                    <div class="part-item">短视频制作技巧</div>
+                    <div class="part-item hands-on-tag">🎬 现场生成1个视频</div>
+                </div>
+            </div>
+
+            <!-- 午餐 -->
+            <div class="lunch-info" style="text-align:center;margin-bottom:20px;">
+                🍜 <strong>午餐交流</strong> · 12:00-14:30 · AA制自助餐或桌餐<br>
+                <span style="opacity:0.8;">这是很好的深度交流机会，不要错过！</span>
+            </div>
+
+            <!-- 下午场 -->
+            <div class="session-block">
+                <div class="session-header">
+                    <div class="session-badge">⚡</div>
+                    <div class="session-info">
+                        <div class="session-title">下午场：实战篇 + 闭环篇</div>
+                        <div class="session-time">14:30-17:00 · 2.5小时</div>
+                    </div>
+                </div>
+
+                <div class="part-block">
+                    <div class="part-title">🚀 Part 3：实战篇 <span>75分钟</span></div>
+                    <div class="part-item">最小闭环工作流：从流量到变现的完整路径</div>
+                    <div class="part-item">3个已验证的工作流模板</div>
+                    <div class="part-item hands-on-tag">🔄 现场跑通一个闭环</div>
+                    <div class="part-item" style="margin-top:8px;">AI获客实战：AI辅助内容创作 + 矩阵分发策略</div>
+                    <div class="part-item">私域引流技巧</div>
+                    <div class="part-item" style="margin-top:8px;">AI转化实战：销售话术优化 + 客服智能化</div>
+                    <div class="part-item">成交转化提升方法</div>
+                </div>
+
+                <div class="part-block">
+                    <div class="part-title">🏆 Part 4：闭环篇 <span>75分钟</span></div>
+                    <div class="part-item">上午内容回顾 + 现场作业点评</div>
+                    <div class="part-item">个性问题现场解答</div>
+                    <div class="part-item">制定你的7天行动计划</div>
+                    <div class="part-item">资源对接与工具包发放</div>
+                    <div class="part-item">社群支持与后续答疑</div>
+                    <div class="part-item">🎓 颁发结业证书 + 集体合影留念</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">HIGHLIGHTS</div>
+                <h2 class="section-title">课程特色</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <div class="feature-name">线下面对面</div>
+                    <div class="feature-desc">真实互动，即时答疑</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-name">全程工具实操</div>
+                    <div class="feature-desc">不是听讲，是真的动手做</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-name">现场跑通闭环</div>
+                    <div class="feature-desc">学完当天就能用，不是理论</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-name">小班制教学</div>
+                    <div class="feature-desc">每期限30人，保证质量</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-name">结业证书</div>
+                    <div class="feature-desc">学习成果官方认证</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-name">午餐人脉圈</div>
+                    <div class="feature-desc">AA吃饭，深度交流资源对接</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">DELIVERY</div>
+                <h2 class="section-title">交付体系</h2>
+            </div>
+
+            <div class="flow-card">
+                <div class="flow-steps">
+                    <span class="flow-step">报名</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">确认通知</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">预习资料</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">上午场</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">午餐</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">下午场</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">毕业</span>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">D-7</div>
+                    <div class="timeline-content"><strong>发送课程确认及预习资料</strong> · 工具清单 + 入门视频</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D-1</div>
+                    <div class="timeline-content"><strong>确认出席</strong> · 发送上课地址</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D0早</div>
+                    <div class="timeline-content"><strong>上午场 09:30-12:00</strong> · 认知篇 + 工具篇</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D0中</div>
+                    <div class="timeline-content"><strong>午餐交流 12:00-14:30</strong> · AA制 · 深度人脉</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D0下</div>
+                    <div class="timeline-content"><strong>下午场 14:30-17:00</strong> · 实战篇 + 闭环篇</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D0结</div>
+                    <div class="timeline-content"><strong>颁发证书 + 合影</strong> · 进入学员社群</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">D+1</div>
+                    <div class="timeline-content"><strong>学员社群</strong> · 开始践行 + 升单跟进</div>
+                </div>
+            </div>
+
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="material-phase">课前</div>
+                    <div class="material-name">确认通知 + 预习视频</div>
+                    <div class="material-desc">课程安排 + 入门视频</div>
+                </div>
+                <div class="material-card">
+                    <div class="material-phase">课前</div>
+                    <div class="material-name">工具清单PDF</div>
+                    <div class="material-desc">课程涉及的工具汇总</div>
+                </div>
+                <div class="material-card">
+                    <div class="material-phase">课上</div>
+                    <div class="material-name">课程讲义</div>
+                    <div class="material-desc">纸质版或电子版</div>
+                </div>
+                <div class="material-card">
+                    <div class="material-phase">课上</div>
+                    <div class="material-name">工具实操指南</div>
+                    <div class="material-desc">步骤截图 + 视频教程</div>
+                </div>
+                <div class="material-card">
+                    <div class="material-phase">课后</div>
+                    <div class="material-name">结业证书</div>
+                    <div class="material-desc">电子版 + 纸质版（可选）</div>
+                </div>
+                <div class="material-card">
+                    <div class="material-phase">课后</div>
+                    <div class="material-name">学员工具包</div>
+                    <div class="material-desc">工作流模板 + 提示词库</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPGRADE PATH -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">UPGRADE PATH</div>
+                <h2 class="section-title">升单路径</h2>
+            </div>
+            <div class="upgrade-flow">
+                <div class="upgrade-step">
+                    <div class="upgrade-num">1</div>
+                    <div class="upgrade-info">
+                        <div class="upgrade-from">OPC线下训练营 ¥499</div>
+                        <div class="upgrade-bonus">✓ 抵扣年卡¥500（实付¥8,366）</div>
+                        <div class="upgrade-bonus" style="color:var(--purple-accent);">✓ 赠送¥1,688黄校长一对一商业咨询</div>
+                    </div>
+                </div>
+                <div style="text-align:center;font-size:20px;color:var(--star-gold);">↓</div>
+                <div class="upgrade-step">
+                    <div class="upgrade-num">2</div>
+                    <div class="upgrade-info">
+                        <div class="upgrade-to">TOPOPC宇航家年卡 ¥8,866</div>
+                        <div class="upgrade-bonus">✓ 28天陪跑 + 黄校长60分钟私教</div>
+                        <div class="upgrade-bonus">✓ OPC孵化器挂牌 + 终身社群席位</div>
+                    </div>
+                </div>
+            </div>
+            <div class="upgrade-tip">
+                💡 <strong>升单话术：</strong><br>
+                "线下训练营是1天的深度体验，真正的系统学习在年卡。年卡包含28天陪跑、黄校长私教、孵化器挂牌……<strong>价值超过3万</strong>，训练营费用直接抵500元。还额外赠送价值1688元的商业咨询。"
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q1：线下和线上体验营有什么区别？</div>
+                <div class="faq-a">体验营是线上3天，重点是认知建立+工具体验。训练营是线下一整天，重点是深度学习+现场跑通。训练营更深度、更实战、互动性更强。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q2：我是纯小白，没有AI基础能参加吗？</div>
+                <div class="faq-a">建议先上体验营打基础。训练营节奏较快，默认学员有基础认知。如果你有强烈意愿，也可以直接参加。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q3：线下课程在哪里上？</div>
+                <div class="faq-a">一般在深圳、广州等城市，具体地址会在开课前7天通知。也会根据学员分布调整地点。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q4：中午吃饭怎么安排？</div>
+                <div class="faq-a">中午休息1.5小时，建议大家一起去附近餐厅AA吃饭。这是很好的交流机会，不要错过。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q5：可以退款吗？</div>
+                <div class="faq-a">报名后48小时内可申请退款，超过48小时不予退款，但可以转让名额。请慎重考虑后再报名。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q6：参加完训练营能直接升年卡吗？</div>
+                <div class="faq-a">当然可以。训练营毕业后享受专属优惠，报名年卡时训练营费用可抵扣¥500，还额外赠送价值¥1,688的商业咨询。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-title">用¥499，线下一整天拿到AI落地闭环</div>
+                <p class="cta-subtitle">不是听课，是动手做<br>上午学、下午用、当天出成果</p>
+                <a href="index.html" class="cta-button">
+                    <span>立即报名训练营</span>
+                    <span>→</span>
+                </a>
+                <div class="cta-price">¥499/人 · 线下面授 + 全天5小时 + 小班限30人</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-logo">TOPOPC</div>
+            <div class="footer-tagline">成为AI时代的宇航家</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · L2信任产品 · 品牌主理人：黄校长</div>
+        </div>
+    </footer>
+
+    <script>
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
