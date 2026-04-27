@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>实体AI一人公司系统 · TOPOPC宇航家</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --card-border: rgba(212, 175, 55, 0.15);
+            --green-accent: #4ade80;
+            --red-accent: #f87171;
+            --purple-accent: #a78bfa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== BACK NAV ===== */
+        .back-nav {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--star-gold);
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 0 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: var(--star-gold);
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--star-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .price-tag {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px 40px;
+            margin-bottom: 40px;
+        }
+
+        .price-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .price-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--star-gold);
+        }
+
+        .price-unit {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .hero-value {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ===== INTRO ===== */
+        .intro-section {
+            padding: 60px 0;
+        }
+
+        .intro-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .intro-content {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            color: var(--star-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .product-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .product-icon.blue { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)); }
+        .product-icon.purple { background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(167, 139, 250, 0.1)); }
+        .product-icon.gold { background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1)); }
+
+        .product-title-group {
+            flex: 1;
+        }
+
+        .product-label {
+            font-size: 11px;
+            color: var(--star-gold);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .product-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .product-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .product-feature::before {
+            content: '→';
+            color: var(--star-gold);
+            flex-shrink: 0;
+        }
+
+        .product-get {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(74, 222, 128, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.15);
+        }
+
+        .product-get-title {
+            font-size: 12px;
+            color: var(--green-accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-get-content {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .product-solve {
+            margin-top: 12px;
+            padding: 16px;
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .product-solve-title {
+            font-size: 12px;
+            color: var(--star-gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-solve-content {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-section {
+            padding: 60px 0;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .service-title-group {
+            flex: 1;
+        }
+
+        .service-label {
+            font-size: 11px;
+            color: var(--star-gold);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .service-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .service-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .service-feature::before {
+            content: '✓';
+            color: var(--green-accent);
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .service-get {
+            margin-top: 16px;
+            padding: 16px;
+            background: rgba(74, 222, 128, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.15);
+        }
+
+        .service-get-title {
+            font-size: 12px;
+            color: var(--green-accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-get-content {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* ===== SUMMARY ===== */
+        .summary-section {
+            padding: 60px 0;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .summary-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .summary-item::before {
+            content: '✦';
+            color: var(--star-gold);
+            flex-shrink: 0;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(45, 27, 78, 0.3));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--star-gold), #e8a838);
+            color: var(--deep-space);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .page-footer {
+            padding: 40px 0 60px;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-logo {
+            font-family: "Cinzel", serif;
+            font-size: 20px;
+            color: var(--star-gold);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🚀</span>
+                <span>AI COMPANY SYSTEM</span>
+            </div>
+            <h1 class="hero-title">实体AI一人公司系统</h1>
+            <p class="hero-subtitle">告别焦虑，这是您将获得的实实在在的成果</p>
+            <div class="price-tag">
+                <div class="price-label">限时优惠价</div>
+                <div class="price-value">¥28,866</div>
+                <div class="price-unit">总价值超过 ¥100,000</div>
+            </div>
+            <p class="hero-value">您投入的不仅仅是一套系统，而是为企业植入一个持续进化的"数字大脑"</p>
+            <div class="scroll-hint">
+                <span>向下滚动了解详情</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-card">
+                <div class="intro-title">您是否正在为这些而困扰？</div>
+                <div class="intro-content">
+                    <p>您是否正在为<span style="color: var(--text-primary); font-weight: 500;">流量、成本、人才和方向</span>而困扰？</p>
+                    <p style="margin-top: 16px;">我们深知您的痛点。因此，我们提供的不再是空洞的概念，而是一套<span style="color: var(--star-gold); font-weight: 500;">立即可部署、立即能运转</span>的"AI一人公司"系统。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE PRODUCTS</div>
+                <h2 class="section-title">部署您的"AI铁军"三件套</h2>
+            </div>
+
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-icon blue">🧠</div>
+                    <div class="product-title-group">
+                        <div class="product-label">01</div>
+                        <div class="product-title">AI司令部</div>
+                    </div>
+                </div>
+                <div class="product-subtitle">您企业的PC端数字大脑</div>
+                <div class="product-feature">内容生产：自动生成公众号推文、营销文案、宣传海报脚本</div>
+                <div class="product-feature">知识管理：将您的经验、产品资料变成公司永不流失的数字资产，新员工也能快速上手</div>
+                <div class="product-get">
+                    <div class="product-get-title">您得到什么</div>
+                    <div class="product-get-content">一个安装在您公司电脑上的专属AI工作平台</div>
+                </div>
+                <div class="product-solve">
+                    <div class="product-solve-title">核心价值</div>
+                    <div class="product-solve-content">把老板从执行的苦力中解放出来，成为真正的战略指挥者</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-icon purple">📱</div>
+                    <div class="product-title-group">
+                        <div class="product-label">02</div>
+                        <div class="product-title">AI流量体</div>
+                    </div>
+                </div>
+                <div class="product-subtitle">您品牌的手机端线上门店与IP</div>
+                <div class="product-feature">缺少线上门店：立刻拥有一个完整的私域变现闭环，客户可随时咨询、下单</div>
+                <div class="product-feature">想做IP无从下手：通过AI智能体，7×24小时代表您与客户互动，打造专业品牌形象</div>
+                <div class="product-feature">养团队成本高：用极低的成本，实现一个专业线上团队的功能</div>
+                <div class="product-get">
+                    <div class="product-get-title">您得到什么</div>
+                    <div class="product-get-content">一个独立部署的小程序，它既是您的线上门店，也是您老板或品牌的IP智能体</div>
+                </div>
+                <div class="product-solve">
+                    <div class="product-solve-title">核心价值</div>
+                    <div class="product-solve-content">为您建立一个"永不离职的AI销售与客服团队"</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-icon gold">⚡</div>
+                    <div class="product-title-group">
+                        <div class="product-label">03</div>
+                        <div class="product-title">巨量算力包</div>
+                    </div>
+                </div>
+                <div class="product-subtitle">保障系统流畅运行的"燃料"</div>
+                <div class="product-get">
+                    <div class="product-get-title">您得到什么</div>
+                    <div class="product-get-content">内置的<span style="color: var(--star-gold); font-weight: 600;">10万点AI算力</span></div>
+                </div>
+                <div class="product-solve">
+                    <div class="product-solve-title">核心价值</div>
+                    <div class="product-solve-content">确保您的"AI司令部"和"AI流量体"在相当长的时间内运行畅通无阻，无需为基础使用额外付费</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE SERVICES</div>
+                <h2 class="section-title">确保您"用起来、出效果"的保障</h2>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🎯</div>
+                    <div class="service-title-group">
+                        <div class="service-label">服务一</div>
+                        <div class="service-title">持续陪跑服务</div>
+                    </div>
+                </div>
+                <div class="service-subtitle">您的专属"AI实战教官"</div>
+                <div class="service-feature">系统不会用：手把手带您和您的团队上手操作</div>
+                <div class="service-feature">团队抗拒变化：辅导您完成团队转型，化解阻力</div>
+                <div class="service-feature">效果没保障：确保系统真正用起来，并为您的业务带来实际效果</div>
+                <div class="service-get">
+                    <div class="service-get-title">您得到什么</div>
+                    <div class="service-get-content">由黄校长亲自带队，进行<span style="color: var(--star-gold); font-weight: 600;">3个月</span>的人机协同落地陪跑 + <span style="color: var(--star-gold); font-weight: 600;">12个月</span>的社群陪伴答疑</div>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📚</div>
+                    <div class="service-title-group">
+                        <div class="service-label">服务二</div>
+                        <div class="service-title">系统化培训</div>
+                    </div>
+                </div>
+                <div class="service-subtitle">赋能您整个团队的知识体系</div>
+                <div class="service-feature">线上训练营：全面掌握"AI一人公司"系统的操作与应用</div>
+                <div class="service-feature">线下闭门大课：沉浸式实战，黄校长现场手把手教学，让您带着落地成果回家</div>
+                <div class="service-get">
+                    <div class="service-get-title">您得到什么</div>
+                    <div class="service-get-content">彻底扫除知识盲区，让您从"知道"到"做到"，成为懂AI的实战派企业家</div>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🌐</div>
+                    <div class="service-title-group">
+                        <div class="service-label">服务三</div>
+                        <div class="service-title">顶级资源圈层</div>
+                    </div>
+                </div>
+                <div class="service-subtitle">为您打开的生态合作之门</div>
+                <div class="service-feature">获取持续更新的前沿方法论</div>
+                <div class="service-feature">链接其他实干派企业家，拓展商业合作机会</div>
+                <div class="service-get">
+                    <div class="service-get-title">您得到什么</div>
+                    <div class="service-get-content">加入TOPOPC宇航家顶级圈层，与全国优秀企业家同行</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="summary-section">
+        <div class="container">
+            <div class="summary-card">
+                <div class="summary-title">您最终的投资回报</div>
+                <div class="summary-item">为企业植入一个持续进化的"数字大脑"</div>
+                <div class="summary-item">获得一套立即可用的"AI运营系统"</div>
+                <div class="summary-item">一个由专家护航的转型保障</div>
+                <div class="summary-item">一个永不离职的AI销售与客服团队</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2 class="cta-title">成为第一批"AI一人公司"</h2>
+                <p class="cta-subtitle">不再是历史的旁观者<br>而是深度未来的共创者</p>
+                <a href="index.html" class="cta-button">
+                    <span>立即咨询</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-logo">TOPOPC</div>
+            <div class="footer-tagline">AI时代的个人进化系统</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：黄校长</div>
+        </div>
+    </footer>
+
+    <script>
+        // Starfield animation
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
