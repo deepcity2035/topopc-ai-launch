@@ -342,6 +342,8 @@
 
     
 
+    .nav-home-btn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#d4af37 !important;border:1px solid rgba(212,175,55,.35);padding:3px 10px;border-radius:20px;text-decoration:none;letter-spacing:.5px;transition:.2s;margin-left:10px;white-space:nowrap}
+    .nav-home-btn:hover{background:rgba(212,175,55,.12);border-color:#d4af37}
 </style>
 
     <meta property="og:type" content="website">
@@ -359,6 +361,7 @@
 <body onclick="closeQrOutside(event)">
 <nav class="top-nav">
     <a href="index.html" class="nav-brand">TOPOPC</a>
+    <a href="index.html" class="nav-home-btn">🏠 首页</a>
     <div class="nav-links">
         <a href="experience-camp.html" class="nav-link active">L1体验营</a>
         <a href="training-camp.html" class="nav-link">L2训练营</a>
@@ -384,6 +387,7 @@
     <!-- Global Nav -->
     <nav class="global-nav">
         <a href="index.html" class="nav-brand">TOPOPC</a>
+    <a href="index.html" class="nav-home-btn">🏠 首页</a>
         <div class="nav-links">
             <a href="experience-camp.html">体验营</a>
             <a href="training-camp.html">训练营</a>
@@ -783,23 +787,7 @@
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = Math.random() * 3 + 's';
             starfield.appendChild(star);
-        }
-    
-        function showQr(e) {
-            e && e.preventDefault();
-            e && e.stopPropagation();
-            document.getElementById('qrModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeQr(e) {
-            if (e) e.stopPropagation();
-            document.getElementById('qrModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        function closeQrOutside(e) {
-            if (e.target.id === 'qrModal') closeQr(e);
-        }
-        // CTA buttons -> QR popup
+        }// CTA buttons -> QR popup
         document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
             btn.addEventListener('click', showQr);
         });
