@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TOPOPC宇航家年卡 · L6核心产品 · ¥8,866/年</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --card-border: rgba(212, 175, 55, 0.15);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --green-accent: #4ade80;
+            --purple-accent: #a78bfa;
+            --blue-accent: #60a5fa;
+            --red-accent: #f87171;
+            --gold-gradient: linear-gradient(135deg, #d4af37, #f4d03f, #d4af37);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .starfield {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite ease-in-out; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .container { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px; }
+        .back-nav {
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border); border-radius: 50px;
+            padding: 8px 16px; text-decoration: none; color: var(--star-gold);
+            font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 100px 0 60px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(244, 208, 63, 0.08));
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 50px;
+            padding: 10px 20px; font-size: 12px; color: var(--star-gold);
+            margin-bottom: 28px; letter-spacing: 2px;
+        }
+        .hero-badge .badge-tag {
+            background: rgba(212, 175, 55, 0.2); border-radius: 50px;
+            padding: 3px 10px; color: var(--star-gold-light); font-size: 11px; font-weight: 700;
+        }
+        .hero-title {
+            font-family: "Noto Serif SC", serif; font-size: 28px; font-weight: 700;
+            line-height: 1.3; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 20%, var(--star-gold) 80%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-tagline {
+            font-size: 16px; color: var(--star-gold); margin-bottom: 12px;
+            font-weight: 500; letter-spacing: 1px;
+        }
+        .hero-desc {
+            font-size: 15px; color: var(--text-secondary); margin-bottom: 32px;
+            line-height: 1.8; max-width: 360px;
+        }
+        .hero-method {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 12px; padding: 10px 18px; margin-bottom: 32px;
+            font-size: 13px; color: var(--purple-accent);
+        }
+        .hero-method strong { color: var(--text-primary); font-weight: 600; }
+        .price-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(244, 208, 63, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 24px;
+            padding: 28px 36px; margin-bottom: 24px; text-align: center;
+        }
+        .price-label { font-size: 12px; color: var(--text-secondary); letter-spacing: 2px; margin-bottom: 8px; }
+        .price-value { font-size: 48px; font-weight: 700; color: var(--star-gold); line-height: 1.1; }
+        .price-value span { font-size: 20px; font-weight: 400; }
+        .price-original { font-size: 14px; color: var(--text-secondary); margin-top: 8px; text-decoration: line-through; opacity: 0.6; }
+        .price-save { font-size: 14px; color: var(--green-accent); margin-top: 6px; font-weight: 500; }
+        .hero-stats { display: flex; justify-content: center; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 22px; font-weight: 700; color: var(--star-gold); }
+        .stat-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+        .scroll-hint {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--text-secondary); font-size: 12px; animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        /* ===== SECTIONS ===== */
+        .section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 28px; }
+        .section-tag {
+            font-size: 11px; color: var(--star-gold); letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 12px;
+        }
+        .section-title { font-family: "Noto Serif SC", serif; font-size: 22px; font-weight: 600; }
+
+        /* ===== 8 BENEFITS ===== */
+        .benefit-group-title {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 16px; margin-top: 24px;
+        }
+        .benefit-group-title:first-child { margin-top: 0; }
+        .group-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .group-dot.gold { background: var(--star-gold); }
+        .group-dot.blue { background: var(--blue-accent); }
+        .group-dot.green { background: var(--green-accent); }
+        .group-label { font-size: 13px; font-weight: 600; letter-spacing: 1px; }
+        .group-label.gold { color: var(--star-gold); }
+        .group-label.blue { color: var(--blue-accent); }
+        .group-label.green { color: var(--green-accent); }
+
+        .benefit-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 20px; margin-bottom: 14px;
+            backdrop-filter: blur(10px); transition: all 0.3s;
+        }
+        .benefit-card:hover { border-color: rgba(212, 175, 55, 0.3); transform: translateY(-2px); }
+        .benefit-card.featured {
+            border-color: rgba(212, 175, 55, 0.25);
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.7), rgba(212, 175, 55, 0.05));
+        }
+        .benefit-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .benefit-num {
+            width: 32px; height: 32px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 208, 63, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700; color: var(--star-gold); flex-shrink: 0;
+        }
+        .benefit-title { font-size: 15px; font-weight: 600; color: var(--text-primary); flex: 1; }
+        .benefit-value {
+            font-size: 11px; color: var(--green-accent); background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.15); border-radius: 50px;
+            padding: 3px 10px; flex-shrink: 0;
+        }
+        .benefit-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; padding-left: 44px; }
+        .benefit-link {
+            display: inline-block; margin-top: 8px; margin-left: 44px;
+            font-size: 12px; color: var(--star-gold); text-decoration: none;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+        }
+
+        /* ===== VALUE STACK ===== */
+        .value-stack {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(244, 208, 63, 0.03));
+            border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px;
+            padding: 28px 20px; margin-top: 20px;
+        }
+        .value-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+            font-size: 14px;
+        }
+        .value-row:last-child { border-bottom: none; }
+        .value-name { color: var(--text-secondary); }
+        .value-price { color: var(--text-primary); font-weight: 500; }
+        .value-total {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 0 0; margin-top: 8px; border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .value-total .value-name { color: var(--text-primary); font-weight: 600; font-size: 15px; }
+        .value-total .value-price { color: var(--star-gold); font-size: 18px; font-weight: 700; }
+        .value-you-pay {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 14px; margin-top: 12px;
+            background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.15);
+            border-radius: 12px;
+        }
+        .value-you-pay .value-name { color: var(--green-accent); font-weight: 600; }
+        .value-you-pay .value-price { color: var(--green-accent); font-size: 20px; font-weight: 700; }
+
+        /* ===== 4 CORE VALUES ===== */
+        .core-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 22px; margin-bottom: 14px; backdrop-filter: blur(10px);
+        }
+        .core-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .core-icon {
+            width: 44px; height: 44px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; flex-shrink: 0;
+        }
+        .core-icon.g1 { background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .core-icon.g2 { background: rgba(167, 139, 250, 0.15); border: 1px solid rgba(167, 139, 250, 0.2); }
+        .core-icon.g3 { background: rgba(96, 165, 250, 0.15); border: 1px solid rgba(96, 165, 250, 0.2); }
+        .core-icon.g4 { background: rgba(74, 222, 128, 0.15); border: 1px solid rgba(74, 222, 128, 0.2); }
+        .core-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+        .core-subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+        .core-items { display: flex; flex-direction: column; gap: 6px; }
+        .core-item {
+            display: flex; align-items: flex-start; gap: 8px; font-size: 13px;
+            color: var(--text-secondary); line-height: 1.6;
+        }
+        .core-item .dot { color: var(--star-gold); flex-shrink: 0; font-size: 10px; margin-top: 4px; }
+
+        /* ===== 28 DAY TIMELINE ===== */
+        .week-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 22px; margin-bottom: 16px; backdrop-filter: blur(10px);
+        }
+        .week-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .week-badge {
+            padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .week-badge.w1 { background: rgba(96, 165, 250, 0.15); color: var(--blue-accent); border: 1px solid rgba(96, 165, 250, 0.2); }
+        .week-badge.w2 { background: rgba(167, 139, 250, 0.15); color: var(--purple-accent); border: 1px solid rgba(167, 139, 250, 0.2); }
+        .week-badge.w3 { background: rgba(212, 175, 55, 0.15); color: var(--star-gold); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .week-badge.w4 { background: rgba(74, 222, 128, 0.15); color: var(--green-accent); border: 1px solid rgba(74, 222, 128, 0.2); }
+        .week-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+        .week-days { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .day-item {
+            background: rgba(10, 10, 15, 0.4); border-radius: 10px;
+            padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;
+        }
+        .day-num { font-size: 10px; color: var(--text-secondary); opacity: 0.6; }
+        .day-theme { font-size: 12px; color: var(--text-primary); font-weight: 500; }
+        .day-content { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+        /* ===== OUTCOMES ===== */
+        .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .outcome-item {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 16px; text-align: center; backdrop-filter: blur(10px);
+        }
+        .outcome-icon { font-size: 24px; margin-bottom: 8px; }
+        .outcome-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+        /* ===== AUDIENCE ===== */
+        .audience-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px);
+        }
+        .audience-label { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+        .audience-label.gold { color: var(--star-gold); }
+        .audience-row { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; }
+        .audience-row .icon { flex-shrink: 0; }
+
+        /* ===== UPGRADE PATH ===== */
+        .upgrade-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 18px; margin-bottom: 10px; backdrop-filter: blur(10px);
+        }
+        .upgrade-from { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+        .upgrade-to { font-size: 15px; color: var(--text-primary); font-weight: 600; }
+        .upgrade-save { font-size: 12px; color: var(--green-accent); margin-top: 4px; }
+
+        /* ===== SPIRIT QUOTE ===== */
+        .spirit-section { padding: 60px 0; text-align: center; }
+        .spirit-quote {
+            font-family: "Noto Serif SC", serif; font-size: 18px; font-weight: 600;
+            line-height: 2; color: var(--star-gold); max-width: 340px; margin: 0 auto;
+            position: relative; padding: 0 20px;
+        }
+        .spirit-quote::before { content: '"'; font-size: 60px; color: rgba(212, 175, 55, 0.2); position: absolute; top: -20px; left: 0; }
+        .spirit-author { font-size: 14px; color: var(--text-secondary); margin-top: 20px; }
+
+        /* ===== FAQ ===== */
+        .faq-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; margin-bottom: 12px; backdrop-filter: blur(10px);
+        }
+        .faq-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+        .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+        /* ===== CTA ===== */
+        .cta-section { padding: 80px 0; text-align: center; }
+        .cta-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(244, 208, 63, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 24px;
+            padding: 40px 24px; backdrop-filter: blur(10px);
+        }
+        .cta-title { font-family: "Noto Serif SC", serif; font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+        .cta-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8; }
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--star-gold), #b8962e);
+            color: var(--deep-space); padding: 18px 40px; border-radius: 50px;
+            font-size: 16px; font-weight: 700; text-decoration: none;
+            transition: all 0.3s; box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4); }
+        .cta-note {
+            margin-top: 20px; font-size: 12px; color: var(--text-secondary); line-height: 1.8;
+        }
+        .cta-note a { color: var(--star-gold); text-decoration: none; font-weight: 500; }
+
+        /* ===== FOOTER ===== */
+        .page-footer { padding: 40px 0 60px; text-align: center; border-top: 1px solid var(--card-border); }
+        .footer-logo { font-family: "Cinzel", serif; font-size: 20px; color: var(--star-gold); margin-bottom: 8px; letter-spacing: 2px; }
+        .footer-tagline { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+        .footer-contact { font-size: 12px; color: var(--text-secondary); line-height: 2; }
+        .footer-contact a { color: var(--star-gold); text-decoration: none; }
+        .footer-copy { font-size: 12px; color: var(--text-secondary); opacity: 0.6; margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>⭐</span>
+                <span>TOPOPC宇航家年卡</span>
+                <span class="badge-tag">L6 核心产品</span>
+            </div>
+            <h1 class="hero-title">AI时代领航人的<br>成长加速器</h1>
+            <div class="hero-tagline">8项权益 · 总价值超3万 · 一站式交付</div>
+            <p class="hero-desc">OPBU方法论 + 28天陪跑 + AI工具包 + 孵化器资源<br>一个人 = 一个商业单元</p>
+            <div class="hero-method">
+                <span>📐</span>
+                <span>核心方法论：<strong>OPBU</strong> — One Person Business Unit</span>
+            </div>
+            <div class="price-card">
+                <div class="price-label">年卡首发价</div>
+                <div class="price-value">¥8,866<span>/年</span></div>
+                <div class="price-original">总价值 ¥30,000+</div>
+                <div class="price-save">🔥 不到3折 · 省 ¥21,000+</div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">8</div>
+                    <div class="stat-label">项权益</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">28天</div>
+                    <div class="stat-label">陪跑落地</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">3万+</div>
+                    <div class="stat-label">总价值</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">终身</div>
+                    <div class="stat-label">社群席位</div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <span>8项权益详解 ↓</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 8 BENEFITS ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">8 BENEFITS</div>
+                <h2 class="section-title">🎁 年卡8项权益</h2>
+            </div>
+
+            <!-- OPC商学院赋能 -->
+            <div class="benefit-group-title">
+                <div class="group-dot gold"></div>
+                <div class="group-label gold">OPC商学院赋能（5项）</div>
+            </div>
+
+            <div class="benefit-card featured">
+                <div class="benefit-top">
+                    <div class="benefit-num">①</div>
+                    <div class="benefit-title">OPC全案落地大课</div>
+                    <div class="benefit-value">核心课程</div>
+                </div>
+                <div class="benefit-desc">2天1夜线下高强度集训，从0到1跑通OPBU一人公司全流程，现场出成果</div>
+                <a href="opbc-full-course.html" class="benefit-link">查看课程详情 →</a>
+            </div>
+
+            <div class="benefit-card featured">
+                <div class="benefit-top">
+                    <div class="benefit-num">②</div>
+                    <div class="benefit-title">OPBU·28天一对一陪跑</div>
+                    <div class="benefit-value">核心服务</div>
+                </div>
+                <div class="benefit-desc">全程社群陪伴 + 每日答疑，4周闭环从认知觉醒到成果产出</div>
+                <a href="opbu28.html" class="benefit-link">查看28天体系 →</a>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">③</div>
+                    <div class="benefit-title">黄校长一对一 60分钟</div>
+                    <div class="benefit-value">¥1,688</div>
+                </div>
+                <div class="benefit-desc">深度咨询 + 方向指导，精准定位你的AI商业路径</div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">④</div>
+                    <div class="benefit-title">AI工具包年度使用权</div>
+                    <div class="benefit-value">持续更新</div>
+                </div>
+                <div class="benefit-desc">大龙虾AI平台（ailonglong.com）年度会员：AI司令部 + AI智能体 + AI专家库 + 记忆与个性化 + 实体店功能 + 3,000点/月算力</div>
+                <a href="long-system.html" class="benefit-link">了解大龙虾AI系统 →</a>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">⑤</div>
+                    <div class="benefit-title">个性化AI商业模式</div>
+                    <div class="benefit-value">战略咨询</div>
+                </div>
+                <div class="benefit-desc">定制化商业方案设计，帮你找到最适合的AI变现路径</div>
+            </div>
+
+            <!-- OPC孵化器培育 -->
+            <div class="benefit-group-title">
+                <div class="group-dot blue"></div>
+                <div class="group-label blue">OPC孵化器培育（2项）</div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">⑥</div>
+                    <div class="benefit-title">一城一智OPC孵化器挂牌</div>
+                    <div class="benefit-value">资源链接</div>
+                </div>
+                <div class="benefit-desc">线下空间资源对接，共享TOPOPC生态基础设施</div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">⑦</div>
+                    <div class="benefit-title">协办三次活动</div>
+                    <div class="benefit-value">¥16,888</div>
+                </div>
+                <div class="benefit-desc">获得 ¥16,888 活动支持，协办线下沙龙、体验营等，快速积累人脉和影响力</div>
+            </div>
+
+            <!-- OPC生态社区 -->
+            <div class="benefit-group-title">
+                <div class="group-dot green"></div>
+                <div class="group-label green">OPC生态社区链接（1项）</div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-top">
+                    <div class="benefit-num">⑧</div>
+                    <div class="benefit-title">星链社群终身席位</div>
+                    <div class="benefit-value">生态赋能</div>
+                </div>
+                <div class="benefit-desc">TOPOPC校友网络 + 资源链接，一次加入终身受益，持续获取最新AI商业情报</div>
+            </div>
+
+            <!-- VALUE STACK -->
+            <div class="value-stack">
+                <div class="value-row">
+                    <span class="value-name">① OPC全案落地大课</span>
+                    <span class="value-price">¥2,888</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">② OPBU 28天陪跑</span>
+                    <span class="value-price">¥3,688</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">③ 黄校长一对一 60分钟</span>
+                    <span class="value-price">¥1,688</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">④ AI工具包年度会员</span>
+                    <span class="value-price">¥1,688</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">⑤ 个性化AI商业模式</span>
+                    <span class="value-price">¥5,000</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">⑥ OPC孵化器挂牌</span>
+                    <span class="value-price">资源对接</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">⑦ 三次活动协办</span>
+                    <span class="value-price">¥16,888</span>
+                </div>
+                <div class="value-row">
+                    <span class="value-name">⑧ 星链社群终身席位</span>
+                    <span class="value-price">无价</span>
+                </div>
+                <div class="value-total">
+                    <span class="value-name">总价值</span>
+                    <span class="value-price">¥30,000+</span>
+                </div>
+                <div class="value-you-pay">
+                    <span class="value-name">年卡首发价</span>
+                    <span class="value-price">¥8,866/年</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4 CORE VALUES ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">4 CORE VALUES</div>
+                <h2 class="section-title">🚀 四大核心价值</h2>
+            </div>
+
+            <div class="core-card">
+                <div class="core-header">
+                    <div class="core-icon g1">🤖</div>
+                    <div>
+                        <div class="core-title">AI智能体获客</div>
+                        <div class="core-subtitle">让客户主动找上门</div>
+                    </div>
+                </div>
+                <div class="core-items">
+                    <div class="core-item"><span class="dot">◆</span>企业老板：降低获客成本</div>
+                    <div class="core-item"><span class="dot">◆</span>创业者：快速建立自动化获客系统</div>
+                    <div class="core-item"><span class="dot">◆</span>转型者：用AI工具重构业务模式</div>
+                </div>
+            </div>
+
+            <div class="core-card">
+                <div class="core-header">
+                    <div class="core-icon g2">🏢</div>
+                    <div>
+                        <div class="core-title">AI一人公司运营</div>
+                        <div class="core-subtitle">一个人顶一个团队</div>
+                    </div>
+                </div>
+                <div class="core-items">
+                    <div class="core-item"><span class="dot">◆</span>OPBU方法论学习与实践</div>
+                    <div class="core-item"><span class="dot">◆</span>28天一对一陪跑落地</div>
+                    <div class="core-item"><span class="dot">◆</span>黄校长战略指导</div>
+                </div>
+            </div>
+
+            <div class="core-card">
+                <div class="core-header">
+                    <div class="core-icon g3">🏗️</div>
+                    <div>
+                        <div class="core-title">OPC孵化器建设</div>
+                        <div class="core-subtitle">共享TOPOPC生态资源</div>
+                    </div>
+                </div>
+                <div class="core-items">
+                    <div class="core-item"><span class="dot">◆</span>一城一智线下空间挂牌</div>
+                    <div class="core-item"><span class="dot">◆</span>三次活动协办支持</div>
+                    <div class="core-item"><span class="dot">◆</span>校友网络资源共享</div>
+                </div>
+            </div>
+
+            <div class="core-card">
+                <div class="core-header">
+                    <div class="core-icon g4">💰</div>
+                    <div>
+                        <div class="core-title">全年仅需 ¥8,866</div>
+                        <div class="core-subtitle">四大价值一站式交付</div>
+                    </div>
+                </div>
+                <div class="core-items">
+                    <div class="core-item"><span class="dot">◆</span>总价值超3万，不到3折</div>
+                    <div class="core-item"><span class="dot">◆</span>月均仅 ¥739，比请一个实习生还便宜</div>
+                    <div class="core-item"><span class="dot">◆</span>一次投资，全年受益</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 28 DAY TIMELINE ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">28 DAY JOURNEY</div>
+                <h2 class="section-title">📋 28天OPBU陪跑体系</h2>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <span class="week-badge w1">WEEK 1</span>
+                    <span class="week-title">认知觉醒期 · Day 1-7</span>
+                </div>
+                <div class="week-days">
+                    <div class="day-item"><div class="day-num">Day 1</div><div class="day-theme">破局</div><div class="day-content">AI时代的商业逻辑</div></div>
+                    <div class="day-item"><div class="day-num">Day 2</div><div class="day-theme">定位</div><div class="day-content">找到你的AI细分赛道</div></div>
+                    <div class="day-item"><div class="day-num">Day 3</div><div class="day-theme">闭环</div><div class="day-content">OPBU最小商业单元</div></div>
+                    <div class="day-item"><div class="day-num">Day 4</div><div class="day-theme">获客</div><div class="day-content">AI时代的流量地图</div></div>
+                    <div class="day-item"><div class="day-num">Day 5</div><div class="day-theme">产品</div><div class="day-content">AI时代的个人IP</div></div>
+                    <div class="day-item"><div class="day-num">Day 6</div><div class="day-theme">定价</div><div class="day-content">你的服务值多少钱</div></div>
+                    <div class="day-item" style="grid-column:1/3;"><div class="day-num">Day 7</div><div class="day-theme">复盘 + 黄校长一对一60分钟 🎯</div><div class="day-content">Week 1 深度复盘</div></div>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <span class="week-badge w2">WEEK 2</span>
+                    <span class="week-title">工具掌握期 · Day 8-14</span>
+                </div>
+                <div class="week-days">
+                    <div class="day-item"><div class="day-num">Day 8</div><div class="day-theme">智能体</div><div class="day-content">24小时超级员工</div></div>
+                    <div class="day-item"><div class="day-num">Day 9</div><div class="day-theme">DeepSeek</div><div class="day-content">最强AI助手应用</div></div>
+                    <div class="day-item"><div class="day-num">Day 10</div><div class="day-theme">自动化</div><div class="day-content">业务24小时运转</div></div>
+                    <div class="day-item"><div class="day-num">Day 11</div><div class="day-theme">内容创作</div><div class="day-content">AI批量生产内容</div></div>
+                    <div class="day-item"><div class="day-num">Day 12</div><div class="day-theme">转化</div><div class="day-content">AI提升转化率</div></div>
+                    <div class="day-item"><div class="day-num">Day 13</div><div class="day-theme">数据</div><div class="day-content">数据驱动决策</div></div>
+                    <div class="day-item" style="grid-column:1/3;"><div class="day-num">Day 14</div><div class="day-theme">Week 2 复盘</div><div class="day-content">工具掌握度评估</div></div>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <span class="week-badge w3">WEEK 3</span>
+                    <span class="week-title">商业落地期 · Day 15-21</span>
+                </div>
+                <div class="week-days">
+                    <div class="day-item"><div class="day-num">Day 15</div><div class="day-theme">MVP验证</div><div class="day-content">第一个付费客户</div></div>
+                    <div class="day-item"><div class="day-num">Day 16</div><div class="day-theme">交付</div><div class="day-content">超预期服务艺术</div></div>
+                    <div class="day-item"><div class="day-num">Day 17</div><div class="day-theme">追销</div><div class="day-content">复购与转介绍</div></div>
+                    <div class="day-item"><div class="day-num">Day 18</div><div class="day-theme">私域</div><div class="day-content">高活跃社群</div></div>
+                    <div class="day-item"><div class="day-num">Day 19</div><div class="day-theme">线上获客</div><div class="day-content">短视频+直播</div></div>
+                    <div class="day-item"><div class="day-num">Day 20</div><div class="day-theme">线下获客</div><div class="day-content">活动即获客</div></div>
+                    <div class="day-item" style="grid-column:1/3;"><div class="day-num">Day 21</div><div class="day-theme">Week 3 复盘</div><div class="day-content">商业落地检验</div></div>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <div class="week-header">
+                    <span class="week-badge w4">WEEK 4</span>
+                    <span class="week-title">成果产出期 · Day 22-28</span>
+                </div>
+                <div class="week-days">
+                    <div class="day-item"><div class="day-num">Day 22</div><div class="day-theme">复制</div><div class="day-content">一人到AI团队</div></div>
+                    <div class="day-item"><div class="day-num">Day 23</div><div class="day-theme">系统化</div><div class="day-content">可复制SOP设计</div></div>
+                    <div class="day-item"><div class="day-num">Day 24</div><div class="day-theme">规模化</div><div class="day-content">增长飞轮</div></div>
+                    <div class="day-item"><div class="day-num">Day 25</div><div class="day-theme">品牌化</div><div class="day-content">从个人到品牌</div></div>
+                    <div class="day-item"><div class="day-num">Day 26</div><div class="day-theme">融资</div><div class="day-content">让资本看到价值</div></div>
+                    <div class="day-item"><div class="day-num">Day 27</div><div class="day-theme">合伙人</div><div class="day-content">搭建OPC孵化器</div></div>
+                    <div class="day-item" style="grid-column:1/3;"><div class="day-num">Day 28</div><div class="day-theme">🎓 毕业</div><div class="day-content">成果展示与未来规划</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUTCOMES ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">OUTCOMES</div>
+                <h2 class="section-title">✅ 学员收获</h2>
+            </div>
+            <div class="outcome-grid">
+                <div class="outcome-item">
+                    <div class="outcome-icon">🧠</div>
+                    <div class="outcome-text">完整的AI商业<br>认知框架</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">🛠️</div>
+                    <div class="outcome-text">至少5款AI工具<br>实际应用</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">🤖</div>
+                    <div class="outcome-text">AI智能体<br>获客系统</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">🔄</div>
+                    <div class="outcome-text">从0到1<br>最小商业闭环</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">💰</div>
+                    <div class="outcome-text">第一个真实<br>付费客户</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">📋</div>
+                    <div class="outcome-text">可复制的OPBU<br>商业体系</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">🌐</div>
+                    <div class="outcome-text">宇航家校友<br>网络</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-icon">🏗️</div>
+                    <div class="outcome-text">OPC孵化器<br>主理人机会</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AUDIENCE ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">AUDIENCE</div>
+                <h2 class="section-title">👥 适合谁</h2>
+            </div>
+            <div class="audience-card">
+                <div class="audience-label gold">🎯 AI时代领航人</div>
+                <div class="audience-row"><span class="icon">◆</span>想要引领AI浪潮，OPBU方法论+工具赋能</div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-label gold">🎯 AI操盘手</div>
+                <div class="audience-row"><span class="icon">◆</span>想要系统化运作，28天陪跑+SOP体系</div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-label gold">🎯 OPC孵化器主理人</div>
+                <div class="audience-row"><span class="icon">◆</span>想要建立生态，孵化器挂牌+资源链接</div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-label gold">🎯 企业老板/创业者</div>
+                <div class="audience-row"><span class="icon">◆</span>想要降本增效，AI工具+黄校长指导</div>
+            </div>
+            <div class="audience-card">
+                <div class="audience-label gold">🎯 转型者</div>
+                <div class="audience-row"><span class="icon">◆</span>想要AI转型，系统学习+实战落地</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UPGRADE PATH ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">UPGRADE PATH</div>
+                <h2 class="section-title">🔄 升级抵扣</h2>
+            </div>
+            <div class="upgrade-card">
+                <div class="upgrade-from">已购 L1 宇航员体验营（¥199）</div>
+                <div class="upgrade-to">升级宇航家年卡 → 实付 ¥8,666</div>
+                <div class="upgrade-save">专属优惠价</div>
+            </div>
+            <div class="upgrade-card">
+                <div class="upgrade-from">已购 L2 宇航训练营（¥499）</div>
+                <div class="upgrade-to">升级宇航家年卡 → 实付 ¥8,366</div>
+                <div class="upgrade-save">抵扣¥500 + 赠送¥1,688商业咨询</div>
+            </div>
+            <div class="upgrade-card" style="border-color: rgba(212, 175, 55, 0.3); background: linear-gradient(135deg, rgba(26, 31, 58, 0.6), rgba(212, 175, 55, 0.05));">
+                <div class="upgrade-from">从 L6 宇航家年卡继续升级 ↓</div>
+                <div class="upgrade-to">L7 宇航指挥官 ¥28,866 / L8 星际总督 ¥98,866</div>
+                <div class="upgrade-save">已付金额可抵扣</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SPIRIT ===== -->
+    <section class="spirit-section">
+        <div class="container">
+            <div class="spirit-quote">
+                在AI时代，一个人就是一家公司。<br>
+                你不需要团队，<br>
+                你需要的是OPBU方法论<br>
+                + AI工具 + 28天陪跑。<br>
+                TOPOPC宇航家，<br>
+                帮你成为自己的CEO。
+            </div>
+            <div class="spirit-author">— AI黄校长</div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q1：¥8,866/年值不值？</div>
+                <div class="faq-a">8项权益总价值超3万，不到3折。月均¥739，比请一个实习生还便宜。其中仅"协办三次活动"一项就值¥16,888。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q2：28天陪跑是怎么进行的？</div>
+                <div class="faq-a">4周闭环：认知觉醒→工具掌握→商业落地→成果产出。全程社群陪伴+每日答疑，Day 7 还有黄校长一对一60分钟。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q3：大龙虾AI系统是什么？</div>
+                <div class="faq-a">年卡权益④，价值¥1,688/年的AI工具平台。含AI司令部（内容生产）、AI智能体（7×24客服）、AI专家库、记忆与个性化、实体店功能、3000点/月算力。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q4：OPC全案落地大课是什么？</div>
+                <div class="faq-a">年卡权益①，2天1夜线下高强度集训。30人小班制，14.5小时课程，8项现场产出，从0到1跑通OPBU全流程。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q5：之前买了L1/L2可以抵扣吗？</div>
+                <div class="faq-a">可以！L1宇航员享专属优惠价，L2训练营抵扣¥500并赠送¥1,688商业咨询。越早入手越划算。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q6：孵化器挂牌有什么实际价值？</div>
+                <div class="faq-a">一城一智OPC孵化器挂牌意味着：线下空间资源对接、协办活动支持（¥16,888）、校友网络共享，有机会成为OPC孵化器主理人。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-title">⭐ 成为AI时代的宇航家</div>
+                <p class="cta-subtitle">8项权益 · 总价值超3万 · 28天陪跑落地<br>一个人 = 一个商业单元</p>
+                <a href="index.html" class="cta-button">立即加入 →</a>
+                <div class="cta-note">
+                    🎁 已购 L1/L2 可抵扣升级<br>
+                    年卡包含 <a href="long-system.html">大龙虾AI系统</a>（价值¥1,688）+
+                    <a href="opbc-full-course.html">OPC全案大课</a>（价值¥2,888）+
+                    <a href="opbu28.html">28天陪跑</a>（价值¥3,688）
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-logo">TOPOPC</div>
+            <div class="footer-tagline">成为AI时代的宇航家</div>
+            <div class="footer-contact">
+                黄校长 · 微信：<a href="#">aisop88</a> · 手机：13928238866<br>
+                邮箱：757232323@qq.com · 平台：<a href="https://ailonglong.com" target="_blank">ailonglong.com</a>
+            </div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：AI黄校长</div>
+        </div>
+    </footer>
+
+    <script>
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
