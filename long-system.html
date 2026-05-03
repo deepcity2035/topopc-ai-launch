@@ -301,9 +301,90 @@
         }
         .qr-close:hover { background: rgba(255, 255, 255, 0.15); color: #f5f5f5; }
 
-    </style>
+    
+/* ===== TOP NAV BAR ===== */
+.top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 48px;
+    background: rgba(8, 12, 21, 0.85);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
+    transition: background 0.3s;
+}
+.top-nav.scrolled { background: rgba(8, 12, 21, 0.95); }
+.nav-brand {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    letter-spacing: 3px; color: #d4af37; text-decoration: none;
+    flex-shrink: 0;
+}
+.nav-links {
+    display: flex; align-items: center; gap: 2px; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+    font-size: 11px; color: rgba(255,255,255,0.55); text-decoration: none;
+    padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+    transition: all 0.2s; font-weight: 500;
+}
+.nav-link:hover { color: #d4af37; background: rgba(212,175,55,0.08); }
+.nav-link.active { color: #d4af37; background: rgba(212,175,55,0.12); font-weight: 600; }
+.nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.1); margin: 0 4px; flex-shrink: 0; }
+.nav-toggle {
+    display: none; flex-direction: column; gap: 4px; padding: 8px;
+    background: none; border: none; cursor: pointer;
+}
+.nav-toggle span { display: block; width: 18px; height: 2px; background: rgba(255,255,255,0.6); border-radius: 1px; transition: 0.2s; }
+body { padding-top: 48px; }
+@media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+        display: none; position: absolute; top: 48px; left: 0; right: 0;
+        flex-direction: column; padding: 8px 12px; gap: 2px;
+        background: rgba(8, 12, 21, 0.97);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(212,175,55,0.15);
+        max-height: calc(100vh - 48px); overflow-y: auto;
+    }
+    .nav-links.open { display: flex; }
+    .nav-sep { display: none; }
+    .nav-link { padding: 10px 12px; font-size: 13px; }
+}
+
+        .footer { text-align: center; padding: 40px 20px 30px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 60px; }
+        .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: var(--star-gold, #d4af37); letter-spacing: 4px; margin-bottom: 6px; }
+        .footer-copy { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+        .footer-link { font-size: 11px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+        .footer-link:hover { color: #d4af37; }
+</style>
 </head>
 <body onclick="closeQrOutside(event)">
+<nav class="top-nav">
+    <a href="index.html" class="nav-brand">TOPOPC</a>
+    <div class="nav-links">
+        <a href="experience-camp.html" class="nav-link">L1体验营</a>
+        <a href="training-camp.html" class="nav-link">L2训练营</a>
+        <a href="long-system.html" class="nav-link active">L3 AI系统</a>
+        <a href="opbc-full-course.html" class="nav-link">L4大课</a>
+        <a href="opbu28.html" class="nav-link">L5陪跑</a>
+        <a href="annual-card.html" class="nav-link">L6年卡</a>
+        <a href="ai-company.html" class="nav-link">L7指挥官</a>
+        <a href="city-partner.html" class="nav-link">L8总督</a>
+        <div class="nav-sep"></div>
+        <a href="about.html" class="nav-link">关于</a>
+        <a href="deepcity.html" class="nav-link">DeepCity</a>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<script>
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+</script>
+
     <div class="starfield" id="starfield"></div>
     <a href="index.html" class="back-nav">← 返回发售页</a>
 
@@ -687,13 +768,7 @@
     <!-- FOOTER -->
     <footer class="page-footer">
         <div class="container">
-            <div class="footer-logo">TOPOPC</div>
-            <div class="footer-tagline">成为AI时代的宇航家</div>
-            <div class="footer-contact">
-                黄校长 · 微信：<a href="#">aisop88</a> · 手机：13928238866<br>
-                邮箱：757232323@qq.com · 平台：<a href="https://ailonglong.com" target="_blank">ailonglong.com</a>
-            </div>
-            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：AI黄校长</div>
+            
         </div>
     </footer>
 
@@ -741,5 +816,21 @@
         });
 
 </script>
-</body>
+<footer class="footer">
+        <div class="footer-brand">TOPOPC AERONAUT</div>
+        <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.5 · 品牌主理人：AI黄校长</div>
+        <div class="footer-links">
+            <a href="experience-camp.html" class="footer-link">体验营</a>
+            <a href="training-camp.html" class="footer-link">训练营</a>
+            <a href="long-system.html" class="footer-link">AI系统</a>
+            <a href="opbc-full-course.html" class="footer-link">全案大课</a>
+            <a href="opbu28.html" class="footer-link">28天陪跑</a>
+            <a href="annual-card.html" class="footer-link">年卡</a>
+            <a href="ai-company.html" class="footer-link">指挥官</a>
+            <a href="city-partner.html" class="footer-link">总督</a>
+            <a href="about.html" class="footer-link">关于主理人</a>
+            <a href="deepcity.html" class="footer-link">DeepCity</a>
+        </div>
+    </footer>
+    </body>
 </html>
