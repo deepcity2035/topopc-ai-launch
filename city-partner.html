@@ -80,7 +80,7 @@
         .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
 
         /* ===== HERO ===== */
-        .hero {
+        .hero { padding-top: 52px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -555,9 +555,67 @@
         }
         .qr-close:hover { background: rgba(255, 255, 255, 0.15); color: #f5f5f5; }
 
+    
+        /* ===== GLOBAL NAV ===== */
+        .global-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; height: 52px;
+            background: rgba(8, 8, 15, 0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav-brand {
+            font-family: "Cinzel", serif; font-size: 16px; font-weight: 700;
+            color: #d4af37; text-decoration: none; letter-spacing: 3px;
+        }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-links a {
+            color: #a0a0a8; text-decoration: none; font-size: 12px;
+            padding: 6px 10px; border-radius: 6px; transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #f5f5f5; background: rgba(255,255,255,0.08);
+        }
+        /* Footer */
+        .global-footer {
+            text-align: center; padding: 30px 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: rgba(8, 8, 15, 0.6);
+        }
+        .global-footer .footer-brand {
+            font-family: "Cinzel", serif; font-size: 12px; color: #d4af37;
+            letter-spacing: 4px; margin-bottom: 6px;
+        }
+        .global-footer .footer-copy {
+            font-size: 11px; color: #666; margin-bottom: 16px;
+        }
+        .global-footer .footer-links {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;
+        }
+        .global-footer .footer-links a {
+            color: #888; text-decoration: none; font-size: 12px; transition: color 0.3s;
+        }
+        .global-footer .footer-links a:hover { color: #d4af37; }
+
     </style>
 </head>
 <body onclick="closeQrOutside(event)">
+    <!-- Global Nav -->
+    <nav class="global-nav">
+        <a href="index.html" class="nav-brand">TOPOPC</a>
+        <div class="nav-links">
+            <a href="experience-camp.html">体验营</a>
+            <a href="training-camp.html">训练营</a>
+            <a href="ai-system.html">AI系统</a>
+            <a href="annual-card.html">年卡</a>
+            <a href="ai-company.html">指挥官</a>
+            <a href="city-partner.html">总督</a>
+            <a href="about.html">关于</a>
+        </div>
+    </nav>
+
+
     <div class="starfield" id="starfield"></div>
     <a href="index.html" class="back-nav">← 返回发售页</a>
 
@@ -852,13 +910,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="footer-logo">TOPOPC</div>
-            <div class="footer-tagline">一城一智 · 一人成军</div>
-            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：AI黄校长</div>
-        </div>
-    </footer>
+    
 
         <!-- QR Modal -->
     <div class="qr-overlay" id="qrModal" onclick="closeQr(event)">
@@ -904,5 +956,23 @@
         });
 
 </script>
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-brand">TOPOPC AERONAUT</div>
+        <div class="footer-copy">© 2026 TOPOPC宇航家 · AI时代的个人进化系统 · 品牌主理人：AI黄校长</div>
+        <div class="footer-links">
+            <a href="experience-camp.html">体验营</a>
+            <a href="training-camp.html">训练营</a>
+            <a href="ai-system.html">AI系统</a>
+            <a href="opbc-full-course.html">全案大课</a>
+            <a href="opbu28.html">28天陪跑</a>
+            <a href="annual-card.html">宇航家年卡</a>
+            <a href="ai-company.html">指挥官</a>
+            <a href="city-partner.html">总督</a>
+            <a href="about.html">关于主理人</a>
+            <a href="deepcity.html">DeepCity</a>
+        </div>
+    </footer>
+
 </body>
 </html>

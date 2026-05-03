@@ -24,7 +24,7 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
 
         /* Hero */
-        .hero {
+        .hero { padding-top: 52px;
             padding: 60px 16px 40px;
             text-align: center;
             background: linear-gradient(180deg, rgba(139,92,246,0.08) 0%, transparent 100%);
@@ -343,9 +343,106 @@
             .hero h1 { font-size: 26px; }
             .info-label { width: 80px; }
         }
+    
+        /* ===== GLOBAL NAV ===== */
+        .global-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; height: 52px;
+            background: rgba(8, 8, 15, 0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav-brand {
+            font-family: "Cinzel", serif; font-size: 16px; font-weight: 700;
+            color: #d4af37; text-decoration: none; letter-spacing: 3px;
+        }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-links a {
+            color: #a0a0a8; text-decoration: none; font-size: 12px;
+            padding: 6px 10px; border-radius: 6px; transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #f5f5f5; background: rgba(255,255,255,0.08);
+        }
+        /* Footer */
+        .global-footer {
+            text-align: center; padding: 30px 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: rgba(8, 8, 15, 0.6);
+        }
+        .global-footer .footer-brand {
+            font-family: "Cinzel", serif; font-size: 12px; color: #d4af37;
+            letter-spacing: 4px; margin-bottom: 6px;
+        }
+        .global-footer .footer-copy {
+            font-size: 11px; color: #666; margin-bottom: 16px;
+        }
+        .global-footer .footer-links {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;
+        }
+        .global-footer .footer-links a {
+            color: #888; text-decoration: none; font-size: 12px; transition: color 0.3s;
+        }
+        .global-footer .footer-links a:hover { color: #d4af37; }
+
+    
+        /* ===== QR MODAL ===== */
+        .qr-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(8px);
+            z-index: 9999; display: none;
+            justify-content: center; align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .qr-overlay.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .qr-modal {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.95), rgba(45, 27, 78, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 24px;
+            padding: 32px 28px; text-align: center; max-width: 320px;
+            margin: 20px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+        .qr-modal-title {
+            font-family: "Noto Serif SC", serif; font-size: 18px; font-weight: 600;
+            color: #d4af37; margin-bottom: 6px;
+        }
+        .qr-modal-subtitle { font-size: 13px; color: #a0a0a8; margin-bottom: 20px; }
+        .qr-img {
+            width: 220px; height: 220px; border-radius: 16px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            object-fit: cover; margin-bottom: 16px;
+        }
+        .qr-tip { font-size: 13px; color: #d4af37; font-weight: 500; line-height: 1.6; }
+        .qr-close {
+            display: inline-block; margin-top: 16px;
+            padding: 8px 24px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #a0a0a8; font-size: 13px; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .qr-close:hover { background: rgba(255, 255, 255, 0.15); color: #f5f5f5; }
+
     </style>
 </head>
-<body>
+<body onclick="closeQrOutside(event)">
+    <!-- Global Nav -->
+    <nav class="global-nav">
+        <a href="index.html" class="nav-brand">TOPOPC</a>
+        <div class="nav-links">
+            <a href="experience-camp.html">体验营</a>
+            <a href="training-camp.html">训练营</a>
+            <a href="ai-system.html">AI系统</a>
+            <a href="annual-card.html">年卡</a>
+            <a href="ai-company.html">指挥官</a>
+            <a href="city-partner.html">总督</a>
+            <a href="about.html">关于</a>
+        </div>
+    </nav>
+
+
     <!-- Hero -->
     <div class="hero">
         <div class="hero-badge">🎓 L4 · OPC全案落地大课</div>
@@ -903,5 +1000,42 @@
         <p style="font-size:12px;color:var(--text-secondary);">版本：v2.0 | 更新时间：2026-04-27</p>
         <a href="index.html" class="footer-link">← 返回主发售页</a>
     </div>
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-brand">TOPOPC AERONAUT</div>
+        <div class="footer-copy">© 2026 TOPOPC宇航家 · AI时代的个人进化系统 · 品牌主理人：AI黄校长</div>
+        <div class="footer-links">
+            <a href="experience-camp.html">体验营</a>
+            <a href="training-camp.html">训练营</a>
+            <a href="ai-system.html">AI系统</a>
+            <a href="opbc-full-course.html">全案大课</a>
+            <a href="opbu28.html">28天陪跑</a>
+            <a href="annual-card.html">宇航家年卡</a>
+            <a href="ai-company.html">指挥官</a>
+            <a href="city-partner.html">总督</a>
+            <a href="about.html">关于主理人</a>
+            <a href="deepcity.html">DeepCity</a>
+        </div>
+    </footer>
+
 </body>
 </html>
+        function showQr(e) {
+            e && e.preventDefault();
+            e && e.stopPropagation();
+            document.getElementById('qrModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeQr(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('qrModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function closeQrOutside(e) {
+            if (e.target.id === 'qrModal') closeQr(e);
+        }
+        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
+            btn.addEventListener('click', showQr);
+        });
+
+
