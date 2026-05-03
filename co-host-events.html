@@ -10,6 +10,7 @@
     <title>协办三次活动 · L6年卡权益⑦ · TOPOPC宇航家</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="share-poster-hd.png">
+        <link rel="stylesheet" href="shared.css">
     <style>
         :root {
             --bg-primary: #0a0f1e;
@@ -524,56 +525,6 @@
             .phase-tabs { flex-wrap: wrap; }
         }
     
-/* ===== TOP NAV BAR ===== */
-.top-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; height: 48px;
-    background: rgba(8, 12, 21, 0.85);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
-    font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
-    transition: background 0.3s;
-}
-.top-nav.scrolled { background: rgba(8, 12, 21, 0.95); }
-.nav-brand {
-    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
-    letter-spacing: 3px; color: #d4af37; text-decoration: none;
-    flex-shrink: 0;
-}
-.nav-links {
-    display: flex; align-items: center; gap: 2px; overflow-x: auto;
-    scrollbar-width: none; -ms-overflow-style: none;
-}
-.nav-links::-webkit-scrollbar { display: none; }
-.nav-link {
-    font-size: 11px; color: rgba(255,255,255,0.55); text-decoration: none;
-    padding: 6px 10px; border-radius: 6px; white-space: nowrap;
-    transition: all 0.2s; font-weight: 500;
-}
-.nav-link:hover { color: #d4af37; background: rgba(212,175,55,0.08); }
-.nav-link.active { color: #d4af37; background: rgba(212,175,55,0.12); font-weight: 600; }
-.nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.1); margin: 0 4px; flex-shrink: 0; }
-.nav-toggle {
-    display: none; flex-direction: column; gap: 4px; padding: 8px;
-    background: none; border: none; cursor: pointer;
-}
-.nav-toggle span { display: block; width: 18px; height: 2px; background: rgba(255,255,255,0.6); border-radius: 1px; transition: 0.2s; }
-body { padding-top: 48px; }
-@media (max-width: 768px) {
-    .nav-toggle { display: flex; }
-    .nav-links {
-        display: none; position: absolute; top: 48px; left: 0; right: 0;
-        flex-direction: column; padding: 8px 12px; gap: 2px;
-        background: rgba(8, 12, 21, 0.97);
-        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(212,175,55,0.15);
-        max-height: calc(100vh - 48px); overflow-y: auto;
-    }
-    .nav-links.open { display: flex; }
-    .nav-sep { display: none; }
-    .nav-link { padding: 10px 12px; font-size: 13px; }
-}
 
         .footer { text-align: center; padding: 40px 20px 30px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 60px; }
         .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: var(--star-gold, #d4af37); letter-spacing: 4px; margin-bottom: 6px; }

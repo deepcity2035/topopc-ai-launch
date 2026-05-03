@@ -1,11 +1,8 @@
-/* TOPOPC Shared Styles - Nav, Footer, Beian, Sticky CTA */
+/* TOPOPC Shared Styles - Nav + responsive
+ * Auto-generated. Only contains styles 100% identical across all 12 pages.
+ * Footer styles vary per page and remain inline.
+ */
 
-/* ===== FOOTER ===== */
-        .footer { text-align: center; padding: 20px 0; border-top: 1px solid var(--card-border); }
-        .footer-brand { font-family: "Cinzel", serif; font-size: 11px; color: var(--star-gold); letter-spacing: 4px; margin-bottom: 4px; }
-        .footer-copy { font-size: 10px; color: var(--text-secondary); }
-
-        
 /* ===== TOP NAV BAR ===== */
 .top-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
