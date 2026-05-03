@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>大龙虾AI系统·年度会员 · L3信任产品 · TOPOPC宇航家</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --cosmic-blue: #1a1f3a;
+            --nebula-purple: #2d1b4e;
+            --star-gold: #d4af37;
+            --star-gold-light: #f4d03f;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a8;
+            --card-border: rgba(212, 175, 55, 0.15);
+            --card-bg: rgba(26, 31, 58, 0.6);
+            --green-accent: #4ade80;
+            --purple-accent: #a78bfa;
+            --blue-accent: #60a5fa;
+            --red-accent: #f87171;
+            --lobster-red: #ef4444;
+            --lobster-orange: #f97316;
+            --lobster-amber: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans SC", -apple-system, sans-serif;
+            background: var(--deep-space);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .starfield {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
+        }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite ease-in-out; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .container { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px; }
+        .back-nav {
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border); border-radius: 50px;
+            padding: 8px 16px; text-decoration: none; color: var(--star-gold);
+            font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+            transition: all 0.3s;
+        }
+        .back-nav:hover { background: rgba(212, 175, 55, 0.15); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 100px 0 60px;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.1));
+            border: 1px solid rgba(249, 115, 22, 0.25); border-radius: 50px;
+            padding: 10px 20px; font-size: 12px; color: var(--lobster-orange);
+            margin-bottom: 32px; letter-spacing: 2px;
+        }
+        .hero-badge .badge-tag { background: rgba(239, 68, 68, 0.2); border-radius: 50px; padding: 3px 10px; color: var(--lobster-red); font-size: 11px; }
+        .hero-title {
+            font-family: "Noto Serif SC", serif; font-size: 26px; font-weight: 700;
+            line-height: 1.3; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--lobster-orange) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-tagline { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+        .hero-desc {
+            font-size: 15px; color: var(--text-secondary); margin-bottom: 40px;
+            line-height: 1.8; max-width: 360px;
+        }
+        .hero-formula {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .formula-tag {
+            background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 50px; padding: 6px 16px; font-size: 13px; color: var(--lobster-orange);
+        }
+        .formula-plus { color: var(--text-secondary); font-size: 18px; }
+        .price-tag {
+            display: inline-flex; flex-direction: column; align-items: center;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.08));
+            border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 20px;
+            padding: 24px 40px; margin-bottom: 32px;
+        }
+        .price-value { font-size: 42px; font-weight: 700; color: var(--lobster-orange); }
+        .price-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .price-note { font-size: 12px; color: var(--text-secondary); margin-top: 8px; opacity: 0.7; }
+        .hero-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 40px; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 22px; font-weight: 700; color: var(--lobster-orange); }
+        .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+        .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 12px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+        /* SECTIONS */
+        .section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 32px; }
+        .section-tag { font-size: 11px; color: var(--lobster-orange); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .section-title { font-family: "Noto Serif SC", serif; font-size: 22px; font-weight: 600; color: var(--text-primary); }
+
+        /* AUDIENCE */
+        .audience-grid { display: flex; flex-direction: column; gap: 12px; }
+        .audience-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; backdrop-filter: blur(10px);
+        }
+        .audience-card.green { border-color: rgba(74, 222, 128, 0.2); background: rgba(74, 222, 128, 0.05); }
+        .audience-card.red { border-color: rgba(248, 113, 113, 0.15); background: rgba(248, 113, 113, 0.03); }
+        .audience-label { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+        .audience-label.green { color: var(--green-accent); }
+        .audience-label.red { color: var(--red-accent); }
+        .audience-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+        .audience-item::before { content: '✓'; color: var(--green-accent); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+        .audience-card.red .audience-item::before { content: '✗'; color: var(--red-accent); }
+
+        /* MODULE CARDS */
+        .module-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 20px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(10px);
+        }
+        .module-card.highlight {
+            border-color: rgba(249, 115, 22, 0.25);
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.6), rgba(249, 115, 22, 0.05));
+        }
+        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .module-badge {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(239, 68, 68, 0.15));
+            border: 1px solid rgba(249, 115, 22, 0.2); display: flex; align-items: center;
+            justify-content: center; font-size: 20px; flex-shrink: 0;
+        }
+        .module-info { flex: 1; }
+        .module-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+        .module-subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+        .module-features { display: flex; flex-direction: column; gap: 6px; }
+        .module-feature { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+        .module-feature .check { color: var(--green-accent); flex-shrink: 0; font-size: 12px; margin-top: 3px; }
+        .module-effect {
+            margin-top: 12px; padding: 10px 14px;
+            background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 10px; font-size: 13px; color: var(--lobster-orange);
+        }
+
+        /* SCENARIOS */
+        .scenario-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; margin-bottom: 14px; backdrop-filter: blur(10px);
+        }
+        .scenario-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(249, 115, 22, 0.2); color: var(--lobster-orange);
+            font-size: 12px; font-weight: 700; margin-bottom: 10px;
+        }
+        .scenario-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+        .scenario-row { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+        .scenario-row .label { color: var(--text-primary); font-weight: 500; flex-shrink: 0; }
+        .scenario-result { font-size: 13px; color: var(--green-accent); margin-top: 8px; font-weight: 500; }
+
+        /* COMPARISON TABLE */
+        .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; }
+        .compare-table th {
+            background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.15);
+            padding: 12px; font-size: 13px; font-weight: 600; color: var(--text-primary);
+        }
+        .compare-table th:first-child { border-radius: 12px 0 0 0; text-align: left; }
+        .compare-table th:nth-child(2) { color: var(--lobster-orange); }
+        .compare-table th:last-child { border-radius: 0 12px 0 0; color: var(--star-gold); }
+        .compare-table td {
+            border: 1px solid var(--card-border); padding: 10px 12px;
+            font-size: 13px; color: var(--text-secondary);
+        }
+        .compare-table td:first-child { color: var(--text-primary); font-weight: 500; background: rgba(26, 31, 58, 0.4); }
+        .compare-table td:nth-child(2) { text-align: center; }
+        .compare-table td:last-child { text-align: center; }
+        .compare-table tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+        .compare-table tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+        .check-yes { color: var(--green-accent); }
+        .check-no { color: var(--red-accent); opacity: 0.6; }
+
+        /* UPGRADE */
+        .upgrade-flow { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .upgrade-step {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 16px 18px; backdrop-filter: blur(10px);
+        }
+        .upgrade-num {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--lobster-orange), rgba(239, 68, 68, 0.5));
+            color: var(--deep-space); font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .upgrade-info { flex: 1; }
+        .upgrade-from { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+        .upgrade-arrow-up { font-size: 20px; color: var(--lobster-orange); text-align: center; }
+        .upgrade-to { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+        .upgrade-bonus { font-size: 12px; color: var(--green-accent); margin-top: 4px; }
+        .upgrade-tip {
+            background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 12px; padding: 14px 16px; font-size: 13px;
+            color: var(--text-secondary); margin-top: 16px; line-height: 1.8;
+        }
+        .upgrade-tip strong { color: var(--lobster-orange); }
+
+        /* FAQ */
+        .faq-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 20px; margin-bottom: 14px; backdrop-filter: blur(10px);
+        }
+        .faq-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+        .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+        /* CTA */
+        .cta-section { padding: 80px 0; text-align: center; }
+        .cta-card {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.08));
+            border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 24px;
+            padding: 40px 24px; backdrop-filter: blur(10px);
+        }
+        .cta-title { font-family: "Noto Serif SC", serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+        .cta-subtitle { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8; }
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--lobster-orange), var(--lobster-red));
+            color: white; padding: 18px 40px; border-radius: 50px;
+            font-size: 16px; font-weight: 600; text-decoration: none;
+            transition: all 0.3s; box-shadow: 0 8px 32px rgba(249, 115, 22, 0.3);
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(249, 115, 22, 0.4); }
+        .cta-price { font-size: 14px; color: var(--text-secondary); margin-top: 16px; }
+        .cta-note {
+            margin-top: 20px; padding: 12px 16px;
+            background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.15);
+            border-radius: 12px; font-size: 13px; color: var(--green-accent);
+        }
+        .cta-note a { color: var(--star-gold); font-weight: 600; text-decoration: none; }
+
+        /* FOOTER */
+        .page-footer { padding: 40px 0 60px; text-align: center; border-top: 1px solid var(--card-border); }
+        .footer-logo { font-family: "Cinzel", serif; font-size: 20px; color: var(--star-gold); margin-bottom: 8px; letter-spacing: 2px; }
+        .footer-tagline { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+        .footer-contact { font-size: 12px; color: var(--text-secondary); line-height: 2; }
+        .footer-contact a { color: var(--lobster-orange); text-decoration: none; }
+        .footer-copy { font-size: 12px; color: var(--text-secondary); opacity: 0.6; margin-top: 12px; }
+    
+        /* ===== QR MODAL ===== */
+        .qr-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(8px);
+            z-index: 9999; display: none;
+            justify-content: center; align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .qr-overlay.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .qr-modal {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.95), rgba(45, 27, 78, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 24px;
+            padding: 32px 28px; text-align: center; max-width: 320px;
+            margin: 20px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+        .qr-modal-title {
+            font-family: "Noto Serif SC", serif; font-size: 18px; font-weight: 600;
+            color: #d4af37; margin-bottom: 6px;
+        }
+        .qr-modal-subtitle { font-size: 13px; color: #a0a0a8; margin-bottom: 20px; }
+        .qr-img {
+            width: 220px; height: 220px; border-radius: 16px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            object-fit: cover; margin-bottom: 16px;
+        }
+        .qr-tip { font-size: 13px; color: #d4af37; font-weight: 500; line-height: 1.6; }
+        .qr-close {
+            display: inline-block; margin-top: 16px;
+            padding: 8px 24px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #a0a0a8; font-size: 13px; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .qr-close:hover { background: rgba(255, 255, 255, 0.15); color: #f5f5f5; }
+
+    </style>
+</head>
+<body onclick="closeQrOutside(event)">
+    <div class="starfield" id="starfield"></div>
+    <a href="index.html" class="back-nav">← 返回发售页</a>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span>🦞</span>
+                <span>大龙虾AI系统</span>
+                <span class="badge-tag">L3 信任产品</span>
+            </div>
+            <h1 class="hero-title">一句话让老板拥有AI助手<br>专注服务实体</h1>
+            <div class="hero-tagline">AI工具年度订阅 · 全场景覆盖 · 即开即用</div>
+            <p class="hero-desc">从内容生产到智能客服，从知识管理到商业决策，一个系统解决实体经营所有AI需求</p>
+            <div class="hero-formula">
+                <span class="formula-tag">🎯 AI司令部</span>
+                <span class="formula-plus">+</span>
+                <span class="formula-tag">🤖 AI智能体</span>
+                <span class="formula-plus">+</span>
+                <span class="formula-tag">📚 AI专家库</span>
+            </div>
+            <div class="price-tag">
+                <div class="price-value">¥1,688<span style="font-size:18px;font-weight:400;">/年</span></div>
+                <div class="price-label">年度会员 · 6大模块全含</div>
+                <div class="price-note">月均仅 ¥141 · 总价值超 ¥3,500</div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">6</div>
+                    <div class="stat-label">大功能模块</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">3000</div>
+                    <div class="stat-label">点/月算力</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">7×24</div>
+                    <div class="stat-label">小时服务</div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <span>向下了解详情</span>
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIENCE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">AUDIENCE</div>
+                <h2 class="section-title">谁需要大龙虾AI系统</h2>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card green">
+                    <div class="audience-label green">✅ 强烈推荐</div>
+                    <div class="audience-item">实体店老板（餐饮、零售、服务行业）</div>
+                    <div class="audience-item">中小企业主（团队小，需要AI提升效率）</div>
+                    <div class="audience-item">创业者（刚起步，预算有限）</div>
+                    <div class="audience-item">自由职业者（个人IP，需要自动化工具）</div>
+                    <div class="audience-item">教培机构（需要内容生产工具）</div>
+                </div>
+                <div class="audience-card red">
+                    <div class="audience-label red">❌ 不适合</div>
+                    <div class="audience-item">需要私有化部署的大型企业</div>
+                    <div class="audience-item">需要深度定制AI系统的机构</div>
+                    <div class="audience-item">不想动手、期待AI自动经营的人</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIX MODULES -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">CORE MODULES</div>
+                <h2 class="section-title">🦞 六大功能模块</h2>
+            </div>
+
+            <div class="module-card highlight">
+                <div class="module-header">
+                    <div class="module-badge">🎯</div>
+                    <div class="module-info">
+                        <div class="module-title">AI司令部 — 内容生产专家</div>
+                        <div class="module-subtitle">一天出10篇+，效率提升300%</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>自动生成：公众号推文、营销文案、宣传海报脚本</div>
+                    <div class="module-feature"><span class="check">✓</span>知识管理：上传和管理企业知识库，永不流失</div>
+                    <div class="module-feature"><span class="check">✓</span>智能决策：基于数据的经营分析建议</div>
+                    <div class="module-feature"><span class="check">✓</span>快速部署：一句话激活，无需学习AI技术</div>
+                </div>
+                <div class="module-effect">💡 节省5小时/天，内容生产效率提升300%</div>
+            </div>
+
+            <div class="module-card highlight">
+                <div class="module-header">
+                    <div class="module-badge">🤖</div>
+                    <div class="module-info">
+                        <div class="module-title">AI智能体 — 7×24金牌客服</div>
+                        <div class="module-subtitle">小程序版 · 响应时间降至秒级</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>私域变现：小程序版AI智能体</div>
+                    <div class="module-feature"><span class="check">✓</span>全天候服务：7×24小时客户接待，无间断</div>
+                    <div class="module-feature"><span class="check">✓</span>IP打造：个性化AI形象设定，代表您的品牌</div>
+                    <div class="module-feature"><span class="check">✓</span>自动学习：记忆客户偏好，越用越懂客户</div>
+                </div>
+                <div class="module-effect">💡 客服成本降低50%，响应从小时级降至秒级</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-badge">📚</div>
+                    <div class="module-info">
+                        <div class="module-title">AI专家库 — 一句话拥有AI助手</div>
+                        <div class="module-subtitle">零学习成本 · 当天上手</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>快速部署："一句话让老板拥有AI助手"</div>
+                    <div class="module-feature"><span class="check">✓</span>专家知识：内置行业专家知识库</div>
+                    <div class="module-feature"><span class="check">✓</span>即问即答：商业策略、运营问题随时咨询</div>
+                    <div class="module-feature"><span class="check">✓</span>持续学习：随着使用不断优化</div>
+                </div>
+                <div class="module-effect">💡 零学习成本，当天上手</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-badge">🧠</div>
+                    <div class="module-info">
+                        <div class="module-title">记忆与个性化 — 专属AI私教</div>
+                        <div class="module-subtitle">越用越懂你</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>记忆功能：记住您的业务、客户、偏好</div>
+                    <div class="module-feature"><span class="check">✓</span>个性化定制：根据您的行业和需求调整</div>
+                    <div class="module-feature"><span class="check">✓</span>场景适配：针对不同场景提供专属建议</div>
+                    <div class="module-feature"><span class="check">✓</span>持续优化：越用越懂您</div>
+                </div>
+                <div class="module-effect">💡 像拥有一个专属AI私教</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-badge">🏪</div>
+                    <div class="module-info">
+                        <div class="module-title">实体店专属功能</div>
+                        <div class="module-subtitle">餐饮·零售·服务行业</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>场景设置：实体店运营场景预设</div>
+                    <div class="module-feature"><span class="check">✓</span>独家指南：实体店运营专属指南</div>
+                    <div class="module-feature"><span class="check">✓</span>效率提升：从"月"缩短到"天"</div>
+                    <div class="module-feature"><span class="check">✓</span>实体经营助手：针对实体店场景优化</div>
+                </div>
+                <div class="module-effect">💡 实体店老板的专属AI助手，经营更轻松</div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-badge">⚡</div>
+                    <div class="module-info">
+                        <div class="module-title">年度算力包</div>
+                        <div class="module-subtitle">3,000点/月 · 总计36,000点/年</div>
+                    </div>
+                </div>
+                <div class="module-features">
+                    <div class="module-feature"><span class="check">✓</span>AI司令部内容生成</div>
+                    <div class="module-feature"><span class="check">✓</span>AI智能体对话交互</div>
+                    <div class="module-feature"><span class="check">✓</span>AI专家库咨询</div>
+                    <div class="module-feature"><span class="check">✓</span>知识库检索与分析</div>
+                </div>
+                <div class="module-effect">💡 超出可按需购买（¥0.1/点）</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCENARIOS -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">USE CASES</div>
+                <h2 class="section-title">📋 使用场景</h2>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-num">1</div>
+                <div class="scenario-title">内容生产</div>
+                <div class="scenario-row"><span class="label">需求：</span>每天需要发公众号、朋友圈、小红书</div>
+                <div class="scenario-row"><span class="label">方案：</span>AI司令部自动生成，一天出10篇+</div>
+                <div class="scenario-result">✅ 节省5小时/天，效率提升300%</div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-num">2</div>
+                <div class="scenario-title">客户接待</div>
+                <div class="scenario-row"><span class="label">需求：</span>客户咨询多，客服成本高</div>
+                <div class="scenario-row"><span class="label">方案：</span>AI智能体7×24小时接待</div>
+                <div class="scenario-result">✅ 响应时间降至秒级，客服成本降低50%</div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-num">3</div>
+                <div class="scenario-title">知识管理</div>
+                <div class="scenario-row"><span class="label">需求：</span>企业知识分散，新人培训难</div>
+                <div class="scenario-row"><span class="label">方案：</span>知识库管理 + AI检索</div>
+                <div class="scenario-result">✅ 新人上手时间缩短50%</div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-num">4</div>
+                <div class="scenario-title">商业决策</div>
+                <div class="scenario-row"><span class="label">需求：</span>缺乏商业策略思路</div>
+                <div class="scenario-row"><span class="label">方案：</span>AI专家库随时咨询</div>
+                <div class="scenario-result">✅ 快速获得专业建议</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">COMPARE</div>
+                <h2 class="section-title">📊 年度会员 vs 完整系统</h2>
+            </div>
+            <table class="compare-table">
+                <tr>
+                    <th>对比项</th>
+                    <th>年度会员 ¥1,688</th>
+                    <th>完整系统 ¥28,866</th>
+                </tr>
+                <tr>
+                    <td>AI司令部</td>
+                    <td><span class="check-yes">✅</span> 使用权</td>
+                    <td><span class="check-yes">✅</span> 私有化部署</td>
+                </tr>
+                <tr>
+                    <td>AI智能体</td>
+                    <td><span class="check-yes">✅</span> 标准版</td>
+                    <td><span class="check-yes">✅</span> 定制化开发</td>
+                </tr>
+                <tr>
+                    <td>AI专家库</td>
+                    <td><span class="check-yes">✅</span> 标准版</td>
+                    <td><span class="check-yes">✅</span> 专属定制</td>
+                </tr>
+                <tr>
+                    <td>记忆与个性化</td>
+                    <td><span class="check-yes">✅</span> 基础版</td>
+                    <td><span class="check-yes">✅</span> 深度定制</td>
+                </tr>
+                <tr>
+                    <td>实体店功能</td>
+                    <td><span class="check-yes">✅</span> 标准版</td>
+                    <td><span class="check-yes">✅</span> 定制开发</td>
+                </tr>
+                <tr>
+                    <td>算力包</td>
+                    <td><span class="check-yes">✅</span> 3,000点/月</td>
+                    <td><span class="check-yes">✅</span> 10,000点</td>
+                </tr>
+                <tr>
+                    <td>企业诊断</td>
+                    <td><span class="check-no">❌</span></td>
+                    <td><span class="check-yes">✅</span></td>
+                </tr>
+                <tr>
+                    <td>定制化方案</td>
+                    <td><span class="check-no">❌</span></td>
+                    <td><span class="check-yes">✅</span></td>
+                </tr>
+                <tr>
+                    <td>长期陪跑</td>
+                    <td><span class="check-no">❌</span></td>
+                    <td><span class="check-yes">✅</span></td>
+                </tr>
+                <tr>
+                    <td>培训服务</td>
+                    <td><span class="check-no">❌</span></td>
+                    <td><span class="check-yes">✅</span></td>
+                </tr>
+                <tr>
+                    <td>适合</td>
+                    <td>实体店/中小企业/创业者</td>
+                    <td>大企业/机构</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- UPGRADE PATH -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">UPGRADE PATH</div>
+                <h2 class="section-title">🚀 升级路径</h2>
+            </div>
+            <div class="upgrade-flow">
+                <div class="upgrade-step">
+                    <div class="upgrade-num">L3</div>
+                    <div class="upgrade-info">
+                        <div class="upgrade-from">大龙虾AI系统 · 年度会员 ¥1,688/年</div>
+                        <div class="upgrade-bonus">6大模块全含 · 3,000点/月算力</div>
+                    </div>
+                </div>
+                <div style="text-align:center;font-size:20px;color:var(--lobster-orange);">↓ 使用满6个月后可升级</div>
+                <div class="upgrade-step">
+                    <div class="upgrade-num">L7</div>
+                    <div class="upgrade-info">
+                        <div class="upgrade-to">TOPOPC宇航指挥官 · 完整系统 ¥28,866</div>
+                        <div class="upgrade-bonus">私有化部署 + 定制开发 + 企业诊断 + 长期陪跑</div>
+                    </div>
+                </div>
+            </div>
+            <div class="upgrade-tip">
+                💡 <strong>升级优惠：</strong>年度会员使用满6个月后，可升级完整系统。已付的 <strong>¥1,688可全额抵扣</strong>，抵扣后实付仅 <strong>¥27,178</strong>。
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q1：零基础能用吗？</div>
+                <div class="faq-a">完全可以。核心理念就是"一句话让老板拥有AI助手"，无需学习AI技术，即开即用。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q2：¥1,688/年贵不贵？</div>
+                <div class="faq-a">月均仅¥141，不到一个兼职客服一天的工资。总价值超过¥3,500，包含6大功能模块和3,000点/月算力。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q3：算力用完了怎么办？</div>
+                <div class="faq-a">超出3,000点/月可按需额外购买，¥0.1/点。绝大多数用户每月3,000点完全够用。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q4：和宇航家年卡有什么关系？</div>
+                <div class="faq-a">大龙虾AI系统年度会员也是TOPOPC宇航家年卡（L6）的权益④——AI工具包年度使用权。购买年卡自动包含此产品。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q5：多久能看到效果？</div>
+                <div class="faq-a">即开即用，当天就能看到效果。AI司令部马上生成内容，AI智能体立即开始接待客户。</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-q">Q6：可以升级到完整系统吗？</div>
+                <div class="faq-a">可以。使用满6个月后，可升级为宇航指挥官完整系统（¥28,866），已付的¥1,688可全额抵扣。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-title">🦞 ¥1,688/年 开通大龙虾AI系统</div>
+                <p class="cta-subtitle">一句话让老板拥有AI助手<br>6大模块 · 3,000点/月 · 即开即用</p>
+                <a href="index.html" class="cta-button">立即开通 →</a>
+                <div class="cta-note">
+                    ✨ 本产品也是TOPOPC宇航家年卡的权益④<br>
+                    购买年卡（¥8,866/年）自动包含，更划算 →
+                    <a href="index.html">了解年卡</a>
+                </div>
+                <div class="cta-price">访问平台：ailonglong.com · 微信：aisop88</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="footer-logo">TOPOPC</div>
+            <div class="footer-tagline">成为AI时代的宇航家</div>
+            <div class="footer-contact">
+                黄校长 · 微信：<a href="#">aisop88</a> · 手机：13928238866<br>
+                邮箱：757232323@qq.com · 平台：<a href="https://ailonglong.com" target="_blank">ailonglong.com</a>
+            </div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · 品牌主理人：AI黄校长</div>
+        </div>
+    </footer>
+
+        <!-- QR Modal -->
+    <div class="qr-overlay" id="qrModal" onclick="closeQr(event)">
+        <div class="qr-modal">
+            <div class="qr-modal-title">🚀 扫码联系黄校长</div>
+            <div class="qr-modal-subtitle">AI宇航家 · 广东佛山</div>
+            <img src="images/qrcode-huang.png" alt="黄校长微信二维码" class="qr-img">
+            <div class="qr-tip">微信扫码添加<br>备注产品名称享专属优惠</div>
+            <button class="qr-close" onclick="closeQr()">关闭</button>
+        </div>
+    </div>
+
+<script>
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+    
+        function showQr(e) {
+            e && e.preventDefault();
+            e && e.stopPropagation();
+            document.getElementById('qrModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeQr(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('qrModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function closeQrOutside(e) {
+            if (e.target.id === 'qrModal') closeQr(e);
+        }
+        // CTA buttons -> QR popup
+        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
+            btn.addEventListener('click', showQr);
+        });
+
+</script>
+</body>
+</html>
