@@ -494,16 +494,9 @@
         <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
     </div>
 
-<script>
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-</script>
 
-<script>
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
-</script>
+
+
 
     <!-- Global Nav -->
     <nav class="global-nav">
@@ -1099,6 +1092,19 @@ function closeMobileNav() {
         </div>
 </footer>
 
+
+    <script defer>
+        
+function closeMobileNav() {
+    var mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
+
+        
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+
+        
+    </script>
 </body>
 </html>document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
             btn.addEventListener('click', showQr);

@@ -643,12 +643,7 @@
         <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
     </div>
 
-<script>
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-</script>
+
 
     <!-- QR Modal -->
     <div class="qr-overlay" id="qrModal" onclick="closeQr(event)">
@@ -660,9 +655,7 @@ function closeMobileNav() {
             <button class="qr-close" onclick="closeQr()">关闭</button>
         </div>
     </div>
-<script>
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
-</script>
+
 
     <div class="starfield" id="starfield"></div>
 
@@ -896,7 +889,19 @@ function closeMobileNav() {
         </div>
 </footer>
 
-    <script>
+    
+
+    <script defer>
+        
+function closeMobileNav() {
+    var mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
+
+        
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+
+        
         // Starfield animation
         const starfield = document.getElementById('starfield');
         for (let i = 0; i < 50; i++) {
@@ -909,6 +914,7 @@ function closeMobileNav() {
             star.style.animationDelay = Math.random() * 3 + 's';
             starfield.appendChild(star);
         }
+    
     </script>
 </body>
 </html>

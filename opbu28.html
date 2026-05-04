@@ -388,16 +388,9 @@
         <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
     </div>
 
-<script>
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-</script>
 
-<script>
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
-</script>
+
+
 
     <!-- Global Nav -->
     <nav class="global-nav">
@@ -825,23 +818,7 @@ function closeMobileNav() {
         </div>
     </div>
 
-<script>
-        // Stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 80; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
-            star.style.animationDelay = Math.random() * 5 + 's';
-            starsContainer.appendChild(star);
-        }// CTA buttons -> QR popup
-        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
-            btn.addEventListener('click', showQr);
-        });
 
-</script>
     <!-- Global Footer -->
     <footer class="global-footer">
         <div class="footer-brand">TOPOPC AERONAUT</div>
@@ -863,5 +840,34 @@ function closeMobileNav() {
         </div>
 </footer>
 
+
+    <script defer>
+        
+function closeMobileNav() {
+    var mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
+
+        
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+
+        
+        // Stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }// CTA buttons -> QR popup
+        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
+            btn.addEventListener('click', showQr);
+        });
+
+
+    </script>
 </body>
 </html>

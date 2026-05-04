@@ -628,12 +628,7 @@
         <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
     </div>
 
-<script>
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-</script>
+
 
     <!-- QR Modal -->
     <div class="qr-overlay" id="qrModal" onclick="closeQr(event)">
@@ -645,9 +640,7 @@ function closeMobileNav() {
             <button class="qr-close" onclick="closeQr()">关闭</button>
         </div>
     </div>
-<script>
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
-</script>
+
 
     <!-- Hero -->
     <div class="hero">
@@ -1100,7 +1093,19 @@ function closeMobileNav() {
         </div>
 </footer>
 
-    <script>
+    
+
+    <script defer>
+        
+function closeMobileNav() {
+    var mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
+
+        
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+
+        
         function switchPhase(activity, phase) {
             // Hide all phases for this activity
             document.querySelectorAll(`[id^="${activity}-"]`).forEach(el => {
@@ -1121,6 +1126,7 @@ function closeMobileNav() {
         function toggleFaq(item) {
             item.classList.toggle('open');
         }
+    
     </script>
 </body>
 </html>

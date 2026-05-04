@@ -376,16 +376,9 @@
         <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
     </div>
 
-<script>
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-</script>
 
-<script>
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
-</script>
+
+
 
     <div class="starfield" id="starfield"></div>
     <a href="index.html" class="back-nav">← 返回发售页</a>
@@ -788,23 +781,7 @@ function closeMobileNav() {
         </div>
     </div>
 
-<script>
-        const starfield = document.getElementById('starfield');
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.width = Math.random() * 3 + 'px';
-            star.style.height = star.style.width;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starfield.appendChild(star);
-        }// CTA buttons -> QR popup
-        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
-            btn.addEventListener('click', showQr);
-        });
 
-</script>
 <footer class="footer">
         <div class="footer-brand">TOPOPC AERONAUT</div>
         <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.5 · 品牌主理人：AI黄校长</div>
@@ -821,5 +798,34 @@ function closeMobileNav() {
             <a href="deepcity.html" class="footer-link">DeepCity</a>
         </div>
     </footer>
-    </body>
+    
+    <script defer>
+        
+function closeMobileNav() {
+    var mn = document.getElementById('mobileNav');
+    if (mn) mn.classList.remove('open');
+}
+
+        
+(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
+
+        
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }// CTA buttons -> QR popup
+        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
+            btn.addEventListener('click', showQr);
+        });
+
+
+    </script>
+</body>
 </html>
