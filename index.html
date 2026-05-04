@@ -136,19 +136,6 @@
         .hero-price-unit { font-size: 14px; color: var(--text-secondary); }
         .hero-price-original { font-size: 14px; color: var(--text-secondary); text-decoration: line-through; margin-top: 8px; }
 
-        .hero-cta {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--star-gold), var(--star-gold-light));
-            color: var(--deep-space);
-            font-size: 16px;
-            font-weight: 700;
-            padding: 16px 48px;
-            border-radius: 50px;
-            text-decoration: none;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 30px rgba(212, 175, 55, 0.3);
-        }
 
         .hero-countdown { font-size: 13px; color: var(--text-secondary); }
         .hero-countdown span { color: var(--star-gold); font-weight: 700; font-family: 'Cinzel', serif; }
@@ -536,7 +523,7 @@
 
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "TOPOPC宇航家", "url": "https://deepcity2035.github.io/topopc-ai-launch", "logo": "https://deepcity2035.github.io/topopc-ai-launch/favicon.svg", "description": "TOPOPC宇航家 · AI时代的个人进化系统 · 8级产品矩阵从体验到合伙人", "founder": {"@type": "Person", "name": "黄艺明"}}
         // All CTA buttons -> QR popup
-        document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
+        document.querySelectorAll('.cta-button').forEach(btn => {
             btn.addEventListener('click', function(e) { e.preventDefault(); });
         });
         // Inline CTA links with "加入" text
@@ -568,7 +555,6 @@
                 <div class="hero-price-original">总价值超过 ¥30,000</div>
             </div>
 
-            <a href="annual-card.html" class="hero-cta">立即加入宇航家</a>
             <p class="hero-countdown">🚀 全网首发 · 限量 <span>100</span> 名 · 5月1日零点开售</p>
         </section>
 
