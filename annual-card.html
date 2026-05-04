@@ -361,6 +361,41 @@
             color: #888; text-decoration: none; font-size: 12px; transition: color 0.3s;
         }
         .global-footer .footer-links a:hover { color: #d4af37; }
+
+    .qr-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+    .qr-modal.show { display: flex; }
+    .qr-content {
+        background: #1a1a2e;
+        padding: 32px;
+        border-radius: 16px;
+        text-align: center;
+        position: relative;
+    }
+    .qr-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 28px;
+        cursor: pointer;
+    }
+    .qr-close:hover { color: #fff; }
+    .qr-img { width: 240px; border-radius: 8px; }
+    .qr-tip { color: #f5f5f5; margin-top: 16px; font-size: 14px; }
+
 </style>
 
     <meta property="og:type" content="website">
@@ -874,7 +909,7 @@
             <div class="cta-card">
                 <div class="cta-title">⭐ 成为AI时代的宇航家</div>
                 <p class="cta-subtitle">8项权益 · 总价值超3万 · 28天陪跑落地<br>一个人 = 一个商业单元</p>
-                <a href="index.html" class="cta-button">立即加入 →</a>
+                <button class="cta-button" onclick="showQr()">立即加入 →</button>
                 <div class="cta-note">
                     🎁 已购 L1/L2 可抵扣升级<br>
                     年卡包含 <a href="long-system.html">大龙虾AI系统</a>（价值¥1,688）+
@@ -907,6 +942,16 @@
             <div class="footer-icp" style="text-align:center;padding:12px 0 24px;font-size:12px;color:rgba(255,255,255,0.35);">
             <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);text-decoration:none;">粤ICP备2020076772号-34</a>
         </div>
+
+    <!-- 二维码弹窗 -->
+    <div id="qrModal" class="qr-modal" onclick="closeQr(event)">
+        <div class="qr-content" onclick="event.stopPropagation()">
+            <button class="qr-close" onclick="closeQr(event)">×</button>
+            <img src="images/qrcode-huang.jpg" alt="黄校长微信二维码" class="qr-img">
+            <p class="qr-tip">扫码添加黄校长微信</p>
+        </div>
+    </div>
+
 </footer>
 
     <script defer>
@@ -923,7 +968,17 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starfield.appendChild(star);
         }// 所有CTA按钮绑定弹窗
-        document.querySelectorAll('.cta-button').forEach(btn => {
+        
+    function showQr() {
+        document.getElementById('qrModal').classList.add('show');
+    }
+    function closeQr(e) {
+        if (e.target.id === 'qrModal' || e.target.classList.contains('qr-close')) {
+            document.getElementById('qrModal').classList.remove('show');
+        }
+    }
+
+    document.querySelectorAll('.cta-button').forEach(btn => {
         // CTA click handled by href
         });
     
