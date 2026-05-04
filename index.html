@@ -565,7 +565,7 @@
             btn.addEventListener('click', showQr);
         });
         // Inline CTA links with "加入" text
-        document.querySelectorAll('a[href*="annual-card.html"], a[href*="index.html"]').forEach(a => {
+        document.querySelectorAll('a.cta-button, a.hero-cta, a[href^="https"]:not([href*="topopc"])').forEach(a => {
             const text = a.textContent || '';
             if (/加入|年卡|立即开通|立即加入/.test(text)) {
                 a.addEventListener('click', showQr);
