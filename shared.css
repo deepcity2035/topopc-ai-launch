@@ -3,6 +3,9 @@
  * Footer styles vary per page and remain inline.
  */
 
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 /* ===== TOP NAV BAR ===== */
 .top-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
@@ -32,6 +35,7 @@
 }
 .nav-link:hover { color: #d4af37; background: rgba(212,175,55,0.08); }
 .nav-link.active { color: #d4af37; background: rgba(212,175,55,0.12); font-weight: 600; }
+.nav-home-btn:hover{background:rgba(212,175,55,.12);border-color:#d4af37}
 .nav-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.1); margin: 0 4px; flex-shrink: 0; }
 .nav-toggle {
     display: none; flex-direction: column; gap: 4px; padding: 8px;
