@@ -535,16 +535,8 @@
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
         .footer-link { font-size: 11px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
         .footer-link:hover { color: #d4af37; }
-    .qr-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center}
-    .qr-overlay.active{display:flex}
-    .qr-modal{background:var(--bg-primary,#080c15);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:32px 28px;text-align:center;max-width:340px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-    .qr-modal-title{font-size:18px;font-weight:700;color:#d4af37;margin-bottom:4px}
-    .qr-modal-subtitle{font-size:13px;color:var(--text-secondary,#8888a0);margin-bottom:20px}
-    .qr-img{width:240px;height:240px;border-radius:12px;border:2px solid rgba(212,175,55,.2);margin-bottom:16px}
-    .qr-tip{font-size:13px;color:#aaaacc;line-height:1.6;margin-bottom:20px}
-    .qr-close{background:rgba(212,175,55,.15);color:#d4af37;border:1px solid rgba(212,175,55,.3);padding:8px 28px;border-radius:50px;cursor:pointer;font-size:14px;font-weight:600;transition:.2s}
-    .qr-close:hover{background:rgba(212,175,55,.25)}
-    .nav-home-btn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#d4af37 !important;border:1px solid rgba(212,175,55,.35);padding:3px 10px;border-radius:20px;text-decoration:none;letter-spacing:.5px;transition:.2s;margin-left:10px;white-space:nowrap}
+
+    :hover{background:rgba(212,175,55,.25)}
 </style>
 
     <meta property="og:type" content="website">
@@ -558,89 +550,22 @@
     <meta name="twitter:image" content="https://deepcity2035.github.io/topopc-ai-launch/share-poster-hd.png">
 
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "协办三次活动", "description": "TOPOPC协办三次活动权益说明 · 免费公开课·线下训练营·落地大课协办方案", "url": "https://deepcity2035.github.io/topopc-ai-launch/co-host-events.html", "brand": {"@type": "Brand", "name": "TOPOPC宇航家"}}
-        function showQr(e) {
-            e && e.preventDefault();
-            e && e.stopPropagation();
-            document.getElementById('qrModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeQr(e) {
-            if (e) e.stopPropagation();
-            document.getElementById('qrModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        function closeQrOutside(e) {
-            if (e.target.id === 'qrModal') closeQr(e);
-        }
         // All CTA buttons -> QR popup
         document.querySelectorAll('.cta-button, .hero-cta').forEach(btn => {
-            btn.addEventListener('click', showQr);
+        // CTA click handled by href
         });
         // Inline CTA links with "加入" text
         document.querySelectorAll('a.cta-button, a.hero-cta, a[href^="https"]:not([href*="topopc"])').forEach(a => {
             const text = a.textContent || '';
             if (/加入|年卡|立即开通|立即加入/.test(text)) {
-                a.addEventListener('click', showQr);
                 a.style.cursor = 'pointer';
             }
         });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQr(); });
 </script>
   </head>
 <body>
-<nav class="top-nav">
-    <a href="index.html" class="nav-brand">TOPOPC</a>
-    <a href="index.html" class="nav-home-btn">🏠 首页</a>
-    <div class="nav-links">
-        <a href="experience-camp.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L1体验营</a>
-        <a href="training-camp.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L2训练营</a>
-        <a href="long-system.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L3 AI系统</a>
-        <a href="opbc-full-course.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L4大课</a>
-        <a href="opbu28.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L5陪跑</a>
-        <a href="annual-card.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L6年卡</a>
-        <a href="ai-company.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L7指挥官</a>
-        <a href="city-partner.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">L8总督</a>
-        <div class="nav-sep"></div>
-        <a href="about.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">关于</a>
-        <a href="deepcity.html" class="nav-link" onclick="document.querySelectorAll(".nav-links").forEach(el=>el.classList.remove("open"))">DeepCity</a>
-    </div>
-    <button class="nav-toggle" onclick="var mn=document.getElementById('mobileNav');if(mn)mn.classList.toggle('open')" aria-label="菜单">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html" class="nav-link" onclick="closeMobileNav()">🏠 首页</a>
-        <div class="nav-dropdown">
-            <span class="nav-link nav-dropdown-toggle" onclick="this.parentElement.classList.toggle('open')">产品矩阵 ▾</span>
-            <div class="nav-dropdown-menu">
-                <a href="experience-camp.html" class="nav-link" onclick="closeMobileNav()">L1 体验营</a>
-                <a href="training-camp.html" class="nav-link" onclick="closeMobileNav()">L2 训练营</a>
-                <a href="long-system.html" class="nav-link" onclick="closeMobileNav()">L3 AI系统</a>
-                <a href="opbc-full-course.html" class="nav-link" onclick="closeMobileNav()">L4 大课</a>
-                <a href="opbu28.html" class="nav-link" onclick="closeMobileNav()">L5 陪跑</a>
-                <a href="annual-card.html" class="nav-link" onclick="closeMobileNav()">L6 年卡</a>
-                <a href="ai-company.html" class="nav-link" onclick="closeMobileNav()">L7 指挥官</a>
-                <a href="city-partner.html" class="nav-link" onclick="closeMobileNav()">L8 总督</a>
-            </div>
-        </div>
-        <a href="annual-card.html" class="nav-link" onclick="closeMobileNav()">⭐ L6年卡</a>
-        <a href="about.html" class="nav-link" onclick="closeMobileNav()">关于</a>
-        <span class="nav-link" onclick="showQr();closeMobileNav()" style="cursor:pointer">📱 联系我</span>
-    </div>
-
-
-
-    <!-- QR Modal -->
-    <div class="qr-overlay" id="qrModal" onclick="closeQr(event)">
-        <div class="qr-modal">
-            <div class="qr-modal-title">🚀 扫码联系黄校长</div>
-            <div class="qr-modal-subtitle">AI宇航家 · 广东佛山</div>
-            <picture><source srcset="images/wechat-qr.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="images/wechat-qr.jpg" alt="黄校长微信二维码" class="qr-img"></picture>
-            <div class="qr-tip">微信扫码添加<br>备注产品名称享专属优惠</div>
-            <button class="qr-close" onclick="closeQr()">关闭</button>
         </div>
     </div>
-
 
     <!-- Hero -->
     <div class="hero">
@@ -1096,14 +1021,6 @@
     
 
     <script defer>
-        
-function closeMobileNav() {
-    var mn = document.getElementById('mobileNav');
-    if (mn) mn.classList.remove('open');
-}
-
-        
-(function(){var n=document.querySelector('.top-nav');if(n){var t=null;window.addEventListener('scroll',function(){if(t)cancelAnimationFrame(t);t=requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>20);})});}})();
 
         
         function switchPhase(activity, phase) {
