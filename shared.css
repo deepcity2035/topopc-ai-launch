@@ -41,15 +41,44 @@
 body { padding-top: 48px; }
 @media (max-width: 768px) {
     .nav-toggle { display: flex; }
-    .nav-links {
+    /* 桌面端完整导航在移动端隐藏 */
+    .nav-links { display: none !important; }
+    /* 移动端精简导航 */
+    .mobile-nav {
         display: none; position: absolute; top: 48px; left: 0; right: 0;
         flex-direction: column; padding: 8px 12px; gap: 2px;
         background: rgba(8, 12, 21, 0.97);
         backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid rgba(212,175,55,0.15);
-        max-height: calc(100vh - 48px); overflow-y: auto;
+        z-index: 9998;
     }
-    .nav-links.open { display: flex; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link {
+        padding: 11px 14px; font-size: 14px; border-radius: 8px;
+        color: rgba(255,255,255,0.75); transition: all 0.2s;
+    }
+    .mobile-nav .nav-link:hover,
+    .mobile-nav .nav-link:active {
+        color: #d4af37; background: rgba(212,175,55,0.1);
+    }
+    /* 下拉折叠菜单 */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle {
+        cursor: pointer; user-select: none; display: block;
+        color: #d4af37; font-weight: 600;
+    }
+    .nav-dropdown-menu {
+        display: none; flex-direction: column; gap: 1px;
+        padding-left: 16px; margin-top: 2px;
+        border-left: 2px solid rgba(212,175,55,0.25);
+    }
+    .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+    .nav-dropdown-menu .nav-link {
+        padding: 9px 12px; font-size: 13px;
+        color: rgba(255,255,255,0.6);
+    }
+    .nav-dropdown-menu .nav-link:hover {
+        color: #d4af37; background: rgba(212,175,55,0.08);
+    }
     .nav-sep { display: none; }
-    .nav-link { padding: 10px 12px; font-size: 13px; }
 }
