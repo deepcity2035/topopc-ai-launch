@@ -180,6 +180,12 @@
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .ecosystem-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
         .ecosystem-icon { font-size: 28px; }
@@ -1261,7 +1267,7 @@
 
         <footer class="footer">
             <div class="footer-brand">TOPOPC</div>
-            <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.6 · 一城一智集团</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · v2.7 · 一城一智集团</div>
             <div class="footer-links">
                 <a href="index.html" class="footer-link">TOPOPC生态圈</a>
                 <a href="annual-card.html" class="footer-link">AI宇航家课程</a>
