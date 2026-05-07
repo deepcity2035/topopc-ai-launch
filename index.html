@@ -1,1341 +1,412 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>    <meta name="description" content="TOPOPC宇航家 · L1-L8产品矩阵 · from ¥199 to ¥98,866 · 一城一智出品">
-    <link rel="preload" as="image" href="founder-photo.png">
-
+<head>
     <meta charset="UTF-8">
-    <link rel="canonical" href="https://deepcity2035.github.io/topopc-ai-launch/index.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TOPOPC AI宇航家 · AI时代的个人进化系统</title>
+    <meta name="description" content="TOPOPC宇航家 · L1-L8产品矩阵 · from ¥199 to ¥98,866 · 一城一智出品">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="share-poster-hd.png">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.cn">
-    <link rel="preconnect" href="https://fonts.googleapis.cn" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.cn/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" crossorigin onload="this.onload=null;this.rel='stylesheet'">
-    <link href="https://fonts.googleapis.cn/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="shared.css">
+    <link rel="canonical" href="https://ai.opc.city">
+    
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            --deep-space: #0a0a0f;
-            --cosmic-blue: #1a1f3a;
-            --nebula-purple: #2d1b4e;
-            --star-gold: #d4af37;
-            --star-gold-light: #f4d03f;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a0a0a8;
-            --accent-glow: rgba(212, 175, 55, 0.3);
+            --bg-dark: #0a0a0f;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --text-white: #f5f5f5;
+            --text-gray: #a0a0a8;
             --card-bg: rgba(26, 31, 58, 0.6);
             --card-border: rgba(212, 175, 55, 0.15);
-            --green-accent: #4ade80;
-            --red-accent: #f87171;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
-            font-family: 'Noto Sans SC', -apple-system, sans-serif;
-            background: var(--deep-space);
-            color: var(--text-primary);
-            line-height: 1.8;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
         }
-
-        .starfield {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            background: 
-                radial-gradient(ellipse at 20% 80%, rgba(45, 27, 78, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(26, 31, 58, 0.5) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(5, 5, 10, 1) 100%);
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
+        
         .container {
-            position: relative;
-            z-index: 1;
             max-width: 480px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
-        }
-
-        /* ===== HERO ===== */
+        
+        /* Hero */
         .hero {
-            padding: 80px 0 40px;
             text-align: center;
+            padding: 60px 0 40px;
         }
-
-        .hero-badge {
-            font-family: 'Cinzel', serif;
-            font-size: 10px;
+        
+        .brand-badge {
+            font-size: 11px;
             letter-spacing: 4px;
-            color: var(--star-gold);
-            border: 1px solid var(--star-gold);
-            padding: 8px 20px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 6px 16px;
+            margin-bottom: 24px;
+            display: inline-block;
         }
-
-        .hero-title {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 36px;
+        
+        .brand-title {
+            font-size: 32px;
             font-weight: 700;
-            letter-spacing: 6px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--star-gold) 0%, var(--star-gold-light) 50%, var(--star-gold) 100%);
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .hero-slogan {
-            font-size: 15px;
-            color: var(--star-gold);
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .hero-subtitle {
+        
+        .brand-slogan {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .brand-vision {
+            font-size: 13px;
+            color: var(--text-gray);
             margin-bottom: 40px;
         }
-
-        .hero-price-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(45, 27, 78, 0.3));
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px 32px;
-            margin-bottom: 30px;
+        
+        /* Product Grid */
+        .product-section {
+            margin-bottom: 40px;
         }
-
-        .hero-price-label { font-size: 12px; color: var(--text-secondary); letter-spacing: 2px; margin-bottom: 8px; }
-        .hero-price { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 700; color: var(--star-gold); line-height: 1; }
-        .hero-price-unit { font-size: 14px; color: var(--text-secondary); }
-        .hero-price-original { font-size: 14px; color: var(--text-secondary); text-decoration: line-through; margin-top: 8px; }
-
-
-        .hero-countdown { font-size: 13px; color: var(--text-secondary); }
-        .hero-countdown span { color: var(--star-gold); font-weight: 700; font-family: 'Cinzel', serif; }
-
-        /* ===== SECTION ===== */
-        .section { padding: 60px 0; position: relative; }
+        
         .section-title {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
+            color: var(--gold);
             text-align: center;
-            margin-bottom: 30px;
-            color: var(--star-gold);
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--star-gold), transparent);
-            margin: 12px auto 0;
-        }
-
-        /* ===== 三位一体框架 ===== */
-        .ecosystem-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
             margin-bottom: 20px;
-        }
-
-        .ecosystem-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-        .ecosystem-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-
-        .ecosystem-icon { font-size: 28px; }
-        .ecosystem-content h3 { font-size: 15px; font-weight: 700; color: var(--star-gold); margin-bottom: 4px; }
-        .ecosystem-content p { font-size: 12px; color: var(--text-secondary); }
-        .ecosystem-arrow { text-align: center; color: var(--star-gold); font-size: 20px; padding: 4px 0; }
-
-        /* ===== 五级价格 ===== */
-        .price-tier {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .price-tier.core {
-            border: 2px solid var(--star-gold);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(45, 27, 78, 0.3));
-        }
-
-        .price-tier-info h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-        .price-tier-info .tier-level { font-size: 11px; color: var(--star-gold); letter-spacing: 1px; }
-        .price-tier-info .tier-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
-        .price-tier-price { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--star-gold); }
-        .price-tier-price span { font-size: 12px; color: var(--text-secondary); }
-        .price-tier-clickable { cursor: pointer; transition: all 0.3s; }
-        .price-tier-clickable:hover { background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.3); transform: translateY(-2px); }
-        .l4-detail {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(26, 31, 58, 0.6));
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-        .l4-detail-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 16px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-        }
-        .l4-products { margin-bottom: 16px; }
-        .l4-product-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-size: 14px;
-        }
-        .l4-product-item:last-child { border-bottom: none; }
-        .l4-product-icon { font-size: 18px; flex-shrink: 0; }
-        .l4-product-name { color: var(--purple-accent); font-weight: 500; min-width: 80px; }
-        .l4-product-desc { color: var(--text-secondary); flex: 1; }
-        .l4-services { margin-bottom: 16px; }
-        .l4-service-item {
-            font-size: 13px;
-            color: var(--text-secondary);
-            padding: 8px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        .l4-service-item::before { content: '✓'; position: absolute; left: 0; color: var(--green-accent); }
-        .l4-value { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
-        .l4-value strong { color: var(--star-gold); }
-        .l4-detail-btn {
-            display: block;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(167, 139, 250, 0.1));
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            color: var(--purple-accent);
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        .l4-detail-btn:hover { background: rgba(167, 139, 250, 0.25); }
-
-        /* ===== 抵扣路径 ===== */
-        .upgrade-path {
-            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(45, 27, 78, 0.2));
-            border: 1px solid rgba(74, 222, 128, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .upgrade-path h3 { font-size: 14px; font-weight: 700; color: var(--green-accent); margin-bottom: 12px; }
-        .upgrade-item { font-size: 13px; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .upgrade-item:last-child { border-bottom: none; }
-        .upgrade-item strong { color: var(--star-gold); }
-
-        /* ===== 权益分类 ===== */
-        .benefit-category {
-            margin-bottom: 30px;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
             border-bottom: 1px solid var(--card-border);
         }
-
-        .category-icon { font-size: 24px; }
-        .category-title { font-size: 15px; font-weight: 700; color: var(--star-gold); }
-        .category-subtitle { font-size: 12px; color: var(--text-secondary); }
-
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 10px;
-        }
-
-        .benefit-number {
-            font-family: 'Cinzel', serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--star-gold);
-            min-width: 32px;
-        }
-
-        .benefit-content h3 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-        .benefit-content p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
-        .benefit-value { font-size: 11px; color: var(--star-gold); margin-top: 4px; font-weight: 500; }
-        .benefit-note { font-size: 11px; color: var(--red-accent); margin-top: 6px; }
-
-        /* ===== 成果展示 ===== */
-        .outcome-grid {
+        
+        .product-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
+            margin-bottom: 12px;
         }
-
-        .outcome-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .outcome-icon { font-size: 28px; margin-bottom: 8px; }
-        .outcome-title { font-size: 13px; font-weight: 700; color: var(--star-gold); margin-bottom: 6px; line-height: 1.4; }
-        .outcome-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
-
-        /* ===== 适合人群 ===== */
-        .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .audience-box {
+        
+        .product-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 16px;
-        }
-        .audience-box.good { border-left: 3px solid var(--green-accent); }
-        .audience-box.bad { border-left: 3px solid var(--red-accent); }
-        .audience-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-        .audience-box.good .audience-title { color: var(--green-accent); }
-        .audience-box.bad .audience-title { color: var(--red-accent); }
-        .audience-list { list-style: none; font-size: 12px; color: var(--text-secondary); }
-        .audience-list li { padding: 4px 0; padding-left: 14px; position: relative; }
-        .audience-list li::before { content: '›'; position: absolute; left: 0; color: var(--star-gold); }
-
-        /* ===== 价格对比 ===== */
-        .price-compare {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(45, 27, 78, 0.3));
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .total-value { font-family: 'Cinzel', serif; font-size: 40px; font-weight: 700; color: var(--star-gold); }
-        .total-label { font-size: 13px; color: var(--text-secondary); margin: 6px 0 16px; }
-        .arrow { font-size: 24px; color: var(--star-gold); margin: 12px 0; }
-        .now-price { font-family: 'Cinzel', serif; font-size: 48px; font-weight: 700; color: var(--green-accent); }
-        .now-label { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
-        .saving {
-            display: inline-block;
-            background: rgba(74, 222, 128, 0.15);
-            color: var(--green-accent);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 20px;
-            margin-top: 14px;
-        }
-
-        /* ===== FAQ ===== */
-        .faq-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 10px;
-            margin-bottom: 8px;
-            overflow: hidden;
-        }
-        .faq-question {
-            padding: 14px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question::after { content: '+'; font-size: 18px; color: var(--star-gold); }
-        .faq-item.active .faq-question::after { transform: rotate(45deg); }
-        .faq-answer {
-            padding: 0 16px;
-            max-height: 0;
-            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
             transition: all 0.3s;
-            font-size: 12px;
-            color: var(--text-secondary);
-            line-height: 1.8;
+            display: block;
         }
-        .faq-item.active .faq-answer { padding: 0 16px 14px; max-height: 200px; }
-
-        /* ===== CTA ===== */
-        .final-cta { text-align: center; padding: 60px 0 80px; }
-        .final-cta-title { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 700; color: var(--star-gold); margin-bottom: 12px; }
-        .final-cta-subtitle { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
-        .final-cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--star-gold), var(--star-gold-light));
-            color: var(--deep-space);
+        
+        .product-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        .product-card.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .product-level {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        
+        .product-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 6px;
+        }
+        
+        .product-desc {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+        
+        .product-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 40px 0 60px;
+            border-top: 1px solid var(--card-border);
+            margin-top: 40px;
+        }
+        
+        .cta-title {
             font-size: 16px;
             font-weight: 700;
-            padding: 16px 48px;
-            border-radius: 50px;
-            text-decoration: none;
-            letter-spacing: 2px;
+            color: var(--text-white);
             margin-bottom: 12px;
-            box-shadow: 0 4px 30px rgba(212, 175, 55, 0.3);
         }
-        .final-cta-note { font-size: 12px; color: var(--text-secondary); }
-        .final-cta-note span { color: var(--star-gold); font-weight: 700; }
-
-        /* ===== FOOTER ===== */
-        .footer { text-align: center; padding: 30px 0; border-top: 1px solid var(--card-border); }
-        .footer-brand { font-family: 'Cinzel', serif; font-size: 12px; color: var(--star-gold); letter-spacing: 4px; margin-bottom: 6px; }
-        .footer-copy { font-size: 11px; color: var(--text-secondary); margin-bottom: 16px; }
-        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
-        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 13px; transition: color 0.3s; }
-        .footer-link:hover { color: var(--star-gold); }
-        .deepcity-banner {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(45, 27, 78, 0.2));
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 0 20px 30px;
-            text-align: center;
-        }
-        .deepcity-banner-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
-        .deepcity-banner-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
-        .deepcity-banner-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid var(--card-border);
-            color: var(--star-gold);
-            padding: 10px 24px;
-            border-radius: 50px;
+        
+        .cta-desc {
             font-size: 13px;
-            text-decoration: none;
-            transition: all 0.3s;
+            color: var(--text-gray);
+            margin-bottom: 20px;
         }
-        .deepcity-banner-btn:hover { background: rgba(212, 175, 55, 0.25); }
-
-        /* ===== FOUNDER CARD ===== */
-        .founder-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
+        
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--bg-dark);
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        /* Founder */
+        .founder-section {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(45, 27, 78, 0.25));
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 20px;
-            transition: all 0.3s;
+            margin-bottom: 40px;
         }
-        .founder-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(45, 27, 78, 0.35));
+        
+        .founder-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--card-border);
         }
-        .founder-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--star-gold), var(--star-gold-light));
+        
+        .founder-content {
             display: flex;
+            gap: 16px;
             align-items: center;
-            justify-content: center;
-            font-size: 28px;
+        }
+        
+        .founder-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             flex-shrink: 0;
             overflow: hidden;
         }
+        
         .founder-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
-        .founder-info { flex: 1; }
+        
+        .founder-info {
+            flex: 1;
+        }
+        
         .founder-name {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
-            color: var(--star-gold);
-            margin-bottom: 2px;
+            color: var(--gold);
+            margin-bottom: 4px;
         }
-        .founder-role { font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 1px; }
-        .founder-bio { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
-        .founder-link { font-size: 12px; color: var(--star-gold); font-weight: 500; }
-
-        /* ===== Animations ===== */
-        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s; }
-        .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
-
-        /* ===== RESPONSIVE ===== */
+        
+        .founder-role {
+            font-size: 11px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+        
+        .founder-bio {
+            font-size: 12px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .founder-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--card-border);
+            margin-top: 40px;
+        }
+        
+        .footer-brand {
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        
+        .footer-copy {
+            font-size: 11px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .footer-link:hover {
+            color: var(--gold);
+        }
+        
+        .footer-icp {
+            font-size: 10px;
+            color: var(--text-gray);
+            opacity: 0.6;
+        }
+        
+        /* Responsive */
         @media (max-width: 360px) {
-            .hero-title { font-size: 28px; letter-spacing: 4px; }
-            .hero-price { font-size: 36px; }
-            .section-title { font-size: 18px; }
+            .brand-title { font-size: 26px; }
+            .product-grid { grid-template-columns: 1fr; }
         }
-
     </style>
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="TOPOPC宇航家 · AI时代的个人进化系统">
-    <meta property="og:description" content="8级产品矩阵从体验到合伙人，年费¥8,866起。AI落地的实战派，让业务长出AI能力。">
-    <meta property="og:image" content="https://deepcity2035.github.io/topopc-ai-launch/share-poster-hd.png">
-    <meta property="og:url" content="https://deepcity2035.github.io/topopc-ai-launch/index.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TOPOPC宇航家 · AI时代的个人进化系统">
-    <meta name="twitter:description" content="8级产品矩阵从体验到合伙人，年费¥8,866起。AI落地的实战派，让业务长出AI能力。">
-    <meta name="twitter:image" content="https://deepcity2035.github.io/topopc-ai-launch/share-poster-hd.png">
-
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "TOPOPC宇航家", "url": "https://deepcity2035.github.io/topopc-ai-launch", "logo": "https://deepcity2035.github.io/topopc-ai-launch/favicon.svg", "description": "TOPOPC宇航家 · AI时代的个人进化系统 · 8级产品矩阵从体验到合伙人", "founder": {"@type": "Person", "name": "黄艺明"}}
-    </script>
-    </head>
+</head>
 <body>
-    <div class="starfield" id="starfield"></div>
-
     <div class="container">
-        <!-- HERO -->
+        <!-- Hero -->
         <section class="hero">
-            <div class="hero-badge">TOPOPC生态圈</div>
-            <h1 class="hero-title">AI时代的个人进化系统</h1>
-            <p class="hero-slogan">一个人=一个商业单元 · 用AI工具实现一人成军</p>
-            
-            <p class="hero-countdown">选择上方板块，开启你的AI进化之路</p>
+            <div class="brand-badge">TOPOPC</div>
+            <h1 class="brand-title">AI宇航家</h1>
+            <p class="brand-slogan">AI时代的个人进化系统</p>
+            <p class="brand-vision">让我们一起用AI，重构生意，重塑生活！</p>
         </section>
-
-        <!-- 成长阶梯图 -->
-        <div style="text-align:center; padding:20px 0;">
-            <img src="growth-ladder.webp" alt="TOPOPC L1-L8 成长阶梯" style="max-width:100%; height:auto; border-radius:12px; display:block; margin:0 auto;">
-        </div>
-
-        <!-- 四大板块入口 -->
-        <section class="section scroll-reveal" style="padding:40px 0;">
-            <h2 class="section-title">选择你的成长路径</h2>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                <div class="ecosystem-item" onclick="location.href='#ecosystem'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🌱</div>
-                    <div class="ecosystem-content">
-                        <h3>TOPOPC生态圈</h3>
-                        <p>L1-L5 · ¥199起</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='annual-card.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🚀</div>
-                    <div class="ecosystem-content">
-                        <h3>AI宇航家课程</h3>
-                        <p>L6 · ¥8,866/年</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='ai-company.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">💼</div>
-                    <div class="ecosystem-content">
-                        <h3>AI一人公司搭建</h3>
-                        <p>L7 · ¥28,866</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='city-partner.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🏙️</div>
-                    <div class="ecosystem-content">
-                        <h3>星际总督</h3>
-                        <p>L8 · ¥98,866</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 主理人介绍 -->
-        <section class="section scroll-reveal">
-            <h2 class="section-title">项目主理人</h2>
-            <a href="about.html" style="text-decoration:none;color:inherit;">
-                <div class="founder-card">
-                    <div class="founder-avatar"><picture><source srcset="founder-photo.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="founder-photo.png"alt="AI黄校长"></picture></div>
-                    <div class="founder-info">
-                        <div class="founder-name">AI黄校长</div>
-                        <div class="founder-role">TOPOPC宇航家 · 项目主理人</div>
-                        <div class="founder-bio">15年实体创业路，从70平米小店到AI一人公司开创者。培育逾万名AI应用人才，200+场路演和培训。</div>
-                        <div class="founder-link">查看完整故事 →</div>
-                    </div>
-                </div>
-            </a>
-        </section>
-
-        <!-- L1-L5产品矩阵 -->
-        <section id="ecosystem" class="section scroll-reveal">
-            <h2 class="section-title">L1-L8产品矩阵 · 选择适合你的起点</h2>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-                <div class="ecosystem-item" onclick="location.href='experience-camp.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🚀</div>
-                    <div class="ecosystem-content">
-                        <h3>L1 引流 · TOPOPC AI宇航家 OPC线上3天训练营</h3>
-                        <p>¥199 · 3天AI认知入门</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='training-camp.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🎯</div>
-                    <div class="ecosystem-content">
-                        <h3>L2 实操 · TOPOPC AI宇航家 IP智能体线下1天实操课</h3>
-                        <p>¥499/人（体验营抵扣¥200）· 线下1天实操</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='long-system.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🐉</div>
-                    <div class="ecosystem-content">
-                        <h3>L3 TOPOPC AI宇航家 大龙虾AI司令部会员</h3>
-                        <p>¥1,688/年 · AI司令部会员</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='opbc-full-course.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">💎</div>
-                    <div class="ecosystem-content">
-                        <h3>L4 TOPOPC AI宇航家 OPC全案落地大课</h3>
-                        <p>¥2,888/人 · OPC全案落地大课 OPC全案落地大课</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='annual-card.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">👑</div>
-                    <div class="ecosystem-content">
-                        <h3>L5 陪跑 · TOPOPC AI宇航家 28天OPBU陪跑计划</h3>
-                        <p>¥3,688/人 · 线上28天陪跑</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='annual-card.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🏠</div>
-                    <div class="ecosystem-content">
-                        <h3>L6 核心 · TOPOPC AI宇航家 俱乐部年卡</h3>
-                        <p>¥8,866/年 · 年卡核心权益①</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='ai-company.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">🎖️</div>
-                    <div class="ecosystem-content">
-                        <h3>L7 高端 · TOPOPC AI宇航家 宇航指挥官</h3>
-                        <p>¥28,866/套 · 企业级AI解决方案</p>
-                    </div>
-                </div>
-                <div class="ecosystem-item" onclick="location.href='city-partner.html'" style="cursor:pointer;">
-                    <div class="ecosystem-icon">👑</div>
-                    <div class="ecosystem-content">
-                        <h3>L8 生态 · TOPOPC AI宇航家 星际总督</h3>
-                        <p>¥98,866/城 · 城市独家代理</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 八级成长阶梯 -->
-        <section class="section scroll-reveal">
-            <h2 class="section-title">八级成长阶梯 · 从宇航员到 星际总督</h2>
-            
-            <div class="price-tier price-tier-clickable" onclick="location.href='experience-camp.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L1 引流</span>
-                    <h3>TOPOPC宇航员</h3>
-                    <p class="tier-desc">线上3天 · AI认知框架建立</p>
-                </div>
-                <div class="price-tier-price">¥199 <span style="font-size:14px;color:var(--text-secondary);font-weight:400">→</span></div>
-            </div>
-
-            <!-- L1体验营详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">🚀 TOPOPC宇航员 · 3天带你入门AI</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">📅</span>
-                        <span class="l4-product-name">Day 1 · 认知觉醒</span>
-                        <span class="l4-product-desc">OPBU方法论 + AI全景图 + 自我诊断问卷</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚡</span>
-                        <span class="l4-product-name">Day 2 · 工具实战</span>
-                        <span class="l4-product-desc">AI写作/对话/图片工具实操 + 最小闭环工作流</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎤</span>
-                        <span class="l4-product-name">Day 2晚 · AI黄校长专场</span>
-                        <span class="l4-product-desc">OPC商业深度解读 + 从0到1做AI一人公司</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏆</span>
-                        <span class="l4-product-name">Day 3 · 作业验收</span>
-                        <span class="l4-product-desc">自主练习 + 结业作业 + 毕业证书发放</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">📱 小班教学 + 作业验收，不做不毕业</div>
-                    <div class="l4-service-item">🎁 毕业即获优惠券，可抵扣¥200升L2训练营</div>
-                </div>
-                <div class="l4-value">约6小时直播 + 社群答疑 + 工具教程 + 直播回放</div>
-                <a href="experience-camp.html" class="l4-detail-btn">查看完整课程详情 →</a>
-            </div>
-
-            <div class="price-tier price-tier-clickable" onclick="location.href='training-camp.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L2 实操</span>
-                    <h3>TOPOPC AI宇航家 IP智能体线下1天实操课</h3>
-                    <p class="tier-desc">线下1天 · IP打造+智能体配置+获客落地</p>
-                </div>
-                <div class="price-tier-price">¥499 <span style="font-size:14px;color:var(--text-secondary);font-weight:400">→</span></div>
-            </div>
-
-            <!-- L2训练营详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">🏢 TOPOPC AI宇航家 IP智能体线下1天实操课 · 实操落地</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎯</span>
-                        <span class="l4-product-name">上午场 · IP打造方法论</span>
-                        <span class="l4-product-desc">09:30-12:00 · IP定位 + 内容策略 + AI司令部实操</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🤖</span>
-                        <span class="l4-product-name">下午场 · 智能体配置实战</span>
-                        <span class="l4-product-desc">14:30-17:00 · IP智能体搭建 + 获客话术 + 自动回复配置</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏆</span>
-                        <span class="l4-product-name">毕业落地</span>
-                        <span class="l4-product-desc">智能体上线 + 7天运营计划 + 社群陪跑</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 线下面对面上课 · 全程工具实操 · 不只是听讲</div>
-                    <div class="l4-service-item">🤝 小班制限30人 · 升单赠¥1,688商业咨询</div>
-                </div>
-                <div class="l4-value">含讲义、工具包、证书、午餐（AA）</div>
-                <a href="training-camp.html" class="l4-detail-btn">查看完整课程详情 →</a>
-            </div>
-
-            <!-- L3: TOPOPC AI宇航家 大龙虾AI司令部会员 -->
-            <div class="price-tier price-tier-clickable" onclick="location.href='long-system.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L3 系统</span>
-                    <h3>TOPOPC AI宇航家 大龙虾AI司令部会员 · 年度会员</h3>
-                    <p class="tier-desc">线上 · AI工具全家桶 + 算力支持</p>
-                </div>
-                <div class="price-tier-price">¥1,688<span>/年</span></div>
-            </div>
-
-            <!-- L3TOPOPC AI宇航家 大龙虾AI司令部会员详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">🦞 TOPOPC AI宇航家 大龙虾AI司令部会员 · 你的AI落地工具箱</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🧠</span>
-                        <span class="l4-product-name">AI司令部</span>
-                        <span class="l4-product-desc">PC端数字大脑，自动生成内容+知识管理</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🤖</span>
-                        <span class="l4-product-name">IP智能体</span>
-                        <span class="l4-product-desc">专属数字分身，随时帮你干活</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">📚</span>
-                        <span class="l4-product-name">AI专家库</span>
-                        <span class="l4-product-desc">各行业专家提示词，提问即获专业建议</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏪</span>
-                        <span class="l4-product-name">实体店功能</span>
-                        <span class="l4-product-desc">微信生态门店，获客转化一体化</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚡</span>
-                        <span class="l4-product-name">算力支持</span>
-                        <span class="l4-product-desc">3000点/月AI算力，运行畅通无阻</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 线上自主使用 · 无需线下上课 · 随时随地启动</div>
-                    <div class="l4-service-item">📱 电脑端+手机端同步 · 一次购买全平台通用</div>
-                    <div class="l4-service-item">🔄 持续更新 · 每月新增AI能力和功能</div>
-                </div>
-                <div class="l4-value">总价值超过 <strong>¥10,000</strong></div>
-            </div>
-
-            <!-- L4: OPC全案落地大课 OPC全案落地大课 -->
-            <div class="price-tier price-tier-clickable" onclick="location.href='opbc-full-course.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L4 实战</span>
-                    <h3>OPC全案落地大课 OPC全案落地大课</h3>
-                    <p class="tier-desc">线下2天1夜 · 深度实战+商业闭环</p>
-                </div>
-                <div class="price-tier-price">¥2,888</div>
-            </div>
-
-            <!-- L4TOPOPC AI宇航家 OPC全案落地大课详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">📚 OPC全案落地大课 OPC全案落地大课 · 2天1夜密集训练</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🌅</span>
-                        <span class="l4-product-name">Day 1 · 认知+工具</span>
-                        <span class="l4-product-desc">上午：OPBU核心理念 + 个人诊断 · 下午：AI工具实战</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🌙</span>
-                        <span class="l4-product-name">Day 1晚 · 资源对接</span>
-                        <span class="l4-product-desc">学员商业互推 + 深度人脉拓展</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚡</span>
-                        <span class="l4-product-name">Day 2 · 实战+闭环</span>
-                        <span class="l4-product-desc">上午：AI获客/转化 + 商业画布 · 下午：最小闭环 + 行动计划</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏆</span>
-                        <span class="l4-product-name">毕业</span>
-                        <span class="l4-product-desc">结业证书 + 学员工具包 + 社群跟进</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 线下面对面上课 · 全程工具实操 · 不只是听讲</div>
-                    <div class="l4-service-item">🤝 小班制限50人 · 深度链接同行精英</div>
-                    <div class="l4-service-item">🎁 赠送TOPOPC AI宇航家 大龙虾AI司令部会员年度会员（¥1,688）</div>
-                </div>
-                <div class="l4-value">含讲义、工具包、证书、食宿（AA）</div>
-                <a href="opbc-full-course.html" class="l4-detail-btn">查看完整课程详情 →</a>
-            </div>
-
-            <!-- L5: 28天OPBU陪跑 -->
-            <div class="price-tier price-tier-clickable" onclick="location.href='opbu28.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L5 陪跑</span>
-                    <h3>TOPOPC AI宇航家 28天OPBU陪跑计划</h3>
-                    <p class="tier-desc">线上一对一 · 每日任务驱动 · 4周闭环</p>
-                </div>
-                <div class="price-tier-price">¥3,688 <span style="font-size:11px;color:var(--green-accent);font-weight:500">含年卡</span></div>
-            </div>
-
-            <!-- L5 28天陪跑详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">💪 28天OPBU陪跑 · 四周跑通AI一人公司</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎯</span>
-                        <span class="l4-product-name">Week 1 · 认知觉醒</span>
-                        <span class="l4-product-desc">开营仪式 + OPBU理念 + 现状诊断</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">💻</span>
-                        <span class="l4-product-name">Week 2 · 工具掌握</span>
-                        <span class="l4-product-desc">5项AI能力 + 每日作业 + 工具全家桶</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚙️</span>
-                        <span class="l4-product-name">Week 3 · 商业落地</span>
-                        <span class="l4-product-desc">销售OPBU + 运营OPBU + 管理OPBU</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🚀</span>
-                        <span class="l4-product-name">Week 4 · 成果产出</span>
-                        <span class="l4-product-desc">AI获客 + 转化成交 + 毕业典礼</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 一对一私教群 · 每日任务驱动 · 有人盯着你执行</div>
-                    <div class="l4-service-item">📱 90+款AI工具 + 200+份模板 · 直接上手</div>
-                    <div class="l4-service-item">⚠️ 不单独发售，仅含在TOPOPC AI宇航家 俱乐部年卡内</div>
-                </div>
-                <a href="opbu28.html" class="l4-detail-btn">查看28天详细大纲 →</a>
-            </div>
-
-            <!-- L6: TOPOPC AI宇航家 俱乐部年卡 -->
-            <div class="price-tier price-tier-clickable core" onclick="location.href='annual-card.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L6 核心</span>
-                    <h3>TOPOPC全案落地大课 俱乐部年卡</h3>
-                    <p class="tier-desc">线上+线下 · OPBU一人商业单元 · 8大权益</p>
-                </div>
-                <div class="price-tier-price">¥8,866<span>/年</span> <span style="font-size:14px;color:var(--star-gold);font-weight:400">→</span></div>
-            </div>
-
-            <!-- L6 年卡详情 -->
-            <div class="l4-detail" style="border-color:rgba(212,175,55,0.3);background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(45,27,78,0.4));">
-                <div class="l4-detail-header" style="color:var(--star-gold);">⭐ TOPOPC AI宇航家 俱乐部年卡 · TOPOPC核心产品</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎓</span>
-                        <span class="l4-product-name">① TOPOPC AI宇航家 OPC全案落地大课</span>
-                        <span class="l4-product-desc">2天1夜线下集训 · 含L3TOPOPC AI宇航家 大龙虾AI司令部会员</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">💪</span>
-                        <span class="l4-product-name">② 28天OPBU陪跑</span>
-                        <span class="l4-product-desc">一对一私教群 · 4周系统陪跑</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎯</span>
-                        <span class="l4-product-name">③ 黄校长60分钟私教</span>
-                        <span class="l4-product-desc">腾讯会议1v1 · 定制化诊断</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚡</span>
-                        <span class="l4-product-name">④ AI工具包年度使用权</span>
-                        <span class="l4-product-desc">自研AI工作流 + 精选工具 + 持续更新</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">💼</span>
-                        <span class="l4-product-name">⑤ 一对一商业咨询</span>
-                        <span class="l4-product-desc">深度商业诊断与规划 · 针对性建议</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏆</span>
-                        <span class="l4-product-name">⑥ OPC孵化器挂牌</span>
-                        <span class="l4-product-desc">官方背书 · 城市身份标识 · 需审核</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🎪</span>
-                        <span class="l4-product-name">⑦ 协办三次活动</span>
-                        <span class="l4-product-desc">公开课+训练营+落地大课 · 价值¥16,888</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🌐</span>
-                        <span class="l4-product-name">⑧ 星链社群终身席位</span>
-                        <span class="l4-product-desc">正式加入TOPOPC生态圈 · 终身有效</span>
-                    </div>
-                </div>
-                <div class="l4-value">8项权益总价值超过 <strong style="color:var(--star-gold);font-size:16px;">¥30,000</strong> · 年卡仅 <strong style="color:var(--green-accent);font-size:16px;">¥8,866</strong></div>
-                <a href="annual-card.html" class="l4-detail-btn" style="background:linear-gradient(135deg,rgba(212,175,55,0.2),rgba(212,175,55,0.1));border-color:rgba(212,175,55,0.3);color:var(--star-gold);">查看年卡完整权益 →</a>
-            </div>
-
-            <!-- L7: TOPOPC AI宇航家 宇航指挥官 -->
-            <div class="price-tier price-tier-clickable" onclick="location.href='ai-company.html'">
-                <div class="price-tier-info">
-                    <span class="tier-level">L7 高端</span>
-                    <h3>TOPOPC全案落地大课 宇航指挥官</h3>
-                    <p class="tier-desc">长期 · 深度陪跑+定制开发</p>
-                </div>
-                <div class="price-tier-price">¥28,866 <span style="font-size:14px;color:var(--text-secondary);font-weight:400">→</span></div>
-            </div>
-
-            <!-- L7实体系统详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">🚀 TOPOPC全案落地大课 宇航指挥官 · 企业AI系统</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🧠</span>
-                        <span class="l4-product-name">AI司令部</span>
-                        <span class="l4-product-desc">PC端数字大脑，自动生成内容+知识管理</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">📱</span>
-                        <span class="l4-product-name">AI流量体</span>
-                        <span class="l4-product-desc">小程序线上门店+IP智能体，随时获客</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">⚡</span>
-                        <span class="l4-product-name">巨量算力包</span>
-                        <span class="l4-product-desc">10万点AI算力，运行畅通无阻</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 AI黄校长亲自带队3个月人机协同陪跑 + 12个月社群答疑</div>
-                    <div class="l4-service-item">📚 线上训练营+线下闭门大课，系统化培训赋能</div>
-                    <div class="l4-service-item">🌐 加入顶级资源圈层，链接实干派企业家</div>
-                </div>
-                <div class="l4-value">总价值超过 <strong>¥100,000</strong></div>
-                <a href="ai-company.html" class="l4-detail-btn">查看完整交付清单 →</a>
-            </div>
-
-            <!-- L8: TOPOPC AI宇航家 星际总督 -->
-            <div class="price-tier">
-                <div class="price-tier-info">
-                    <span class="tier-level">L8 生态</span>
-                    <h3>TOPOPC全案落地大课 星际总督</h3>
-                    <p class="tier-desc">长期 · 独家代理+品牌授权</p>
-                </div>
-                <div class="price-tier-price">¥98,866</div>
-                <div class="l4-value">总价值超过 <strong>¥1,000,000</strong></div>
-                <a href="city-partner.html" class="l4-detail-btn">查看合作方案 →</a>
-            </div>
-
-            <!-- L8城市合伙人详情 -->
-            <div class="l4-detail">
-                <div class="l4-detail-header">🏙️ TOPOPC全案落地大课 星际总督 · 城市独家代理</div>
-                <div class="l4-products">
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🏢</span>
-                        <span class="l4-product-name">一城一智OPC孵化器</span>
-                        <span class="l4-product-desc">3000~5000㎡标准化空间，四大功能区</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🌐</span>
-                        <span class="l4-product-name">TOPOPC社区平台</span>
-                        <span class="l4-product-desc">全国资源对接、订单分发、知识共享</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🤖</span>
-                        <span class="l4-product-name">"我是TOPOPC"智能体平台</span>
-                        <span class="l4-product-desc">快速构建专属数字分身</span>
-                    </div>
-                    <div class="l4-product-item">
-                        <span class="l4-product-icon">🚀</span>
-                        <span class="l4-product-name">三大核心引擎</span>
-                        <span class="l4-product-desc">AI司令部+IP智能体+微信生态门店</span>
-                    </div>
-                </div>
-                <div class="l4-services">
-                    <div class="l4-service-item">🎯 城市独家代理权（不含一线城市）+ TOPOPC完整品牌授权</div>
-                    <div class="l4-service-item">📚 总部系统化培训 + 持续运营支持</div>
-                    <div class="l4-service-item">🌐 接入全国TOPOPC生态网络，订单/人才/资源协同共享</div>
-                    <div class="l4-service-item">📈 三年规划全程陪跑：2026验证→2027复制→2028生态成型</div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- TOPOPC宇航家权益清单 -->
-        <section class="section" style="padding-top:30px;padding-bottom:20px;">
-            <div style="text-align:center;margin-bottom:24px;">
-                <h2 class="section-title" style="margin-bottom:6px;">🚀 TOPOPC AI宇航家 俱乐部年卡8大权益 · 从认知到落地全配套</h2>
-                <p style="color:var(--text-secondary);font-size:14px;">年卡8大权益 · 总价值超过 ¥30,000</p>
-            </div>
-
-            <!-- 权益清单卡片组 -->
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:720px;margin:0 auto;">
-                <!-- ①号2天1夜详情模块 -->
-                <div style="grid-column:1/-1;background:linear-gradient(135deg,rgba(139,92,246,0.06),rgba(99,102,241,0.03));border:1px solid rgba(139,92,246,0.15);border-radius:16px;padding:20px;margin:4px 0;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-                        <div>
-                            <div style="font-size:11px;font-weight:700;color:#a78bfa;letter-spacing:1px;margin-bottom:4px;">🎓 年卡核心权益①</div>
-                            <div style="font-size:18px;font-weight:800;color:#e8e4f0;">TOPOPC全案落地大课 OPC全案落地大课 · 2天1夜</div>
-                        </div>
-                        <a href="opbc-full-course.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(99,102,241,0.15));border:1px solid rgba(139,92,246,0.3);border-radius:20px;font-size:12px;color:#a78bfa;text-decoration:none;font-weight:600;transition:all 0.2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(139,92,246,0.3),rgba(99,102,241,0.2))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(139,92,246,0.2),rgba(99,102,241,0.15))'">查看完整课件 →</a>
-                    </div>
-                    <!-- 2天时间线 -->
-                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;" class="opbc-timeline">
-                        <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);border-radius:12px;padding:14px;">
-                            <div style="font-size:11px;font-weight:700;color:#818cf8;margin-bottom:8px;">📅 Day 1 · 认知+工具</div>
-                            <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;">
-                                上午：OPBU核心理念 + 个人诊断<br>
-                                下午：AI写作/图片/视频工具实战<br>
-                                晚间：学员商业互推 + 资源对接
-                            </div>
-                        </div>
-                        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:12px;padding:14px;">
-                            <div style="font-size:11px;font-weight:700;color:#34d399;margin-bottom:8px;">📅 Day 2 · 实战+闭环</div>
-                            <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;">
-                                上午：AI获客/转化 + 商业画布<br>
-                                下午：交付自动化 + 30天计划<br>
-                                毕业：路演 + 证书
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 产出成果 -->
-                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                        <span style="font-size:12px;color:var(--text-secondary);">现场产出：</span>
-                        <span style="font-size:11px;padding:4px 10px;background:rgba(139,92,246,0.1);border-radius:10px;color:#a78bfa;">OPBU商业画布</span>
-                        <span style="font-size:11px;padding:4px 10px;background:rgba(16,185,129,0.1);border-radius:10px;color:#34d399;">AI工作流</span>
-                        <span style="font-size:11px;padding:4px 10px;background:rgba(251,146,60,0.1);border-radius:10px;color:#fb923c;">30天计划</span>
-                        <span style="font-size:11px;padding:4px 10px;background:rgba(245,158,11,0.1);border-radius:10px;color:#fbbf24;">文案+图片+视频</span>
-                    </div>
-                </div>
-
-                <!-- ② -->
-                <a href="opbu28.html" style="display:block;background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(52,211,153,0.05));border:1px solid rgba(16,185,129,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;text-decoration:none;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(16,185,129,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(16,185,129,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">💪</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">OPBU·28天陪跑 <span style="color:#34d399;font-size:11px;margin-left:4px;">→ 查看详情</span></div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">线上一对一陪跑群 · 每日任务驱动执行</div>
-                        <div style="font-size:13px;color:#34d399;font-weight:600;margin-top:5px;">¥3,688 <span style="font-size:11px;font-weight:400;opacity:0.7;">· 点击查看28天详细大纲</span></div>
-                    </div>
+        
+        <!-- L1-L2 引流产品 -->
+        <section class="product-section">
+            <h2 class="section-title">🚀 快速入门</h2>
+            <div class="product-grid">
+                <a href="experience-camp.html" class="product-card">
+                    <div class="product-level">L1 入门</div>
+                    <div class="product-name">OPC线上3天训练营</div>
+                    <div class="product-desc">3天AI认知入门</div>
+                    <div class="product-price">¥199</div>
                 </a>
-                <!-- ③ -->
-                <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(251,191,36,0.05));border:1px solid rgba(245,158,11,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(245,158,11,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(245,158,11,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">🎯</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">AI黄校长60分钟私教</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">腾讯会议1v1 · 定制化诊断和建议</div>
-                        <div style="font-size:13px;color:#fbbf24;font-weight:600;margin-top:5px;">¥1,688</div>
-                    </div>
-                </div>
-                <!-- ④ -->
-                <div style="background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(244,114,182,0.05));border:1px solid rgba(236,72,153,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(236,72,153,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(236,72,153,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">⚡</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">AI工具包年度使用权</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">自研AI工作流 + 精选工具 + 教程更新</div>
-                        <div style="font-size:13px;color:#f472b6;font-weight:600;margin-top:5px;">¥1,688</div>
-                    </div>
-                </div>
-                <!-- ⑤ -->
-                <div style="background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(96,165,250,0.05));border:1px solid rgba(59,130,246,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(59,130,246,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(59,130,246,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">💼</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">AI黄校长一对一商业咨询</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">深度商业诊断与规划 · 针对性建议</div>
-                        <div style="font-size:13px;color:#60a5fa;font-weight:600;margin-top:5px;">¥1,688</div>
-                    </div>
-                </div>
-                <!-- ⑥ -->
-                <div style="background:linear-gradient(135deg,rgba(167,139,250,0.08),rgba(192,132,252,0.05));border:1px solid rgba(167,139,250,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(167,139,250,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(167,139,250,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">🏆</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">一城一智OPC孵化器挂牌</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">官方背书 · 城市独家身份标识</div>
-                        <div style="font-size:13px;color:#c084fc;font-weight:600;margin-top:5px;">需审核</div>
-                    </div>
-                </div>
-                <!-- ⑦ -->
-                <a href="co-host-events.html" style="text-decoration:none;display:block;background:linear-gradient(135deg,rgba(20,184,166,0.08),rgba(45,212,191,0.05));border:1px solid rgba(20,184,166,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(20,184,166,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(20,184,166,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">🎪</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">协办三次活动 <span style=\"font-size:11px;color:#2dd4bf;font-weight:400;\">→ 查看详情</span></div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">公开课/实训课/落地大课 · 总部支持</div>
-                        <div style="font-size:13px;color:#2dd4bf;font-weight:600;margin-top:5px;">价值 ¥16,888</div>
-                    </div>
+                <a href="training-camp.html" class="product-card">
+                    <div class="product-level">L2 实操</div>
+                    <div class="product-name">IP智能体线下课</div>
+                    <div class="product-desc">1天线下实操</div>
+                    <div class="product-price">¥499</div>
                 </a>
-                <!-- ⑦ 三次活动子卡片 -->
-                <div style="grid-column:1/-1;margin-top:4px;padding:16px;background:rgba(20,184,166,0.04);border:1px solid rgba(20,184,166,0.12);border-radius:14px;">
-                    <div style="font-size:12px;font-weight:700;color:#2dd4bf;margin-bottom:10px;letter-spacing:1px;">📋 三次活动详情</div>
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-                        <a href="co-host-events.html#free-tabs" style="text-decoration:none;display:block;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.18);border-radius:10px;padding:12px;text-align:center;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(16,185,129,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(16,185,129,0.18)'">
-                            <div style="font-size:24px;margin-bottom:4px;">📢</div>
-                            <div style="font-size:13px;font-weight:700;color:#e8e4f0;">免费公开课</div>
-                            <div style="font-size:11px;color:#6b7280;margin:3px 0;">1-2h · 30人+ · 线上/线下</div>
-                            <div style="font-size:12px;color:#34d399;font-weight:700;">价值 ¥3,000</div>
-                        </a>
-                        <a href="co-host-events.html#train-tabs" style="text-decoration:none;display:block;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.18);border-radius:10px;padding:12px;text-align:center;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(59,130,246,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(59,130,246,0.18)'">
-                            <div style="font-size:24px;margin-bottom:4px;">🎒</div>
-                            <div style="font-size:13px;font-weight:700;color:#e8e4f0;">¥499训练营</div>
-                            <div style="font-size:11px;color:#6b7280;margin:3px 0;">1天5h · 10-30人 · 线下</div>
-                            <div style="font-size:12px;color:#60a5fa;font-weight:700;">价值 ¥5,888</div>
-                        </a>
-                        <a href="co-host-events.html#master-tabs" style="text-decoration:none;display:block;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.18);border-radius:10px;padding:12px;text-align:center;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(139,92,246,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(139,92,246,0.18)'">
-                            <div style="font-size:24px;margin-bottom:4px;">🏆</div>
-                            <div style="font-size:13px;font-weight:700;color:#e8e4f0;">¥8,866落地大课</div>
-                            <div style="font-size:11px;color:#6b7280;margin:3px 0;">2天1夜 · 10-30人 · 线下</div>
-                            <div style="font-size:12px;color:#a78bfa;font-weight:700;">价值 ¥8,000</div>
-                        </a>
-                    </div>
-                </div>
-                <!-- ⑧ -->
-                <div style="background:linear-gradient(135deg,rgba(251,146,60,0.08),rgba(253,186,116,0.05));border:1px solid rgba(251,146,60,0.18);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:transform 0.25s ease,border-color 0.25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(251,146,60,0.45)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(251,146,60,0.18)'">
-                    <span style="font-size:22px;flex-shrink:0;">🌐</span>
-                    <div>
-                        <div style="font-weight:700;font-size:14px;color:#e8e4f0;margin-bottom:3px;">星链社群终身席位</div>
-                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;">正式加入TOPOPC生态圈 · 终身有效</div>
-                        <div style="font-size:13px;color:#fb923c;font-weight:600;margin-top:5px;">终身</div>
-                    </div>
-                </div>
             </div>
-
         </section>
-
-        <!-- TOPOPC宇航家招募横幅 -->
-        <div style="text-align:center;padding:20px 16px;margin:0 16px 0 16px;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(245,158,11,0.08),rgba(212,175,55,0.12));border:1px solid rgba(212,175,55,0.35);border-radius:16px;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.6),transparent);"></div>
-            <div style="font-size:22px;font-weight:800;color:var(--star-gold);letter-spacing:2px;margin-bottom:6px;">🚀 TOPOPC全案落地大课 俱乐部年卡 · 全国招募中</div>
-            <div style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;line-height:1.6;">从¥199体验营到¥98,866城市合伙人，找到属于你的起航点</div>
-
-            <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.6),transparent);"></div>
-        </div>
-
-        <!-- 成果展示 -->
-        <section class="section" style="padding-top:20px;">
-            <h2 class="section-title">成为宇航家 · 你将获得这些能力</h2>
-            <div class="outcome-grid">
-                <div class="outcome-card">
-                    <div class="outcome-icon">🎯</div>
-                    <div class="outcome-title">可落地的AI一人公司模型</div>
-                    <div class="outcome-desc">从0到1设计并跑通你的AI商业模式</div>
+        
+        <!-- L3-L5 系统产品 -->
+        <section class="product-section">
+            <h2 class="section-title">🔧 系统工具</h2>
+            <div class="product-grid">
+                <a href="long-system.html" class="product-card">
+                    <div class="product-level">L3 系统</div>
+                    <div class="product-name">大龙虾AI司令部</div>
+                    <div class="product-desc">AI工具全家桶</div>
+                    <div class="product-price">¥1,688/年</div>
+                </a>
+                <a href="opbc-full-course.html" class="product-card">
+                    <div class="product-level">L4 落地</div>
+                    <div class="product-name">OPC全案落地大课</div>
+                    <div class="product-desc">2天1夜线下课</div>
+                    <div class="product-price">¥2,888</div>
+                </a>
+                <a href="opbu28.html" class="product-card full-width">
+                    <div class="product-level">L5 陪跑</div>
+                    <div class="product-name">28天OPBU陪跑计划</div>
+                    <div class="product-desc">线上28天陪跑 · 年卡核心权益②</div>
+                    <div class="product-price">¥3,688</div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- L6-L8 高端产品 -->
+        <section class="product-section">
+            <h2 class="section-title">👑 核心生态</h2>
+            <div class="product-grid">
+                <a href="annual-card.html" class="product-card">
+                    <div class="product-level">L6 核心</div>
+                    <div class="product-name">俱乐部年卡</div>
+                    <div class="product-desc">含L4+L5</div>
+                    <div class="product-price">¥8,866/年</div>
+                </a>
+                <a href="ai-company.html" class="product-card">
+                    <div class="product-level">L7 企业</div>
+                    <div class="product-name">宇航指挥官</div>
+                    <div class="product-desc">企业级AI方案</div>
+                    <div class="product-price">¥28,866</div>
+                </a>
+                <a href="city-partner.html" class="product-card full-width">
+                    <div class="product-level">L8 合伙人</div>
+                    <div class="product-name">星际总督 · 城市独家代理</div>
+                    <div class="product-desc">品牌授权 + 独家代理权</div>
+                    <div class="product-price">¥98,866/城</div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 创始人介绍 -->
+        <section class="founder-section">
+            <div class="founder-header">项目主理人</div>
+            <div class="founder-content">
+                <div class="founder-avatar">
+                    <img src="founder-photo.png" alt="AI黄校长">
                 </div>
-                <div class="outcome-card">
-                    <div class="outcome-icon">💪</div>
-                    <div class="outcome-title">28天被推着行动的执行力</div>
-                    <div class="outcome-desc">一对一社群陪跑，有人盯着你每天输出</div>
-                </div>
-                <div class="outcome-card">
-                    <div class="outcome-icon">⚡</div>
-                    <div class="outcome-title">省去1年试错时间的AI工具链</div>
-                    <div class="outcome-desc">TOPOPC验证过的工具全家桶直接给你</div>
-                </div>
-                <div class="outcome-card">
-                    <div class="outcome-icon">👤</div>
-                    <div class="outcome-title">60分钟针对性个人诊断</div>
-                    <div class="outcome-desc">AI黄校长一对一，根据你的具体情况给建议</div>
-                </div>
-                <div class="outcome-card">
-                    <div class="outcome-icon">🌐</div>
-                    <div class="outcome-title">一个高质量的同频圈层</div>
-                    <div class="outcome-desc">和认真做事的创业者同行，终身有效</div>
-                </div>
-                <div class="outcome-card">
-                    <div class="outcome-icon">🏙️</div>
-                    <div class="outcome-title">一城一智OPC孵化器加持</div>
-                    <div class="outcome-desc">协办三次活动，深度绑定地方影响力</div>
+                <div class="founder-info">
+                    <div class="founder-name">AI黄校长</div>
+                    <div class="founder-role">TOPOPC宇航家 · 项目主理人</div>
+                    <div class="founder-bio">15年数智服务经验，200+场路演和培训，培育10000+AI应用人才</div>
+                    <a href="about.html" class="founder-link">查看完整故事 →</a>
                 </div>
             </div>
         </section>
-
-        <!-- 适合人群 -->
-        <section class="section scroll-reveal">
-            <h2 class="section-title">谁该加入宇航家 / 谁该绕道</h2>
-            <div class="audience-grid">
-                <div class="audience-box good">
-                    <div class="audience-title">✓ 适合加入</div>
-                    <ul class="audience-list">
-                        <li>想用AI做一人公司的自由职业者/创业者</li>
-                        <li>有业务但没系统化的个体经营者</li>
-                        <li>想从0开始用AI赚钱的新手</li>
-                        <li>有执行力，只缺方法和圈子的人</li>
-                    </ul>
-                </div>
-                <div class="audience-box bad">
-                    <div class="audience-title">✗ 不适合加入</div>
-                    <ul class="audience-list">
-                        <li>想躺赚、不想动手的</li>
-                        <li>期待一夜暴富的</li>
-                        <li>不愿意跟AI打交道的</li>
-                        <li>买了课从来不看的"囤课党"</li>
-                    </ul>
-                </div>
-            </div>
+        
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-title">加入TOPOPC生态</div>
+            <div class="cta-desc">选择适合你的起点，开启AI进化之路</div>
+            <a href="https://work.weixin.qq.com/kfid/kfc9c88b4cb9b88c634" class="cta-btn">联系我</a>
         </section>
-
-        <!-- 价格对比 -->
-        <section class="section scroll-reveal">
-            <h2 class="section-title">首发价不到总价值30%</h2>
-            <div class="price-compare">
-                <div class="total-value">¥30,000+</div>
-                <div class="total-label">8项权益总价值</div>
-                <div class="arrow">↓</div>
-                <div class="now-price">¥8,866</div>
-                <div class="now-label">首发价 / 年</div>
-                <div class="saving">立省超过 ¥21,000</div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section scroll-reveal">
-            <h2 class="section-title">常见问题</h2>
-            <div class="faq-item">
-                <div class="faq-question">我完全零基础，能跟上吗？</div>
-                <div class="faq-answer">全案大课就是从0开始的。28天陪跑会推着你走。零基础反而没包袱。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">大课在哪里？要额外花钱吗？</div>
-                <div class="faq-answer">大课费用已含在年卡中。地点提前1个月通知（计划深圳/广州）。交通住宿自理。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">28天陪跑是录播课吗？</div>
-                <div class="faq-answer">不是。是一对一社群陪跑，每天有任务，有人盯着你执行。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">不满意能退款吗？</div>
-                <div class="faq-answer">拉群交付7天内可全额退款。我们有信心你不会退。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">100名满了怎么办？</div>
-                <div class="faq-answer">等下一期。价格可能不同。建议开售第一时间锁定名额。</div>
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="final-cta" id="final-cta">
-            <h2 class="final-cta-title">成为AI时代的宇航家</h2>
-            <p class="final-cta-subtitle">驾驭一人公司星际航行，找到属于自己的轨道</p>
-            <p class="final-cta-note">限量 <span>100</span> 名 · 首发价 <span>¥8,866/年</span></p>
-        </section>
-
+        
+        <!-- Footer -->
         <footer class="footer">
             <div class="footer-brand">TOPOPC</div>
-            <div class="footer-copy">© 2026 TOPOPC宇航家 · v4.0 · 一城一智（广东）科技有限公司</div>
+            <div class="footer-copy">© 2026 TOPOPC宇航家 · v5.0 · 一城一智（广东）科技有限公司</div>
             <div class="footer-links">
-                <a href="index.html" class="footer-link">TOPOPC生态圈</a>
-                <a href="annual-card.html" class="footer-link">AI宇航家课程</a>
-                <a href="ai-company.html" class="footer-link">AI一人公司</a>
-                <a href="city-partner.html" class="footer-link">园区孵化器</a>
+                <a href="about.html" class="footer-link">关于我们</a>
+                <a href="co-host-events.html" class="footer-link">协办活动</a>
             </div>
-        <div class="footer-icp" style="text-align:center;padding:12px 0 24px;font-size:12px;color:rgba(255,255,255,0.35);">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.35);text-decoration:none;">粤ICP备2020076772号-34</a>
-        </div>
+            <div class="footer-icp">粤ICP备2020076772号-34</div>
         </footer>
     </div>
-
-    
-
-    <script defer>
-
-        
-        // Generate stars
-        const starfield = document.getElementById('starfield');
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.width = Math.random() * 3 + 1 + 'px';
-            star.style.height = star.style.width;
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starfield.appendChild(star);
-        }
-
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('revealed');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        });
-    
-    </script>
 </body>
 </html>
